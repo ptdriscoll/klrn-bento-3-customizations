@@ -1,0 +1,48 @@
+<!-- KLRN CSS STYLES ================================================== -->
+<script type="text/javascript">
+var klrn = klrn || {}, path = location.pathname;
+klrn.env = {};
+    
+//set development environment to either 'dev' or 'prod' for testing, or 'live' 
+klrn.env.in = 'live';   
+
+//add any other conditions for development environment, such as a page or host address
+klrn.env.inDev = path.indexOf('/videoapp/') > -1 ||
+                 path.indexOf('/') > -1;
+    
+//add css and js file names for live environment, which include hashes that change on each update
+klrn.env.liveCSS = '/dcad12d4b2_styles.css';
+klrn.env.liveJS = '/1eb74bd985_scripts.js';  
+
+(function() {   
+    //load css for dev testing
+    if (klrn.env.in === 'dev' && klrn.env.inDev) {
+        klrn.env.cssPath = 'https://pbs.klrn.org/bento/src/css/styles.css';
+        klrn.env.jsPath =  'https://pbs.klrn.org/bento/src/js/scripts.js';
+    }
+    //load css for prod testing
+    else if (klrn.env.in === 'prod' && klrn.env.inDev) {
+        var timeStamp = Date.now();
+        klrn.env.cssPath = 'https://pbs.klrn.org/bento/dist/css/styles.css?v=' + timeStamp;
+        klrn.env.jsPath =  'https://pbs.klrn.org/bento/dist/js/scripts.js?v=' + timeStamp;
+    } 
+    //live code
+    else {
+        klrn.env.live = 'https://d1qbemlbhjecig.cloudfront.net/prod/filer_public/klrn-bento-live-pbs/global/';
+        klrn.env.cssPath = klrn.env.live + 'css' + klrn.env.liveCSS;
+        klrn.env.jsPath =  klrn.env.live + 'js' + klrn.env.liveJS;
+    }
+    
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.href = klrn.env.cssPath;
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);  
+}());     
+</script>     
+ 
+<style type="text/css">    
+    html { background-color: #333; }    
+    body { opacity: 0; }  
+</style>
+<!-- END KLRN CSS STYLES ================================================== -->

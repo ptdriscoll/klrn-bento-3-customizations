@@ -1,0 +1,17 @@
+#Mac
+.DS_Store
+Thumbs.db
+
+#Node
+node_modules/
+npm-debug.log*
+*.log
+
+#other
+_notes/
+data/
+downloads/
+tests/
+index.htm
+links.htm
+*.pyc

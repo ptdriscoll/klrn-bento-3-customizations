@@ -1,0 +1,149 @@
+/*========================================================
+global sidebar adjustments
+==========================================================*/
+
+.rail-wrapper a.klrn_button {
+    position: relative;
+    display: block; 
+    padding: 1.8rem 2rem 2rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #247182;
+    opacity: 0.92;
+    color: #fff;
+}
+
+.rail-wrapper a.klrn_button:after {
+    position: absolute;
+    content: "\F105";
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;  
+    font-size: 1.8em;
+    bottom: 0.216em;
+    right: 0.5em;    
+}
+
+.rail-wrapper a.klrn_button:hover {
+  text-decoration: none; 
+  opacity: 1; 
+  color: #fff; 
+  background-color: #045263; background-color: #014452;
+} 
+.rail-wrapper a.klrn_button:active,
+.rail-wrapper a.klrn_button:visited {
+  opacity: 0.92; 
+  color: #fff;
+} 
+.rail-wrapper a.klrn_button:focus {text-decoration: none;}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    .rail-wrapper a.klrn_button {
+        font-size: 2rem; 
+   }
+  
+    .rail-wrapper a.klrn_button:after {
+        font-size: 3.8rem;
+        bottom: 0.8rem; 
+   }  
+ }
+
+/* TV shedule */
+#component-f273f3c0-f29e-11e8-ac11-cf036755f6fe {border: 1px solid #ddd;}
+.tvss-namespace #schedules-container {padding-bottom: 6px;}
+
+.tvss-namespace #schedules-container.whatson .tvssFooter {
+    font-size: 19px !important;
+    line-height: 30px !important;
+    padding: 0px 0 15px !important;
+}
+
+/*========================================================
+manage what sidebar promos show
+==========================================================*/
+
+/* All pages: Protect My Public Media not shown by default */
+#component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 {
+    display: none; 
+}
+
+/* Passport page: do not show Passport promo */
+.passport #component-487eb930-f29a-11e8-ac11-cf036755f6fe {
+    display: none; 
+}
+
+/* Passport page: show Protect My Public Media */
+.passport #component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 {
+    display: block; 
+}
+
+/* All pages: Add any new promo container ids to 4 styles below */
+#component-487eb930-f29a-11e8-ac11-cf036755f6fe.component .filer-image-container,
+#component-19fb5ee0-f369-11e8-90bb-7b9969ce1070.component .filer-image-container {
+    text-align: right; 
+}
+
+#component-487eb930-f29a-11e8-ac11-cf036755f6fe .filer-image-container,
+#component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 .filer-image-container {
+    max-width: 308px;  
+    margin: 0 auto;
+}
+
+#component-487eb930-f29a-11e8-ac11-cf036755f6fe .filer-image-container:after,
+#component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 .filer-image-container:after {
+    content: 'Supporting KLRN'; 
+    font-size: 1.3rem;
+}
+
+#component-487eb930-f29a-11e8-ac11-cf036755f6fe .filer-image,
+#component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 .filer-image {
+    border: 1px solid #ddd; width: 100%; 
+}
+
+/*========================================================
+manage KLRN Endowmwnt page sidebar elements
+==========================================================*/
+
+/* All other pages: Memorials box not shown by default */
+#component-91b6cdf0-a982-11e9-b5e3-a77ff72a2441,
+#component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 {display: none;}
+
+/* Endowment page: Memorials box is shown */
+.support.klrn-endowment #component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 {
+    display: block; 
+}
+
+/* Endowment page: Memorials box h2 headline moved up slightly when on desktop */
+@media (min-width: 1024px) {
+    .support.klrn-endowment #component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 h2 {
+        margin-top: -10px;      
+   }
+}
+
+/* Endowment page: do not show buttons or default Passport promo */
+.support.klrn-endowment .rail-wrapper a.klrn_button,
+.support.klrn-endowment #component-487eb930-f29a-11e8-ac11-cf036755f6fe {
+    display: none; 
+}
+
+/* Endowment page: add style for h2.subhead */
+.support.klrn-endowment #component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 h2.subhead {
+    margin-top: -4px;
+    font-size: 2.1rem; 
+    font-style: italic; 
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+/*========================================================
+what's on now module
+==========================================================*/
+
+.show_current .primetime {display: none;}
+.show_primetime .current {display: none;}
+.schedule {margin-top: -0.9rem;}  
+.schedule h2 {padding: 0;} 
+.schedule a:hover {text-decoration: none;} 
+.schedule a:focus {text-decoration: none;} 
+table td {font-size: 1.6rem;}
+.schedule .table th, .schedule .table td {padding: 1.4rem 8px; }
+.schedule table tr:last-child {border-bottom: 1px solid #ddd;}
+.schedule table td:first-child {padding-left: 0; white-space: nowrap;}
+.schedule table td:last-child {padding-right: 0;}
+.table.schedule__table {display: table; margin-bottom: 15px;}
+
+.schedule .schedule__tz-va {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 0 7px 0 0;
+    font-size: 1.6rem;
+    font-weight: 700; 
+}
+
+.schedule .schedule__tz-va p {margin-bottom: 0;} 
+.schedule .schedule__tz-va p.view-all {float: right;}  
+
+.schedule .schedule__tz-va p a:after {
+    content: "\F105";
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    font-size: 22px;
+    top: 3px;
+    right: -7px;    
+}
+
+td.schedule__time.home-schedule__table-cell-time.schedule__time--formatted {
+    font-weight: bold;
+}
+
+@media (max-width: 979px) {
+    .schedule {margin-top: 1.7rem;}
+}
+
+@media (max-width: 967px) {
+    .schedule h2 {padding: 0 16px;} 
+    .schedule table td:first-child {padding-left: 16px;}
+    .schedule table td:last-child {padding-right: 16px;}  
+    .schedule .schedule__tz-va {padding-right: 23px; padding-left: 16px;}
+}
+
+@media (max-width: 270px), (min-width: 768px) and (max-width: 850px)  {
+    .section-header-component .section-header-value.h2_tag .text-input, h2 {font-size: 2.4rem;}
+    .table.schedule__table {margin-bottom: 18px;}    
+    .schedule .schedule__tz-va {margin-bottom: 8px;}
+    .schedule .schedule__tz-va {display: block;}
+    .schedule .schedule__tz-va p {line-height: 1.5;}
+    /*.schedule .schedule__tz-va p.schedule_primetime {margin-bottom: 0}*/
+    .schedule .schedule__tz-va p.view-all {float: none;}
+}

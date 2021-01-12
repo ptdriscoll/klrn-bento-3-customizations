@@ -1,0 +1,12 @@
+window.klrn = window.klrn || {};
+require('./modules/polyfills');
+require('./modules/klrn-helpers');
+require('./modules/whats-on');
+require('./modules/youtube-video');
+require('./modules/youtube-playlist-filters');
+require('./modules/youtube-playlist');
+require('./modules/youtube-video-loader');
+require('./ready');
+require('./modules/specific-pages');
+require('./modules/gtm-event-tracking');
+require('./modules/gtm-event-tracking-pages');

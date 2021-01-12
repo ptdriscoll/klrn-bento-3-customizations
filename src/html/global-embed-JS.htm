@@ -1,0 +1,45 @@
+<!-- KLRN JAVASCRIPT ================================================== -->
+<script type="text/javascript">
+//wait for jquery to load and document is ready to load klrn script/s at end of body 
+(function() {
+    //setup development environment variables
+    if (klrn.env.in === 'dev' && klrn.env.inDev) {
+        //global function to load scripts while in development mode
+         window.require = function (src) {
+             var currentScript = document.currentScript;
+             var newScript = document.createElement('script');
+              
+             newScript.src = 'https://pbs.klrn.org/bento/src/js' + src.slice(1) + '.js';
+             newScript.async = false;
+             currentScript.parentNode.insertBefore(newScript, currentScript);
+        }
+    }    
+    
+    //now wait for jquery and load klrn scripts 
+    var checkOnLoad = function checkOnload() {
+        if (typeof jQuery === 'undefined') {
+            setTimeout(checkOnload, 50);
+        }
+        else {		
+            (function ($, undefined) {       
+                $(document).ready(function() {
+                    var script = document.createElement('script');
+                    script.src = klrn.env.jsPath;
+                    document.body.appendChild(script);                  
+                });    
+            })(jQuery);			
+        }	
+    }
+    
+    checkOnLoad();  
+    
+    //workaround to show preview pages, since fade-in does not work for them
+    (function() {
+        if (location.pathname.indexOf('/preview/') > -1) {
+            document.querySelector('html').style.backgroundColor = 'transparent';
+            document.querySelector('body').style.opacity = '1';
+        }
+    }());    
+}());    
+</script>
+<!-- END KLRN JAVASCRIPT ================================================== -->

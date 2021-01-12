@@ -1,0 +1,63 @@
+<!--Begin CTCT Sign-Up Form-->
+<!-- EFD 1.0.0 [Thu Mar 17 19:42:28 EDT 2016] -->
+    
+<link rel='stylesheet' type='text/css' href='https://static.ctctcdn.com/h/contacts-embedded-signup-assets/1.0.2/css/signup-form.css'>
+    
+<div class="ctct-embed-signup" style="font: 16px Helvetica Neue, Arial, sans-serif; font: 1rem Helvetica Neue, Arial, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased;">
+   <div style="color:#5b5b5b; background-color:#FFFFFF; border-radius:5px;">
+       <span id="success_message" style="display:none;">
+           <div style="text-align:center;">Thanks for signing up!</div>
+       </span>
+       <form data-id="embedded_signup:form" class="ctct-custom-form Form" name="embedded_signup" method="POST" action="https://visitor2.constantcontact.com/api/signup">
+           <h1 style="margin:0;">Sign up to stay in touch!</h1>
+           <p>Thanks for your interest in joining our mailing list. Please complete the information below and click Sign Up.</p>
+           <!-- The following code must be included to ensure your sign-up form works properly. -->
+           <input data-id="ca:input" name="ca" value="f82418fa-304d-4902-b65e-29de04f878d0" type="hidden">
+           <input data-id="source:input" name="source" value="EFD" type="hidden">
+           <input data-id="required:input" name="required" value="list,email" type="hidden">
+           <input data-id="url:input" name="url" value="" type="hidden">
+           <p data-id="Email Address:p" ><label data-id="Email Address:label" data-name="email" class="ctct-form-required">Email Address</label> <input data-id="Email Address:input" name="email" value="" maxlength="80" type="text"></p>
+           <!--
+           <p data-id="First Name:p" ><label data-id="First Name:label" data-name="first_name">First Name</label> <input data-id="First Name:input" name="first_name" value="" maxlength="50" type="text"></p>
+           <p data-id="Last Name:p" ><label data-id="Last Name:label" data-name="last_name">Last Name</label> <input data-id="Last Name:input" name="last_name" value="" maxlength="50" type="text"></p>
+           <p data-id="Street Address:p" ><label data-id="Street Address:label" data-name="address_street">Street</label> <input data-id="Street Address:input" name="address_street" value="" maxlength="50" type="text"></p>
+           <p data-id="City:p" ><label data-id="City:label" data-name="address_city">City</label> <input data-id="City:input" name="address_city" value="" maxlength="50" type="text"></p>
+           <p data-id="State/Province:p" ><label data-id="State/Province:label" data-name="address_state">Select a state/province</label></p>
+           <p data-id="Zip Code:p" ><label data-id="Zip Code:label" data-name="address_postal_code">Zip Code</label> <input data-id="Zip Code:input" name="address_postal_code" value="" maxlength="50" type="text"></p>
+			-->
+            <p data-id="Lists:p" ><label data-id="Lists:label" data-name="list" class="ctct-form-required">Email Lists</label><div><input data-id="Lists:input" name="list_0" value="8" type="checkbox"><span data-id="Lists:span">KLRN Learn With Media</span></div><div><input data-id="Lists:input" name="list_1" value="5" type="checkbox"><span data-id="Lists:span">KLRN Kids</span></div><div><input data-id="Lists:input" name="list_2" value="13" type="checkbox"><span data-id="Lists:span">KLRN-TV Don't Miss List &amp; Station News</span></div></p>
+           <button type="submit" class="Button ctct-button Button--block Button-secondary" data-enabled="enabled">Sign Up</button>
+       	<div><p class="ctct-form-footer">By submitting this form, you are granting: KLRN, 501 Broadway, San Antonio, Texas, 78215, United States, http://www.klrn.org permission to email you. You may unsubscribe via the link found at the bottom of every email.  (See our <a href="http://www.constantcontact.com/legal/privacy-statement" target="_blank">Email Privacy Policy</a> for details.) Emails are serviced by Constant Contact.</p></div>
+       </form>
+   </div>
+</div>
+
+<script type="text/javascript"> 
+    
+var localizedErrMap = {};    
+(function() {
+  localizedErrMap['required'] = 'This field is required.';
+  localizedErrMap['ca'] = 'An unexpected error occurred while attempting to send email.';
+  localizedErrMap['email'] = 'Please enter your email address in name@email.com format.';
+  localizedErrMap['birthday'] = 'Please enter birthday in MM/DD format.';
+  localizedErrMap['anniversary'] = 'Please enter anniversary in MM/DD/YYYY format.';
+  localizedErrMap['custom_date'] = 'Please enter this date in MM/DD/YYYY format.';
+  localizedErrMap['list'] = 'Please select at least one email list.';
+  localizedErrMap['generic'] = 'This field is invalid.';
+  localizedErrMap['shared'] = 'Sorry, we could not complete your sign-up. Please make sure all required fields are filled in.';
+  localizedErrMap['state_mismatch'] = 'Mismatched State/Province and Country.';
+  localizedErrMap['state_province'] = 'Select a state/province';
+  localizedErrMap['selectcountry'] = 'Select a country';
+  var postURL = 'https://visitor2.constantcontact.com/api/signup';
+    
+  if (location.search.indexOf('newsletter=education') !== -1) {
+    document.forms['embedded_signup'].list_0.checked = true; 
+    //document.forms['embedded_signup'].list_3.checked = true;
+  }
+    
+}());    
+</script>
+
+<script type='text/javascript' src='https://static.ctctcdn.com/h/contacts-embedded-signup-assets/1.0.2/js/signup-form.js'></script>
+
+<!--End CTCT Sign-Up Form-->

@@ -1,0 +1,40 @@
+<!-- Begin Constant Contact Inline Form Code -->
+<div class="ctct-inline-form" data-form-id="e610d755-3b51-4004-aafb-324a411cde1d"></div>
+<!-- End Constant Contact Inline Form Code -->
+
+<script>
+//wait until email list labels load, and then edit text
+let signupReady = () => {
+    let labels = document.querySelectorAll('.ctct-form-listitem label');
+	if (labels.length > 0) {	
+		labels.forEach(x=>{
+			x.innerText = x.innerText.replace('Education Families: ', '');
+			x.innerText = x.innerText.replace('Education: ', '');
+		});
+	}
+	else window.requestAnimationFrame(signupReady);
+}
+window.requestAnimationFrame(signupReady);
+</script>
+
+<style>
+/* match KLRN website styles */
+#gdpr_text > p > a {display: none;}
+.ctct-form-embed.form_0 .ctct-form-defaults .ctct-form-header {
+    color: #5b5b5b;
+	font-size: 2.8rem;
+}
+.ctct-form-embed.form_0 .ctct-form-defaults .ctct-form-text, 
+.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-label, 
+.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-listname, 
+.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-lists-legend, 
+.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-date-slash, 
+.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text, 
+.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text .ctct-form-footer-link,
+.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text .ctct-form-footer-privacy-link {
+    color: #5b5b5b;	
+	font-size: 16px;
+}
+.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text {font-size: 14px;}
+legend {margin-bottom: 0; border-bottom: 0;}
+</style>
