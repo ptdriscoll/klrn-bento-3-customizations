@@ -4,8 +4,6 @@ This is a development environment to customize and add components to San Antonio
 
 ![KLRN.org home page](images/KLRN-home-page.jpg)
 
-<!--<img src="images/KLRN-home-page.jpg" width="675">-->
-
 ### Code embedded in header
 
 Custom CSS and JavaScript is loaded using JavaScript placed into a Bento HTML Embed Code in the global HEADER. This HTML component is archived at **/src/html/global-embed-CSS.htm**.
