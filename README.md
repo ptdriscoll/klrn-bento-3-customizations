@@ -28,7 +28,7 @@ Temporary CSS fixes can be added to a `<style>` block at the bottom.
 
 ### Code embedded in footer
 
-Custom JavaScript finishes loading here using a script placed into a Bento HTML Embed Code in the global FOOTER. This HTML component is archived at **src/html/global-embed-JS.htm**.
+Custom JavaScript finishes loading here using a script placed into a Bento HTML Embed Code in the global FOOTER. This HTML component is archived at **/src/html/global-embed-JS.htm**.
 
 A variable to set whether to load development or production code is in the global HEADER (see "Code embedded in header"). For development code, a "require" function is included here to load individual scripts. Temporary JavaScript fixes can be added at the bottom. 
 
