@@ -1,8 +1,10 @@
 # KLRN Bento 3 Customizations 
 
-This is a development environment to customize and add components to San Antonio's KLRN.org website, which is built with PBS' Bento 3 platform. Bento 3 uses a PBS version of Bootstrap 2, as well as other front-end styles and scripts.
+This is a development environment to customize and add components to San Antonio's KLRN.org website, which is built with PBS' Bento 3 platform. Bento 3 uses a PBS version of Bootstrap 2 and other front-end styles and scripts.
 
-![KLRN.org home page](KLRN-home-page.jpg)
+![KLRN.org home page](images/KLRN-home-page.jpg)
+
+<!--<img src="images/KLRN-home-page.jpg" width="675">-->
 
 ### Code embedded in header
 
