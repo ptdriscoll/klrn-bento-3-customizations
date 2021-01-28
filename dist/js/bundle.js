@@ -1,4 +1,54 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+//recreates Bootstrap's tab toggability, for one or more ul.nav-tags on page
+//html differences: data-toggle is replaced with data-klrn-toggle=id, and href is empty
+//example component that it works with: youtube-playlists-tabs.htm  
+(function() {
+  
+  //get all nav-tabs on page
+  var navTabs = document.querySelectorAll('ul.nav-tabs'); 
+  if (!navTabs) return;
+  
+  var i, links, j, id, tabPane, activeLink, activePane;
+  
+  //loop through each navTabs	  
+  for (i=0; i<navTabs.length; i++) { 
+	links = navTabs[i].querySelectorAll('li a');
+	if (!links) break; 
+	
+	//loop through each link in each navTab		
+	for (j=0; j<links.length; j++) {
+	  id = links[j].dataset.klrnToggle; 
+	  if (!id) break;       
+	  
+	  tabPane = document.querySelector('[data-klrn-playlist-id="' + id + '"]'); 
+	  if (!tabPane) break;
+	  
+	  links[j].addEventListener('click', (function(navTab, link, pane) {	
+		return function(e) {			  
+		  e.preventDefault();
+		  e.stopPropagation();	  
+		  pane.parentNode.style.opacity = '0';		
+
+		  //remove active classes from active tab and pane			  
+		  activeLink = navTab.querySelector('li.active a');
+		  if (activeLink) {
+			activeLink.parentNode.classList.remove('active');
+			activePaneID = activeLink.dataset.klrnToggle;
+			if (activePaneID) {
+			  activePane = document.querySelector('[data-klrn-playlist-id="' + activePaneID + '"]');
+			}
+			if (activePane) activePane.classList.remove('active');
+		  }
+	  
+		  link.parentNode.classList.add('active'); //add .active class to this tab			  
+		  pane.classList.add('active'); //add .active class to this tabPane
+		  klrn.fadeIn(pane.parentNode, 0.75);               		  
+		}  
+	  }(navTabs[i], links[j], tabPane)));
+	}
+  } 
+}());
+},{}],2:[function(require,module,exports){
 //event tracking module for specific pages, using gtm-event-tracking module and Google Tag Manager 
 //GTM variables = eventCategory, eventAction, eventLabel, eventValue, eventNonInteraction
 
@@ -255,7 +305,7 @@
     exports.trackHomePageSlider();            
        
 }(klrn)); //end namespace to add modules to klrn object
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 //event tracking module, using Google Tag Manager dataLayer variables and a generic trigger and tag
 //GTM variables = eventCategory, eventAction, eventLabel, eventValue, eventNonInteraction
 //GTM custom event trigger = gaEvent, and GTM tag's track type = event 
@@ -378,7 +428,7 @@
     }
     
 }(klrn)); //end namespace to add modules to klrn object
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 //klrn modules
 (function(exports) { 
 
@@ -558,7 +608,7 @@
 		return json ? JSON.stringify(result) : result;
 	}  
 }(klrn)); //end klrn modules
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 //requestAnimationFrame fallback
 //reference: http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
 
@@ -605,7 +655,7 @@ if (typeof Object.assign !== 'function') {
     configurable: true
   });
 }    
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //copy last two sponsor ad tiles to mobile display area, below schedule on schedule page
 (function() {
   //return if not schedule page     
@@ -887,7 +937,7 @@ if (typeof Object.assign !== 'function') {
     if (badImg || badTxt) p.parentNode.removeChild(p);    
   }  
 }());
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 //load what's on now module 
 //for required html, see bento/src/html/whats-on.htm
 //for required css, see bento/src/css/modules/whats-on.css 
@@ -1027,7 +1077,7 @@ if (typeof Object.assign !== 'function') {
   }
   
 }());
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function(exports) {
 
   //applies filters to YouTube videos being loaded, based on playlist ID
@@ -1079,7 +1129,7 @@ if (typeof Object.assign !== 'function') {
     return textString;    
   }
 }(klrn));
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE PLAYLIST PLUGIN:
 //    -getYoutubePlaylists() - gathers any youtube playlists listed in html data attributes  
@@ -1097,7 +1147,7 @@ if (typeof Object.assign !== 'function') {
 //    -See bento/src/html/youtube-playlist.htm
 //
 //  CSS:
-//    -See bento/src/css/modules/youtube-playlist.css
+//    -See bento/src/css/modules/youtube-videos.css
 //
 //  RUNNING JAVASCRIPT: 
 //    var playlists = klrn.getYoutubePlaylists();
@@ -1366,7 +1416,7 @@ if (typeof Object.assign !== 'function') {
   }
 
 }(klrn));
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE VIDEO LOADER:
 //    -youtubeVideos() - manages api for playing, pausing and analytics tracking
@@ -1403,7 +1453,7 @@ if (typeof Object.assign !== 'function') {
       //when a video plays, make sure any others pause
       if (e.data == YT.PlayerState.PLAYING) {
         for (i=0;i<exports.youtubeVideos.getObjects.length;i++) {         
-          if (exports.youtubeVideos.getObjects[i].a.id === e.target.a.id) continue;      
+          if (exports.youtubeVideos.getObjects[i].h.id === e.target.h.id) continue;      
           exports.youtubeVideos.getObjects[i].pauseVideo();
         }
       }  
@@ -1476,7 +1526,7 @@ if (typeof Object.assign !== 'function') {
     }
   }  
 }(klrn));
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE VIDEO PLUGIN:
 //    -loadYoutubeVideos() - gathers any youtube videos listed in html data attributes, 
@@ -1491,7 +1541,7 @@ if (typeof Object.assign !== 'function') {
 //    -See bento/src/html/youtube-video.htm
 //
 //  CSS:
-//    -See bento/src/css/modules/youtube-playlist.css
+//    -See bento/src/css/modules/youtube-videos.css
 //
 //  RUNNING JAVASCRIPT: 
 //    var videos = klrn.loadYoutubeVideos();
@@ -1620,7 +1670,7 @@ if (typeof Object.assign !== 'function') {
   }
 
 }(klrn));
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 //remove Google Analytics cross-domain tracking in url, if it exists
 (function() {
   href = location.href.split('&_ga=')[0];
@@ -1824,7 +1874,7 @@ $('body').fadeTo(500, 1, function(){
     document.cookie = 'klrnCampaign=' + cookieValue + '; ' + expires + '; path=/; domain=klrn.org';
   }  
 }());
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 window.klrn = window.klrn || {};
 require('./modules/polyfills');
 require('./modules/klrn-helpers');
@@ -1833,8 +1883,9 @@ require('./modules/youtube-video');
 require('./modules/youtube-playlist-filters');
 require('./modules/youtube-playlist');
 require('./modules/youtube-video-loader');
+require('./modules/bootstrap-tab-replacement');
 require('./ready');
 require('./modules/specific-pages');
 require('./modules/gtm-event-tracking');
 require('./modules/gtm-event-tracking-pages');
-},{"./modules/gtm-event-tracking":2,"./modules/gtm-event-tracking-pages":1,"./modules/klrn-helpers":3,"./modules/polyfills":4,"./modules/specific-pages":5,"./modules/whats-on":6,"./modules/youtube-playlist":8,"./modules/youtube-playlist-filters":7,"./modules/youtube-video":10,"./modules/youtube-video-loader":9,"./ready":11}]},{},[12]);
+},{"./modules/bootstrap-tab-replacement":1,"./modules/gtm-event-tracking":3,"./modules/gtm-event-tracking-pages":2,"./modules/klrn-helpers":4,"./modules/polyfills":5,"./modules/specific-pages":6,"./modules/whats-on":7,"./modules/youtube-playlist":9,"./modules/youtube-playlist-filters":8,"./modules/youtube-video":11,"./modules/youtube-video-loader":10,"./ready":12}]},{},[13]);

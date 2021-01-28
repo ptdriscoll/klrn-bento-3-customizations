@@ -4,13 +4,28 @@ global adjustments
 
 html {height: 100%;}
 body {min-height: 100%; display: flex; flex-direction: column;}
-body {font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #222222;}
+body {font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+body,
+.station-header .menu__ul.navbar-nav .menu__li > .menu-item, 
+.station-header .menu__ul.navbar-nav .menu__li > .menu-item:hover, 
+.station-header .menu__ul.navbar-nav .menu__li > .menu-item:focus,
+#component-bab3ce50-d94b-11e7-854c-b3ea37ebaa13 .footer-wrapper.light .links-column .column-header,
+#component-bab3ce50-d94b-11e7-854c-b3ea37ebaa13 .footer-wrapper.light .footer-details, 
+#component-bab3ce50-d94b-11e7-854c-b3ea37ebaa13 .footer-wrapper.light .footer-details *,
+.blog-entry-container .blog-entry-title,
+.blog-entry-container .blog-entry-content,
+.blogEntry__24_Rs .title, .blogEntry__24_Rs .title *,
+.blogEntry__24_Rs .content-body{
+	color: #474747;
+}
 
 header, footer {flex-shrink: 0;}
 .station-header .station-header-logo img {max-width: 152px; max-width: 140px;}
 main {flex-grow: 1;}  
 main .component, .content .component, footer .component {margin-top: 2.6rem;}
 
+.content .component .filer-image-container {display: block;}
 .content .component .filer-image-container .filer-image {width: 100%;}
 .section-header-component.underline .section-header-value .text-input {
     margin-top: -0.9vw; margin-top: 3rem; margin-bottom: 0;}
@@ -28,11 +43,6 @@ cite {display: inline-block; margin-left: 2.5em; margin-right: 2.5em;}
 .section-header-component.underline .h2_tag .text-input {border-bottom-width: 2px;}
 .section-header-component .section-header-value .text-input {font-weight: 300!important;}
 .promo-container .promo .read-more__link:after {top: 1px;}
-    
-@media (min-width: 1024px) {
-    /*.content .component, footer .component {margin-top: 1.8vw;}*/
-    .section-header-component.underline .section-header-value {margin: 0 16px;}    
-}
 
 @media (max-width: 375px) {
     main .component, .content .component, footer .component {margin-top: 2.6rem;}
@@ -72,10 +82,30 @@ cite {display: inline-block; margin-left: 2.5em; margin-right: 2.5em;}
 .promo-container .promo .read-more__link,
 .promo-container .promo .read-more--no-link {margin-top: 4px;}
 
+/* fix section header component */
+.section-header-component .section-header-value {
+	font-weight: 300 !important;
+}
+
+.section-header-component.underline h2 {
+	border-bottom-width: 2px;
+	line-height: 1.45;
+}
+
+/* fix promo w/date margin */ 
+article > div.promo-text.span6 > p.channel {
+	margin: 12px 0 !important;
+} 
+
 @media (min-width: 768px) {
     .promo-container.horizontal  .promo .promo-text {margin-top: -14px; padding-top: 0; padding-left: 16px;}
     .promo-container.horizontal .promo .promo-link {width: 40%;}
     .promo-container.horizontal  .promo .promo-text {width: 60%;}
+}
+
+@media (min-width: 1024px) {
+    /*.content .component, footer .component {margin-top: 1.8vw;}*/
+    .section-header-component.underline .section-header-value {margin: 0 16px;}    
 }
 
 @media (min-width: 1025px) {
@@ -88,9 +118,35 @@ cite {display: inline-block; margin-left: 2.5em; margin-right: 2.5em;}
   .station-header .menu__ul.navbar-nav .menu__li:last-child a {position: relative; top: -2px;}
 }
 
+@media (max-width: 1279px) {
+	.station-header .station-header-logo {
+		padding: 0 16px 0 0;
+	}
+}
+
+@media (min-width: 1280px) {
+	.station-header .station-header-logo {
+		padding: 0 16px;
+		padding: 0 16px 0 0;
+	}
+}
+
 @media (min-width: 1312px) {
     .section-header-component.underline .section-header-value {margin: 0;}    
 }
+
+/*================================================== 
+nav search button 
+==================================================*/
+
+@media (min-width: 1312px) {
+	.station-header .menu__ul.navbar-nav {
+		margin-right: 40px;
+	}
+	.station-header .station-header-search {
+		width: 35px;
+	}	
+} 
 
 /*========================================================
 front-page slider
@@ -171,7 +227,10 @@ fix text and some other items bumping viewport edge in mobile
 ==========================================================*/
 
 @media (max-width: 1311px)  {
-    nav#c33ef9a0-d91e-11e7-8b84-67caa8590abc .menu-container,
+	nav#c33ef9a0-d91e-11e7-8b84-67caa8590abc .menu-container {
+		padding: 0 0 0 16px;
+	}	
+	
     .klrn_podcast_embed,
     .blogRiver__2-Wjj {padding: 0 16px;}
   
@@ -252,7 +311,7 @@ and style bento buttons and blog load more buttons for consistency
 .klrn_button.read-more__link,
 .simple-button-component .simple-button-value .text-input,
 .blogRiver__2-Wjj .load-more-wrapper .load-more {
-    margin-top: 4px;
+    margin-top: 4px; margin-top: 2px;
     margin-bottom: 6px;    
     font-size: 1.6rem;
     font-weight: 400;
@@ -287,7 +346,12 @@ and style bento buttons and blog load more buttons for consistency
     opacity: 0.92;
 }
 
-.klrn_button.read-more__link.klrn_button_display_block {width: 96%;}
+.klrn_button.read-more__link.klrn_button_display_block {width: 96%; width: 100%;}
+
+p:not(:first-child) .klrn_button.read-more__link.klrn_button_display_block:first-child {
+	margin-top: 8px; margin-top: 6px;
+} 
+
 @media (max-width: 1025px) {
     .text-container .read-more__link.klrn_button_display_block {width: 100%;}
 }
@@ -388,7 +452,7 @@ main.content.content-with-rail .span12.column-12 .promo-container.horizontal {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2; 
+        -webkit-line-clamp: 3; 
         -webkit-box-orient: vertical;   
    }  
   
@@ -428,7 +492,7 @@ a#klrn_mobile_donate_button div {
     border-bottom: 4px #f0f0f0 solid; 
     border-bottom: 4px #e8e8e8 solid;     
     border-bottom: 4px #f2f2f2 solid;       
-    margin-top: -4px;
+    margin-top: -4px; margin-top: -6px;
     padding: 3px 0 4px;
     color: #fff;
     font-size: 1.7rem;
@@ -537,6 +601,96 @@ body.blogs > footer {visibility: hidden;}
     .station-footer .contact-section .footer-contact-container .footer-phone {margin-bottom: 1rem;} 
     .station-footer .links-section .links-column:nth-child(1),
     .station-footer .links-section .links-column:nth-child(3) {left: 0;}    
+}
+
+/* override PBS footer styles */
+
+.expanded-footer {
+	padding: 48px 0;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.expanded-footer .footer-logo-container, .expanded-footer .footer-logo-container-default {
+	margin-bottom: 2em;
+	height: auto;
+}
+
+.expanded-footer .footer-logo-container .flexible-footer-logo, .expanded-footer .footer-logo-container-default .flexible-footer-logo {
+	width: 195px;
+	margin-top: 4px;
+}
+
+.expanded-footer .footer-details p:empty,
+.expanded-footer .links-column li.link-element {
+	margin-bottom: 0; 
+}
+
+@media (max-width: 1311px) {
+	.expanded-footer, div.expanded-footer row-fluid {
+		padding-right: 16px;
+		padding-left: 16px;
+	}	
+}
+
+@media (max-width: 1023px) {
+	.expanded-footer .links-section {
+		margin-bottom: 0;
+		padding-left: 10%; 
+	}	
+
+	.expanded-footer .links-column, .expanded-footer .flexible-footer-social {
+		width: 50%;
+	}
+}
+
+@media (max-width: 767px) {
+	.expanded-footer .footer-logo-container .flexible-footer-logo, .expanded-footer .footer-logo-container-default .flexible-footer-logo {
+		margin-left: 16px;
+	}	
+
+	.expanded-footer .links-section {
+		padding-left: 25%; 
+		margin-top: 4.5em;
+	}
+
+	.expanded-footer .contact-section {
+		display: block;
+		text-align: center;
+	}
+
+	.expanded-footer .contact-section .footer-logo-container, 
+	.expanded-footer .contact-section .footer-logo-container-default, 
+	.expanded-footer .contact-section .footer-details,
+	.expanded-footer .contact-section .footer-details p	{
+		width: 100%;
+		max-width: none;
+		padding: 0;
+	}	
+}
+
+@media (max-width: 550px) {	
+	.expanded-footer .links-section {
+		padding-left: 20%; 
+	}	
+}
+
+@media (max-width: 425px) {	
+	.expanded-footer .links-section {
+		padding-left: 15%; 
+	}	
+}
+
+@media (max-width: 375px) {	
+	.expanded-footer .links-section {
+		padding-left: 12%; 
+	}	
+}
+
+@media (max-width: 350px) {	
+	.expanded-footer .links-section {
+		padding-left: 9%; 
+	}	
 }
 
 /*========================================================
@@ -737,7 +891,7 @@ body.schedule #layout-4936e49d-c107-4949-bca0-f3d50f08c84f div.column-3 {
 
 body.schedule #layout-13f8bdb5-76bd-431a-b240-627aaa2439ed div.column-3 .component,
 body.schedule #layout-4936e49d-c107-4949-bca0-f3d50f08c84f div.column-3 .component {
-    display: inline-block; text-align: right;
+    display: block; text-align: right;
 }
 
 body.schedule #layout-13f8bdb5-76bd-431a-b240-627aaa2439ed div.column-3 .component:after,
@@ -908,6 +1062,15 @@ Census page
 	margin-top: 1.5em;
 }
 
+/*================================================== 
+hankemmafaye page  
+==================================================*/      
+
+#rich-text-449905b0-3be9-11eb-bcb3-c7232c214b70 > figure {
+	margin-top: -1px;
+	max-width: 50%;
+} 
+
 /*========================================================
 Video player embed
 ==========================================================*/
@@ -928,6 +1091,7 @@ Blogs
 .blog-entry-container.bento-component article.blog-entry.span12 {
     max-width: 800px; float: none; margin: 0 auto;
 }
+.blog-entry-container .blog-entry-title {font-size: 2.5rem;}
 .blog-entry-container .blog-entry-social.klrn_blog_post_social_icons {
     float: none; margin-bottom: 2.5em;
 }
@@ -952,7 +1116,9 @@ Blogs
     margin-bottom: 2.6rem;
 }
 
-.blogRiver__2-Wjj .entry-image-wrapper {margin-bottom: 24px; line-height: 0;}
+.blogRiver__2-Wjj .entry-image-wrapper {
+	margin-bottom: 24px; line-height: 0; padding-top: calc(9/16 * 100%);
+}
 .blogRiver__2-Wjj .category-wrapper,
 .blogRiver__2-Wjj .social-container,
 .blogRiver__2-Wjj .blogEntry__24_Rs ul.tags,
@@ -968,10 +1134,36 @@ Blogs
 	padding: 10px 18px 11px 18px; padding: 10px 0 11px;
 }
 
+.blog-entry-container .blog-entry-image-wrapper figure, 
+.blog-entry-container .blog-entry-image-wrapper-default figure {
+	width: 100%;
+} 
+
 .blog-entry-container .img-details .img-caption,
 .blog-entry-container .img-details .img-credit {
 	color: #555;
 } 
+
+/* adjust blog images */
+.blog-entry-content.text-container .image figcaption {
+	background: rgba(0,0,0,0);
+	border-top: none;
+	margin-top: 0.5em;
+	padding: 10px 18px 11px 18px;
+	padding: 10px 0 0;
+}
+
+.blog-entry-content.text-container .image figcaption span {
+	color: #555 !important;
+}    
+
+.blog-entry-content.text-container .image.image-style-align-center {
+	max-width: 100%;
+}
+
+.text-container .image:not(.image-style-full-size):not(.image-style-align-right):not(.image-style-align-center):not(.image-style-align-left) {
+	margin-top: 0.5em;
+}
 
 /* adjustments within content */
 .blog-entry-content.text-container h1, 
@@ -1009,7 +1201,26 @@ KLRN podcast embed
 
 .klrn_podcast_embed {margin: 0; text-align: center;}
 
+/*================================================== 
+livestream module
+==================================================*/   
 
+body.live #component-9e9f48f0-e7b4-11ea-b15f-7d6c9dcac937 {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	margin-top: 0;
+	padding-bottom: 56.25%;
+}
+
+body.live #livestream-module {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
 
 
 
@@ -1169,7 +1380,7 @@ what's on now module
 .show_current .primetime {display: none;}
 .show_primetime .current {display: none;}
 .schedule {margin-top: -0.9rem;}  
-.schedule h2 {padding: 0;} 
+.schedule h2 {padding: 0; padding-top: 2px;} 
 .schedule a:hover {text-decoration: none;} 
 .schedule a:focus {text-decoration: none;} 
 table td {font-size: 1.6rem;}

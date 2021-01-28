@@ -14,10 +14,10 @@ A JavaScript variable near the top can be set to enable either development or pr
 - `klrn.env.in = 'prod'`: Loads bundled (but not minified) CSS and JavaScript from **/dist** 
 - `klrn.env.in = 'live'`: Loads bundled and minified CSS and JavaScript that has been manually added to Bento Files under **/global/css and /global/js**  
 
-Another JavaScript variable that follows sets conditions for the development environment. For example:
+Another JavaScript variable that follows sets conditions for the development or production environment. For example:
 
-- `klrn.env.inDev = path.indexOf('/') > -1`: Limits development code to only home page, while other pages use live code
-- `klrn.env.inDev = path.indexOf('/videoapp/') > -1 || path.indexOf('/') > -1`: Limits development code to two specific pages
+- `klrn.env.inDev = path.indexOf('/') > -1`: Limits development or production code to only home page, while other pages use live code
+- `klrn.env.inDev = path.indexOf('/videoapp/') > -1 || path.indexOf('/') > -1`: Limits development or production code to two specific pages
 
 Two more JavaScript variables point to live CSS and JavaScript files, and these variables have to be updated each time a new file replaces an old file in Bento Files at either **/global/css** or **/global/js**:
 

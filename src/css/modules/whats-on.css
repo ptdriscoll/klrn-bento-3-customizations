@@ -5,7 +5,7 @@ what's on now module
 .show_current .primetime {display: none;}
 .show_primetime .current {display: none;}
 .schedule {margin-top: -0.9rem;}  
-.schedule h2 {padding: 0;} 
+.schedule h2 {padding: 0; padding-top: 2px;} 
 .schedule a:hover {text-decoration: none;} 
 .schedule a:focus {text-decoration: none;} 
 table td {font-size: 1.6rem;}

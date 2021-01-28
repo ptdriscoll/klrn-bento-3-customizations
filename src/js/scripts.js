@@ -6,6 +6,7 @@ require('./modules/youtube-video');
 require('./modules/youtube-playlist-filters');
 require('./modules/youtube-playlist');
 require('./modules/youtube-video-loader');
+require('./modules/bootstrap-tab-replacement');
 require('./ready');
 require('./modules/specific-pages');
 require('./modules/gtm-event-tracking');
