@@ -1130,8 +1130,15 @@ Blogs
 .blogEntry__24_Rs .cta {margin-bottom: 10px;}
 /* .blogRiver__2-Wjj .blogEntry__24_Rs footer .fa-angle-right:before {position: relative; top: 0.09em;} */
 
+/* remove border around main image and caption */
+.blog-entry-container .blog-entry-image-wrapper, 
+.blog-entry-container .blog-entry-image-wrapper-default {
+	border: none;
+}
+
 /* adjust blog main image caption */
-.blog-entry-container .img-details {
+.blog-entry-container .blog-entry-image-wrapper .img-details, 
+.blog-entry-container .blog-entry-image-wrapper-default .img-details {
 	background: rgba(0, 0, 0, 0.75); background: transparent;
 	border-top: none;
 	padding: 10px 18px 11px 18px; padding: 10px 0 11px;
@@ -1140,25 +1147,41 @@ Blogs
 .blog-entry-container .blog-entry-image-wrapper figure, 
 .blog-entry-container .blog-entry-image-wrapper-default figure {
 	width: 100%;
+	text-align: right;
 } 
 
-.blog-entry-container .img-details .img-caption,
-.blog-entry-container .img-details .img-credit {
+.blog-entry-container .blog-entry-image-wrapper .img-details .img-caption,
+.blog-entry-container .blog-entry-image-wrapper-default .img-details .img-caption,
+.blog-entry-container .blog-entry-image-wrapper .img-details .img-credit, 
+.blog-entry-container .blog-entry-image-wrapper-default .img-details .img-credit {
 	color: #555;
+} 
+
+.blog-entry-container .blog-entry-image-wrapper .img-details .img-credit, 
+.blog-entry-container .blog-entry-image-wrapper-default .img-details .img-credit {
+	padding: 0;
 } 
 
 /* adjust blog images */
 .blog-entry-content.text-container .image figcaption {
+	color: #555 !important;
 	background: rgba(0,0,0,0);
-	border-top: none;
-	margin-top: 0.5em;
-	padding: 10px 18px 11px 18px;
-	padding: 10px 0 0;
+	border-top: none;	
+	font-size: 1.2rem;
+	font-style: italic;
+	text-align: right;
+	padding: 4px 0 0 0;
 }
 
-.blog-entry-content.text-container .image figcaption span {
-	color: #555 !important;
-}    
+.blog-entry-content.text-container .image figcaption span  {
+	display: block;
+	/* margin-top: 0.5em; */
+	font-size: 1.6rem;	
+	font-style: normal;
+	text-align: left;
+	padding: 10px 18px 11px 18px;
+	padding: 10px 0 0;	
+} 	
 
 .blog-entry-content.text-container .image.image-style-align-center {
 	max-width: 100%;
