@@ -8,6 +8,9 @@
   //urls for api calls
   var getTime = 'https://pbs.klrn.org/data/tv-schedule-get-time.php';
   var getSchedule = 'https://pbs.klrn.org/data/tv-schedule-get-json.php';
+	
+  //getTime = 'https://beta.klrn.org/api/get-time.php';
+  //getSchedule = 'https://beta.klrn.org/api/get-data.php?file=tv-schedule&type=json';
   
   //return if module's html not on page
   var schedules = document.querySelectorAll('.schedule'); 
