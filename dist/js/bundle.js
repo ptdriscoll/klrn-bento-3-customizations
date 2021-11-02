@@ -949,11 +949,21 @@ if (typeof Object.assign !== 'function') {
   var getTime = 'https://pbs.klrn.org/api/get-time.php';
   var getSchedule = 'https://pbs.klrn.org/api/get-data.php?file=tv-schedule&type=json';
   
+  //helper function to show default for failures, and schedule for sucesses
+  var showSchedule = function(schedule) {
+    schedule.style.display = 'block';
+    klrn.fadeIn(schedule, 1);  	  
+  }
+  
   //return if module's html not on page
   var schedules = document.querySelectorAll('.schedule'); 
   if (!schedules) { console.log('No schedule HTML'); return; }      
   var scheduleTable = document.querySelector('.table.schedule__table');           
-  if (!scheduleTable) { console.log('No scheduleTable HTML'); return; }
+  if (!scheduleTable) { 
+    console.log('No scheduleTable HTML'); 
+	showSchedule(scheduleBackup); 
+	return; 
+  }
   
   //other variables
   var schedule = schedules[0], scheduleBackup = schedules[1];
@@ -964,7 +974,8 @@ if (typeof Object.assign !== 'function') {
   var getTimeAndDay = function(data) {
     var data = JSON.parse(data); 
     if (!data) { 
-        console.log('No getTimeAndDay data'); 
+	    showSchedule(scheduleBackup);
+        console.log('No getTimeAndDay data'); 		
         return; 
     }
     
@@ -985,14 +996,17 @@ if (typeof Object.assign !== 'function') {
     timeString = time.toString();
     timeString = timeString.slice(0,-2) + ':' + timeString.slice(-2);          
     return timeString + partOfDay; 
-  }     
+  }  
 
   //callback for getSchedule data  
   var parseSchedules = function(data) {
     var data = JSON.parse(data);   
     if (!data) { console.log('No parseSchedules data'); }
     if (data.date !== day) { console.log('parseSchedules date does not match day'); }
-    if (!data || data.date !== day) return; 
+    if (!data || data.date !== day) {
+      showSchedule(scheduleBackup);		
+	  return;
+    }		
 
     //console.log(data);
     
@@ -1000,7 +1014,11 @@ if (typeof Object.assign !== 'function') {
     for (i=0;i<len;i++) {
       if (data.schedToday.feeds[i].short_name === 'KLRN') feed = i;
     }
-    if (feed === null) { console.log('feed data does not include KLRN channel'); return; }    
+    if (feed === null) { 
+	  showSchedule(scheduleBackup);
+	  console.log('feed data does not include KLRN channel'); 
+	  return; 
+	}    
     
     var indexLastShowToday = data.schedToday.feeds[feed].listings.length-1;
     var listings = data.schedToday.feeds[feed].listings.concat(data.schedTomorrow.feeds[feed].listings);
@@ -1040,10 +1058,8 @@ if (typeof Object.assign !== 'function') {
       firstCell.textContent = startTime;         
       row.insertCell().textContent = title;                    
     }
-    scheduleBackup.style.display = 'none';
-    schedule.style.display = 'block';
     scheduleTable.style.minHeight = '';
-    klrn.fadeIn(schedule, 1);     
+    showSchedule(schedule);   
   }
   
   var ajaxCall = function(url, callback) {
