@@ -125,7 +125,7 @@
     
     //prep variables for parsing and dom insertion
     var target = document.querySelector(domSel);
-    var imgUrl, videoDesc, videoDescClass, cols, colSpan, i;
+    var imgUrl, videoDesc, videoDescClass, cols, colSpan, i, elems = -1;
     var div0, div1, div2, div2, div3, div4, div5, div6, div7, h3Tag, buttonTag;
     var playListId = domSel.slice(1), tokenParam, fadeIn = false;
     var linkDiv, linkDivId, linkTag, callbackFunc, loadedMore; 
@@ -144,7 +144,8 @@
     
     //set dom elements for each video 
     for (i=0; i<data.items.length; i++) {
-      if (!data.items[i].snippet.thumbnails) continue;
+      if (!data.items[i].snippet.thumbnails.high) continue;
+	  elems += 1;	
       imgUrl = data.items[i].snippet.thumbnails.high.url;
       videoID = data.items[i].snippet.resourceId.videoId;
       textToUse = textToUse.toLowerCase();
@@ -167,7 +168,7 @@
       if (showLines) videoDescClass = ' klrn_show_lines_' + showLines;
       
       //add div for grouping videos into rows
-      if (i % cols === 0) {
+      if (elems % cols === 0) {
         div0 = document.createElement('div');
         div0.className = 'row-fluid';
         if (target.style.display !== 'none') { // if initial playlist already loaded 
