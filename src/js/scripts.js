@@ -9,5 +9,6 @@ require('./modules/youtube-video-loader');
 require('./modules/bootstrap-tab-replacement');
 require('./ready');
 require('./modules/specific-pages');
+require('./modules/sponsors-parse');
 require('./modules/gtm-event-tracking');
 require('./modules/gtm-event-tracking-pages');
