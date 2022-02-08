@@ -18,7 +18,7 @@
     'American Master',
     'SuperNOVA',
     'Great Performer',
-    'Media Trade',
+    'Media Allies',
   ];
 
   const createSubhead = (level) => {
@@ -124,11 +124,11 @@
     data.forEach((row, i) => {
 
       //skip row if any required data is missing 
-        if (row.SPONSOR === '' || row.CATEGORY === '0' ||
-          row.SPONSOR_TYPE === '' || row.PROGRAMMING === '') {
+        if (row.SPONSOR === '' || 
+			row.CATEGORY === '' ||
+            row.CATEGORY === '0') {
           return;
         }
-        //row.DISPLAY.trim().toLowerCase() !== 'y' 
 
       //handle first occurance of each category to set level, 
       //add existing category container, add next subhead, create next container
