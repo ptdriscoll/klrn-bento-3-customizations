@@ -6,6 +6,9 @@ html {height: 100%;}
 body {min-height: 100%; display: flex; flex-direction: column;}
 body {font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;}
 
+/* overrides [class*="span"] style that messes with some classes added to body, such as "hispanic" */
+body {float: none !important; margin-left: 0px !important;}
+
 body,
 .station-header .menu__ul.navbar-nav .menu__li > .menu-item, 
 .station-header .menu__ul.navbar-nav .menu__li > .menu-item:hover, 
@@ -215,13 +218,13 @@ main.content .page-header-component, main.content .circle-crop-carousel, main.co
 
 @media (min-width: 1025px) {	
 	.carousel.full-size-carousel .full-size-slide .details-container {
-		padding-left: 50px;
+		padding-left: 0;
 	}
 }
 
 @media (min-width: 1050px) {	
 	.carousel.full-size-carousel .full-size-slide .details-container {
-		padding-left: 55px;
+		padding-left: 0;
 	}
 }
 
@@ -1111,9 +1114,9 @@ Blogs
 .blogRiver__2-Wjj h1.river-title, 
 .blogRiver__2-Wjj .river-title .ck-content .river-title, 
 .blogRiver__2-Wjj .river-title .ck-content * {   
-    text-transform: none;
-    color: #014452;
-    font-weight: 300;
+    text-transform: none !important;
+    color: #014452 !important;
+    font-weight: 300 !important;
     padding: 4px 0;
     border-bottom: 2px solid #014452;
     margin-bottom: 2.6rem;
@@ -1201,6 +1204,12 @@ Blogs
 
 .blog-entry-content.text-container .image {
 	margin-top: 1em; 
+}
+
+/* Adjust blog embedded videos */
+/* https://www.klrn.org/blogs/station-news/fall-into-health-with-klrn/ */
+.blogs .media, .media .media {
+	margin: 0.5em 0 1em;
 }
 
 /* blog river page feeds */
