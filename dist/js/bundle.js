@@ -952,7 +952,6 @@ if (typeof Object.assign !== 'function') {
   const fragment = document.createDocumentFragment();  
   
   //subheads and html wrappers
-
   const subheads = [
     '',
     'American Master',
@@ -996,10 +995,54 @@ if (typeof Object.assign !== 'function') {
     return div;
   };
 
-  //callback for fetch
+  const createLogo = (row) => {
+    const li = document.createElement('li');
+    li.className = 'logo-container'; 
 
+    const img = document.createElement('img');         
+    img.className = 'logo-img';
+    img.setAttribute('loading', 'lazy');
+    img.setAttribute('role', 'img');
+    img.src = images + row.LOGO;
+    img.alt = row.SPONSOR;  
+    img.style.cssText = 'max-width:170px;';
+    img.setAttribute('sizes', `(min-width: 1200px) 1440px,
+        ((min-width: 992px) and (max-width: 1199px)) 899px,
+        ((min-width: 768px) and (max-width: 991px)) 743px,
+        ((min-width: 576px) and (max-width: 767px)) 767px,
+        (max-width: 575px) 575px`);  
+              
+    if (row.LINK) {
+      const aTag = document.createElement('a');
+      aTag.className = 'logo-link';
+      aTag.href = row.LINK;
+      aTag.setAttribute('target', '_blank'); 
+      aTag.appendChild(img);
+      li.appendChild(aTag);  
+    }
+    else li.appendChild(img);
+
+    return li;
+  };
+
+  const createTextSponsor = (row) => {
+    const pTag = document.createElement('p');
+    pTag.className = 'span4 column-4';
+    pTag.style.cssText = 'margin-bottom:16px;';
+    if (row.LINK) {
+        const aTag = document.createElement('a');
+        aTag.href = row.LINK;
+        aTag.setAttribute('target', '_blank'); 
+        aTag.innerHTML = row.SPONSOR;
+        pTag.appendChild(aTag);
+      }
+    else pTag.innerHTML = row.SPONSOR; 
+    return pTag;
+  };
+
+  //callback for fetch
   const parse = (text) => {
-    if (!text) return;
+    if (!text) return; //if there's no content, forget about it  
     let data = klrn.parseCSV(text);
 
     //sort data by category levels
@@ -1012,72 +1055,28 @@ if (typeof Object.assign !== 'function') {
     //                           row.SPONSOR !== 'San Antonio Magazine');
     //console.log(data);
 
-    const createLogo = (i) => {
-      const li = document.createElement('li');
-      li.className = 'logo-container'; 
-
-      const img = document.createElement('img');         
-      img.className = 'logo-img';
-      img.setAttribute('loading', 'lazy');
-      img.setAttribute('role', 'img');
-      img.src = images + data[i].LOGO;
-      img.alt = data[i].SPONSOR;  
-      img.style.cssText = 'max-width:170px;';
-      img.setAttribute('sizes', `(min-width: 1200px) 1440px,
-          ((min-width: 992px) and (max-width: 1199px)) 899px,
-          ((min-width: 768px) and (max-width: 991px)) 743px,
-          ((min-width: 576px) and (max-width: 767px)) 767px,
-          (max-width: 575px) 575px`);  
-                
-      if (data[i].LINK) {
-        const aTag = document.createElement('a');
-        aTag.className = 'logo-link';
-        aTag.href = data[i].LINK;
-        aTag.setAttribute('target', '_blank'); 
-        aTag.appendChild(img);
-        li.appendChild(aTag);  
-      }
-      else li.appendChild(img);
-
-      return li;
-  };
-
-  const createTextSponsor = (i) => {
-    const pTag = document.createElement('p');
-    pTag.className = 'span4 column-4';
-    pTag.style.cssText = 'margin-bottom:16px;';
-    if (data[i].LINK) {
-        const aTag = document.createElement('a');
-        aTag.href = data[i].LINK;
-        aTag.setAttribute('target', '_blank'); 
-        aTag.innerHTML = data[i].SPONSOR;
-        pTag.appendChild(aTag);
-      }
-    else pTag.innerHTML = data[i].SPONSOR; 
-    return pTag;
-  };
-
     //driver loop to put elements together
     let container = null;  
     let textRow = null;
     let count = 0;      
-    data.forEach((row, i) => {
+    data.forEach((row) => {
 
       //skip row if any required data is missing 
         if (row.SPONSOR === '' || 
-			row.CATEGORY === '' ||
-            row.CATEGORY === '0') {
+			      row.CATEGORY === '' ||
+            row.CATEGORY === '0' ||
+            row.CATEGORY <= 2 && row.LOGO === '') {
           return;
         }
 
       //handle first occurance of each category to set level, 
-      //add existing category container, add next subhead, create next container
+      //then add existing category container, add next subhead, and create next container
       const category = parseInt(row.CATEGORY);                     
       if (category !== level) {
 
         //handle previous container 
         if (container) {                
-          if (level < 3) fragment.appendChild(createLogoWrapper(container));
+          if (level <= 2) fragment.appendChild(createLogoWrapper(container));
           else {
             if (textRow && textRow.children.length > 0) {
               container.appendChild(textRow);
@@ -1093,12 +1092,12 @@ if (typeof Object.assign !== 'function') {
         level = category;  
 
         fragment.appendChild(createSubhead(level)); //next subhead
-        if (level < 3) container = createLogoContainer(); //next logo container
+        if (level <= 2) container = createLogoContainer(); //next logo container
         else container = createTextSponsorContainer(); //next text sponsor container          
       }
 
       //add sponsors to current container
-      if (category < 3) container.appendChild(createLogo(i));
+      if (category <= 2) container.appendChild(createLogo(row));
       else {
         //add textRow wrap for every 3 text sponsors
         if (count % 3 === 0) {
@@ -1108,14 +1107,14 @@ if (typeof Object.assign !== 'function') {
           }
           textRow = createTextSponsorRow();
         }
-        textRow.appendChild(createTextSponsor(i));
+        textRow.appendChild(createTextSponsor(row));
         count++;
       }
     });
 
     //append last container  
     if (container) {                
-      if (data[data.length-1].CATEGORY < 3) {
+      if (data[data.length-1].CATEGORY <= 2) {
         fragment.appendChild(createLogoWrapper(container));
       }
       else {
@@ -1130,12 +1129,12 @@ if (typeof Object.assign !== 'function') {
     target.appendChild(fragment);
   };
 
+  //klrn.ajaxLoad(csv, parse)  
+
   fetch(csv)
     .then((resp) => resp.text())
     .then((text) => parse(text));
 
-  //klrn.ajaxLoad(csv, parse)   
-    
 })();
 
 },{}],8:[function(require,module,exports){
