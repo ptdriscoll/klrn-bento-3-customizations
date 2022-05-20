@@ -33,8 +33,8 @@
     'onPlayerStateChange': function(e) {
       //when a video plays, make sure any others pause
       if (e.data == YT.PlayerState.PLAYING) {
-        for (i=0;i<exports.youtubeVideos.getObjects.length;i++) {         
-          if (exports.youtubeVideos.getObjects[i].h.id === e.target.h.id) continue;      
+        for (i=0;i<exports.youtubeVideos.getObjects.length;i++) {     
+          if (exports.youtubeVideos.getObjects[i].id === e.target.id) continue;      
           exports.youtubeVideos.getObjects[i].pauseVideo();
         }
       }  
