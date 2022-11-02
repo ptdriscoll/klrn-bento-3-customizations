@@ -729,7 +729,7 @@ if (typeof Object.assign !== 'function') {
   var message = document.querySelector('#community_events_message');
   if (contentWrapper) events = contentWrapper.querySelector('.promo');  
   if (!events && message) message.style.display = 'block';
-  else {
+  else if (message) {
     message.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
   }
 }());
