@@ -2,8 +2,11 @@
 //for required html, see bento/src/html/whats-on.htm
 //for required css, see bento/src/css/modules/whats-on.css 
 (function() { 
-  //return if not home page     
-  //if (document.location.pathname !== '/') return;
+  //return if not home or test page  
+  if (location.pathname !== '/' && 
+      location.pathname !== '/test/test/') {
+    return;
+  } 
   
   //urls for api calls
   const timeAPI = 'https://pbs.klrn.org/api/get-time.php';

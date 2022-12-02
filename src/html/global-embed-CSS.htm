@@ -4,7 +4,7 @@ var klrn = klrn || {}, path = location.pathname;
 klrn.env = {};
     
 //set development environment to either 'dev' or 'prod' for testing (see server paths below), or 'live' 
-klrn.env.in = 'prod';   
+klrn.env.in = 'dev';   
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.indexOf('/events/cityshowdown/') > - 1 ||
@@ -12,7 +12,7 @@ klrn.env.inDev = path.indexOf('/events/cityshowdown/') > - 1 ||
    
 //add css and js file names for live environment, which include hashes that change on each update
 klrn.env.liveCSS = '/ce8b2aba59_styles.css';
-klrn.env.liveJS = '/5c46842242_scripts.js';  
+klrn.env.liveJS = '/dde10e15d6_scripts.js';  
 
 (function() {   
     //load css and js for dev testing
