@@ -4,15 +4,15 @@ var klrn = klrn || {}, path = location.pathname;
 klrn.env = {};
     
 //set development environment to either 'dev' or 'prod' for testing (see server paths below), or 'live' 
-klrn.env.in = 'live';   
+klrn.env.in = 'prod';   
 
 //add any other conditions for development or production environment, such as a page or host address
-klrn.env.inDev = path.indexOf('/') > - 1 ||
+klrn.env.inDev = path.indexOf('/events/cityshowdown/') > - 1 ||
                  path.indexOf('/test/') > -1;
-    
+   
 //add css and js file names for live environment, which include hashes that change on each update
 klrn.env.liveCSS = '/ce8b2aba59_styles.css';
-klrn.env.liveJS = '/e25660bd02_scripts.js';  
+klrn.env.liveJS = '/5c46842242_scripts.js';  
 
 (function() {   
     //load css and js for dev testing
@@ -55,8 +55,8 @@ klrn.env.liveJS = '/e25660bd02_scripts.js';
     }
     
     /* home page sponsor */
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=Community-First-2022-08] {
-        opacity: .93;
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=Magik-Theatre-2022-11] {
+        opacity: .92;
     }
     
     /* schedule page sponsor */
@@ -70,18 +70,23 @@ klrn.env.liveJS = '/e25660bd02_scripts.js';
     }
     
     /* schedule page sponsor */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=majestic-theatre-2022-08] {
-        opacity: .99;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Opera-San-Antonio-2022-10] {
+        opacity: .94;
     }    
     
     /* sidebar sponsor */
-    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=Climate-Initiative-2022-07] {
-        opacity: .95;
-    }    
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=majestic-theatre-2022-11] {
+        opacity: .9;
+    }   
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=Texas-Mutual-2022-08] {
+        opacity: .97;
+    }        
     
     /*================================================== 
     START TEMP FIXES
     ==================================================*/
+    
+    .submenu { padding: 0; }
     
     /*================================================== 
     END TEMP FIXES

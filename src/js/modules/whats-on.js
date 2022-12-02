@@ -3,40 +3,47 @@
 //for required css, see bento/src/css/modules/whats-on.css 
 (function() { 
   //return if not home page     
-  if (document.location.pathname !== '/') return;
+  //if (document.location.pathname !== '/') return;
   
   //urls for api calls
-  var getTime = 'https://pbs.klrn.org/api/get-time.php';
-  var getSchedule = 'https://pbs.klrn.org/api/get-data.php?file=tv-schedule&type=json';
+  const timeAPI = 'https://pbs.klrn.org/api/get-time.php';
+  const scheduleAPI = 'https://pbs.klrn.org/api/get-data.php?file=tv-schedule&type=json';
   
-  //helper function to show default for failures, and schedule for sucesses
-  var showSchedule = function(schedule) {
-    schedule.style.display = 'block';
-    klrn.fadeIn(schedule, 1);  	  
+  //helper to show an element (like TV schedules or TV channels), and optionally hide another
+  function showElem(showElem, hideElem = null) {
+    if (hideElem) hideElem.style.display = 'none'; 
+    showElem.style.display = 'block';
+    klrn.fadeIn(showElem, 1);  	  
   }
   
   //return if module's html not on page
-  var schedules = document.querySelectorAll('.schedule'); 
-  if (!schedules) { console.log('No schedule HTML'); return; }      
-  var scheduleTable = document.querySelector('.table.schedule__table');           
+  const schedules = document.querySelectorAll('.schedule'); 
+  const scheduleTable = document.querySelector('.table.schedule__table'); 
+  if (!schedules) { console.log('No schedule HTML'); return; }             
   if (!scheduleTable) { 
     console.log('No scheduleTable HTML'); 
-	showSchedule(scheduleBackup); 
-	return; 
+    showElem(scheduleBackup); 
+    return; 
+  }
+	
+  //check whether default TV channels should display instead of TV schedules
+  const schedule = schedules[0], scheduleBackup = schedules[1];
+  if (schedule.dataset.klrnShowSchedule === 'false') {
+    showElem(scheduleBackup);
+    return;
   }
   
-  //other variables
-  var schedule = schedules[0], scheduleBackup = schedules[1];
-  var primetimeLink = document.querySelector('.schedule_primetime a');      
-  var time, day, timeMilliseconds, showPrimetime = false, tBody;
+  //other variables  
+  const primetimeLink = document.querySelector('.schedule_primetime a');      
+  let time, day, timeMilliseconds, showPrimetime = false;
   
-  //callback for getTime data, and to make getSchedule ajax call 
-  var getTimeAndDay = function(data) {
-    var data = JSON.parse(data); 
+  //callback for data from timeAPI, and to make scheduleAPI ajax call 
+  function getTimeAndDay(data) {   
+    data = JSON.parse(data); 
     if (!data) { 
-	    showSchedule(scheduleBackup);
-        console.log('No getTimeAndDay data'); 		
-        return; 
+      showElem(scheduleBackup);
+      console.log('No getTimeAndDay data'); 		
+      return; 
     }
     
     //console.log(data);  
@@ -45,11 +52,11 @@
     else time = parseInt(data.time);
     day = data.day;
     timeMilliseconds = new Date().getTime().toString(); //parameter to break cache 
-    ajaxCall(getSchedule + '?v=' + timeMilliseconds, parseSchedules);        
+    fetchWithTimeout(scheduleAPI + '?v=' + timeMilliseconds, parseSchedules);        
   }  
 
-  var parseTime = function(time) {
-    var partOfDay = ' AM', timeString;
+  function parseTime(time) {
+    let partOfDay = ' AM', timeString;
     if (time >= 1200) partOfDay = ' PM';
     if (time >= 1300) time -= 1200;
     if (time < 100) time += 1200;
@@ -58,32 +65,33 @@
     return timeString + partOfDay; 
   }  
 
-  //callback for getSchedule data  
-  var parseSchedules = function(data) {
-    var data = JSON.parse(data);   
+  //callback for data from scheduleAPI  
+  function parseSchedules(data) {
+    data = JSON.parse(data);   
     if (!data) { console.log('No parseSchedules data'); }
     if (data.date !== day) { console.log('parseSchedules date does not match day'); }
     if (!data || data.date !== day) {
-      showSchedule(scheduleBackup);		
-	  return;
+      showElem(scheduleBackup, hide = schedule);	
+      return;
     }		
 
     //console.log(data);
     
-    var feed = null, i, len = data.schedToday.feeds.length;
+    const len = data.schedToday.feeds.length;
+    let feed = null, i;
     for (i=0;i<len;i++) {
       if (data.schedToday.feeds[i].short_name === 'KLRN') feed = i;
     }
     if (feed === null) { 
-	  showSchedule(scheduleBackup);
-	  console.log('feed data does not include KLRN channel'); 
-	  return; 
+      showElem(scheduleBackup);
+      console.log('feed data does not include KLRN channel'); 
+      return; 
 	}    
     
-    var indexLastShowToday = data.schedToday.feeds[feed].listings.length-1;
-    var listings = data.schedToday.feeds[feed].listings.concat(data.schedTomorrow.feeds[feed].listings);
-    var startTime, title, episodeTitle;
-    var count = 0, i, row, firstCell; 
+    const indexLastShowToday = data.schedToday.feeds[feed].listings.length-1;
+    const listings = data.schedToday.feeds[feed].listings.concat(data.schedTomorrow.feeds[feed].listings);
+    let startTime, title, episodeTitle;
+    let count = 0, row, firstCell; 
    
     //console.log(listings);
     //console.log(listings[indexLastShowToday]);
@@ -119,30 +127,34 @@
       row.insertCell().textContent = title;                    
     }
     scheduleTable.style.minHeight = '';
-    showSchedule(schedule);   
+    showElem(schedule);   
   }
   
-  var ajaxCall = function(url, callback) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        callback(this.responseText);          
-      }
-    }      
-    xhttp.open('GET', url, true);
-    xhttp.send();
-  }
+  function fetchWithTimeout(url, callback, timeout = 1500) {    
+    const controller = new AbortController();
+	  const signal = controller.signal;    
+	  setTimeout(() => controller.abort(), timeout); 
+    
+	  fetch(url, {signal})
+	    .then(response => response.text())
+      .then(text => callback(text))
+      .catch(e => {
+	      if (e.name === 'AbortError') console.log('Fetch to URL aborted:', url);
+		    else console.log('There was a fetch error:', e);
+		    showElem(scheduleBackup, hide = schedule);
+	  });	  
+  }  
   
-  ajaxCall(getTime, getTimeAndDay);
+  fetchWithTimeout(timeAPI, getTimeAndDay);
   
   if (schedule && primetimeLink) {
-    primetimeLink.addEventListener('click', function(e) {
+    primetimeLink.addEventListener('click', (e) => {
       e.preventDefault();
       schedule.style.opacity = '0';
       showPrimetime = !showPrimetime;          
       scheduleTable.style.minHeight = scheduleTable.offsetHeight.toString() + 'px'; //temp to stop flicker      
       scheduleTable.innerHTML = '<tbody></tbody>';          
-      ajaxCall(getTime, getTimeAndDay);
+      fetchWithTimeout(timeAPI, getTimeAndDay);
       if (showPrimetime) {
         schedule.className = schedule.className.replace('show_current', 'show_primetime');
       }
