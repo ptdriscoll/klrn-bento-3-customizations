@@ -25,7 +25,8 @@
                 $(document).ready(function() {
                     var script = document.createElement('script');
                     script.src = klrn.env.jsPath;
-                    document.body.appendChild(script);                  
+                    document.body.appendChild(script); 
+                    klrnTempFixes();
                 });    
             })(jQuery);			
         }	
@@ -41,5 +42,10 @@
         }
     }());    
 }());    
+    
+function klrnTempFixes() {   
+    //currently no temp fixes
+    return;
+}    
 </script>
 
