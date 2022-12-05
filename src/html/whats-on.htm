@@ -1,48 +1,65 @@
 <!-- 
 to show TV schedule if it's available, in first line set data-klrn-show-schedule = "true"
 to instead show TV channels by default, in first line set data-klrn-show-schedule = "false"                
--->  
-<section data-klrn-show-schedule = "true" 
-         class="schedule show_current" style="display:none; opacity: 0;">
+-->
+<section
+  data-klrn-show-schedule="true"
+  class="schedule show_current"
+  style="display: none; opacity: 0">
+    
   <h2 class="section-title">
-      <span class="schedule-title"><span class="current">What’s on Now</span><span class="primetime"><span class="hidden-tablet">What's </span>On Primetime</span></span>
+    <span class="schedule-title">
+      <span class="current">What’s on Now</span>
+      <span class="primetime">
+        <span class="hidden-tablet">What's </span>On Primetime</span>
+    </span>
   </h2>
+    
   <table class="table schedule__table">
-    <tbody>
-    </tbody>
+    <tbody></tbody>
   </table>
+    
   <div class="schedule__tz-va">
     <p class="schedule_primetime">
-      <a href=""><span class="current">On Primetime</span><span class="primetime">On Now</span></a></p>
+      <a href="">
+          <span class="current">On Primetime</span>
+          <span class="primetime">On Now</span></a>
+    </p>
     <p class="view-all">
       <a href="/schedule/">Full Schedule</a>
     </p>
   </div>
-</section>  
+</section>
 
-<section class="schedule show_current" style="display:none; opacity: 0;">
-   <h2 class="section-title"><span class="schedule-title"><span class="current">KLRN TV Channels</span></span></h2>
-   <table class="table schedule__table">
-      <tbody>
-         <tr>
-            <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.1 KLRN TV</td>
-            <td>Drama, music, arts, news and more</td>
-         </tr>
-         <tr>
-            <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.2 World</td>
-            <td>A national platform to examine issues</td>
-         </tr>
-         <tr>
-            <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.3 PBS Kids</td>
-            <td>Fun and educational children's shows</td>
-         </tr>
-         <tr>
-            <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.4 Create</td>
-            <td>Cooking, gardening, travel and more</td>
-         </tr>
-      </tbody>
-   </table>
-   <div class="schedule__tz-va">
-      <p class="view-all"><a href="/schedule/">See Schedules</a></p>
-   </div>
+<section class="schedule show_current" style="display: none; opacity: 0">
+  <h2 class="section-title">
+    <span class="schedule-title">
+      <span class="current">KLRN TV Channels</span>
+    </span>
+  </h2>
+    
+  <table class="table schedule__table">
+    <tbody>
+      <tr>
+        <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.1 KLRN TV</td>
+        <td>Drama, music, arts, news and more</td>
+      </tr>
+      <tr>
+        <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.2 World</td>
+        <td>A national platform to examine issues</td>
+      </tr>
+      <tr>
+        <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.3 PBS Kids</td>
+        <td>Fun and educational children's shows</td>
+      </tr>
+      <tr>
+        <td class="schedule__time home-schedule__table-cell-time schedule__time--formatted">9.4 Create</td>
+        <td>Cooking, gardening, travel and more</td>
+      </tr>
+    </tbody>
+  </table>
+    
+  <div class="schedule__tz-va">
+    <p class="view-all"><a href="/schedule/">See Schedules</a></p>
+  </div>
 </section>
