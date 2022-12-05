@@ -4,7 +4,7 @@ var klrn = klrn || {}, path = location.pathname;
 klrn.env = {};
     
 //set development environment to either 'dev' or 'prod' for testing (see server paths below), or 'live' 
-klrn.env.in = 'dev';   
+klrn.env.in = 'live';   
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.indexOf('/events/cityshowdown/') > - 1 ||
@@ -12,7 +12,7 @@ klrn.env.inDev = path.indexOf('/events/cityshowdown/') > - 1 ||
    
 //add css and js file names for live environment, which include hashes that change on each update
 klrn.env.liveCSS = '/ce8b2aba59_styles.css';
-klrn.env.liveJS = '/dde10e15d6_scripts.js';  
+klrn.env.liveJS = '/7b74a4c073_scripts.js';  
 
 (function() {   
     //load css and js for dev testing
@@ -72,7 +72,12 @@ klrn.env.liveJS = '/dde10e15d6_scripts.js';
     /* schedule page sponsor */
     #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Opera-San-Antonio-2022-10] {
         opacity: .94;
-    }    
+    }   
+    
+    /* schedule page sponsor */
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Big-Bib-2022-12] {
+        opacity: .98;
+    }  
     
     /* sidebar sponsor */
     #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=majestic-theatre-2022-11] {
