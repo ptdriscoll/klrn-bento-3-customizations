@@ -1,4 +1,4 @@
-//load what's on now module 
+//load data for what's on now module 
 //for required html, see bento/src/html/whats-on.htm
 //for required css, see bento/src/css/modules/whats-on.css 
 (function() { 
@@ -6,41 +6,36 @@
   if (location.pathname !== '/' && 
       location.pathname !== '/test/test/') {
     return;
-  } 
-  
-  //urls for api calls
-  const timeAPI = 'https://pbs.klrn.org/api/get-time.php';
-  const scheduleAPI = 'https://pbs.klrn.org/api/get-data.php?file=tv-schedule&type=json';
-  
-  //helper to show an element (like TV schedules or TV channels), and optionally hide another
-  function showElem(showElem, hideElem = null) {
-    if (hideElem) hideElem.style.display = 'none'; 
-    showElem.style.display = 'block';
-    klrn.fadeIn(showElem, 1);  	  
   }
   
   //return if module's html not on page
   const schedules = document.querySelectorAll('.schedule'); 
   const scheduleTable = document.querySelector('.table.schedule__table'); 
-  if (!schedules) { console.log('No schedule HTML'); return; }             
-  if (!scheduleTable) { 
-    console.log('No scheduleTable HTML'); 
-    showElem(scheduleBackup); 
-    return; 
-  }
-	
-  //check whether default TV channels should display instead of TV schedules
+  if (!schedules || !scheduleTable) { console.log('No schedule HTML'); return; }
+  
+  //helper to show element (like TV schedules or TV channels), and optionally hide another
+  function showElem(showEl, hideEl = null) {
+    if (hideEl) hideEl.style.display = 'none'; 
+    showEl.style.display = 'block';
+    klrn.fadeIn(showEl, 1);  	  
+  }  
+
+  //check whether default, TV channels, should display instead of TV schedules
   const schedule = schedules[0], scheduleBackup = schedules[1];
   if (schedule.dataset.klrnShowSchedule === 'false') {
     showElem(scheduleBackup);
     return;
-  }
+  }  
   
-  //other variables  
+  //urls for api calls
+  const timeAPI = 'https://pbs.klrn.org/api/get-time.php';
+  const scheduleAPI = 'https://pbs.klrn.org/api/get-data.php?file=tv-schedule&type=json';
+  
+  //other variables    
   const primetimeLink = document.querySelector('.schedule_primetime a');      
   let time, day, timeMilliseconds, showPrimetime = false;
   
-  //callback for data from timeAPI, and to make scheduleAPI ajax call 
+  //callback to handle data from timeAPI, and fetch scheduleAPI 
   function getTimeAndDay(data) {   
     data = JSON.parse(data); 
     if (!data) { 
@@ -67,14 +62,29 @@
     timeString = timeString.slice(0,-2) + ':' + timeString.slice(-2);          
     return timeString + partOfDay; 
   }  
+  
+  //callback to reload data after clicking primetimeLink
+  function reloadData() {   
+    schedule.style.opacity = '0';
+    showPrimetime = !showPrimetime;          
+    scheduleTable.style.minHeight = scheduleTable.offsetHeight.toString() + 'px'; //temp to stop flicker      
+    scheduleTable.innerHTML = '<tbody></tbody>';          
+    fetchWithTimeout(timeAPI, getTimeAndDay);      
+    if (showPrimetime) {
+      schedule.className = schedule.className.replace('show_current', 'show_primetime');
+    }
+    else {
+      schedule.className = schedule.className.replace('show_primetime', 'show_current');  
+    } 
+  }
 
-  //callback for data from scheduleAPI  
+  //callback to handle data from scheduleAPI  
   function parseSchedules(data) {
     data = JSON.parse(data);   
     if (!data) { console.log('No parseSchedules data'); }
     if (data.date !== day) { console.log('parseSchedules date does not match day'); }
     if (!data || data.date !== day) {
-      showElem(scheduleBackup, hide = schedule);	
+      showElem(scheduleBackup, hideEl = schedule);	
       return;
     }		
 
@@ -130,41 +140,25 @@
       row.insertCell().textContent = title;                    
     }
     scheduleTable.style.minHeight = '';
+    primetimeLink.addEventListener('click', reloadData, {once: true});
     showElem(schedule);   
   }
   
   function fetchWithTimeout(url, callback, timeout = 1500) {    
     const controller = new AbortController();
-	  const signal = controller.signal;    
-	  setTimeout(() => controller.abort(), timeout); 
+    const signal = controller.signal;
+    setTimeout(() => controller.abort(), timeout);
     
-	  fetch(url, {signal})
-	    .then(response => response.text())
+    fetch(url, {signal})
+      .then(response => response.text())
       .then(text => callback(text))
       .catch(e => {
-	      if (e.name === 'AbortError') console.log('Fetch to URL aborted:', url);
-		    else console.log('There was a fetch error:', e);
-		    showElem(scheduleBackup, hide = schedule);
-	  });	  
+        if (e.name === 'AbortError') console.log('Fetch to URL aborted:', url);
+        else console.log('There was a fetch error:', e);
+        showElem(scheduleBackup, hideEl = schedule);
+    });	  
   }  
   
   fetchWithTimeout(timeAPI, getTimeAndDay);
-  
-  if (schedule && primetimeLink) {
-    primetimeLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      schedule.style.opacity = '0';
-      showPrimetime = !showPrimetime;          
-      scheduleTable.style.minHeight = scheduleTable.offsetHeight.toString() + 'px'; //temp to stop flicker      
-      scheduleTable.innerHTML = '<tbody></tbody>';          
-      fetchWithTimeout(timeAPI, getTimeAndDay);
-      if (showPrimetime) {
-        schedule.className = schedule.className.replace('show_current', 'show_primetime');
-      }
-      else {
-        schedule.className = schedule.className.replace('show_primetime', 'show_current');  
-      }      
-    });
-  }
-  
+  primetimeLink.addEventListener('click', (e) => e.preventDefault()); //stop empty href from reloading page  
 }());
