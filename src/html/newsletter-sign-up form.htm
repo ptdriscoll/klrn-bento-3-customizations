@@ -1,40 +1,80 @@
+<!-- Begin Constant Contact Active Forms -->
+<script>
+  var _ctct_m = '61a3ce79832e052b5fc395489040089b';
+</script>
+<script
+  id="signupScript"
+  src="//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js"
+  async
+  defer
+></script>
+<!-- End Constant Contact Active Forms -->
+
 <!-- Begin Constant Contact Inline Form Code -->
-<div class="ctct-inline-form" data-form-id="e610d755-3b51-4004-aafb-324a411cde1d"></div>
+<div
+  class="ctct-inline-form"
+  data-form-id="e610d755-3b51-4004-aafb-324a411cde1d"
+></div>
 <!-- End Constant Contact Inline Form Code -->
 
 <script>
-//wait until email list labels load, and then edit text
-let signupReady = () => {
+  //wait until email list labels load, and then edit text
+  let signupReady = () => {
     let labels = document.querySelectorAll('.ctct-form-listitem label');
-	if (labels.length > 0) {	
-		labels.forEach(x=>{
-			x.innerText = x.innerText.replace('Education Families: ', '');
-			x.innerText = x.innerText.replace('Education: ', '');
-		});
-	}
-	else window.requestAnimationFrame(signupReady);
-}
-window.requestAnimationFrame(signupReady);
+    if (labels.length > 0) {
+      labels.forEach((x) => {
+        x.innerText = x.innerText.replace(
+          'Education Educators: Master Teacher Newsletter List',
+          'KLRN Education - Teachers'
+        );
+        x.innerText = x.innerText.replace(
+          'Education Families: Master List',
+          'KLRN Education - Parents'
+        );
+        x.innerText = x.innerText.replace(
+          "KLRN-TV Don't Miss List & Station News",
+          "KLRN Don't Miss List and Station News"
+        );
+      });
+    } else window.requestAnimationFrame(signupReady);
+  };
+  window.requestAnimationFrame(signupReady);
 </script>
 
 <style>
-/* match KLRN website styles */
-#gdpr_text > p > a {display: none;}
-.ctct-form-embed.form_0 .ctct-form-defaults .ctct-form-header {
+  /* match KLRN website styles */
+  #gdpr_text > p > a {
+    display: none;
+  }
+  .ctct-form-embed.form_0 .ctct-form-defaults .ctct-form-header {
     color: #5b5b5b;
-	font-size: 2.8rem;
-}
-.ctct-form-embed.form_0 .ctct-form-defaults .ctct-form-text, 
-.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-label, 
-.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-listname, 
-.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-lists-legend, 
-.ctct-form-embed.form_0 .ctct-form-custom .ctct-form-date-slash, 
-.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text, 
-.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text .ctct-form-footer-link,
-.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text .ctct-form-footer-privacy-link {
-    color: #5b5b5b;	
-	font-size: 16px;
-}
-.ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text {font-size: 14px;}
-legend {margin-bottom: 0; border-bottom: 0;}
+    font-size: 2.8rem;
+  }
+  .ctct-form-embed.form_0 .ctct-form-defaults .ctct-form-text,
+  .ctct-form-embed.form_0 .ctct-form-custom .ctct-form-label,
+  .ctct-form-embed.form_0 .ctct-form-custom .ctct-form-listname,
+  .ctct-form-embed.form_0 .ctct-form-custom .ctct-form-lists-legend,
+  .ctct-form-embed.form_0 .ctct-form-custom .ctct-form-date-slash,
+  .ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text,
+  .ctct-form-embed.form_0
+    .ctct-form-defaults
+    .ctct-gdpr-text
+    .ctct-form-footer-link,
+  .ctct-form-embed.form_0
+    .ctct-form-defaults
+    .ctct-gdpr-text
+    .ctct-form-footer-privacy-link {
+    color: #5b5b5b;
+    font-size: 16px;
+  }
+  div.ctct-form-embed div.ctct-form-defaults p.ctct-gdpr-text {
+    line-height: 1.5;
+  }
+  .ctct-form-embed.form_0 .ctct-form-defaults .ctct-gdpr-text {
+    font-size: 14px;
+  }
+  legend {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
 </style>
