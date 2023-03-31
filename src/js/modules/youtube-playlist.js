@@ -308,7 +308,7 @@
           `"${showLines}", ` +
           `"${loadMore}", ` +
           `"${textFilter}", ` +
-          `"${src}"`
+          `"${src}")`
       );
 
       //create elements

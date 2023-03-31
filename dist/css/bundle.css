@@ -1471,116 +1471,131 @@ td.schedule__time.home-schedule__table-cell-time.schedule__time--formatted {
 youtube videos module 
 ==========================================================*/
 
-.video-info {background-color: #f4f4f4;}
-.video-info .ellipsis h3.title {font-weight: 400;}
+.video-info {
+  background-color: #f4f4f4;
+}
+.video-info .ellipsis h3.title {
+  font-weight: 400;
+}
 
-.embed_wrapper.ratio_16-9  {
-    background: center no-repeat #222;
-    background-size: cover;
-    text-align: center;
+.embed_wrapper.ratio_16-9 {
+  background: center no-repeat #222;
+  background-size: cover;
+  text-align: center;
 }
 .ratio_16-9 {
-  
-    padding-bottom: 56.25%;
+  padding-bottom: 56.25%;
 }
 
 .embed_wrapper {
-    position: relative;
-    height: 0;
-    overflow: hidden;
+  position: relative;
+  height: 0;
+  overflow: hidden;
 }
 
 .embed_wrapper button {
-    position: absolute;
-    /* z-index: 63; */
-    left: 50%;
-    top: 50%;
-    width: 68px;
-    height: 48px;
-    margin-left: -34px;
-    margin-top: -24px;
-    transition: opacity .25s cubic-bezier(0,0,.2,1);
-    padding: 0;
-    border: none;
-    background-color: transparent;
+  position: absolute;
+  /* z-index: 63; */
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 48px;
+  margin-left: -34px;
+  margin-top: -24px;
+  transition: opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
+  padding: 0;
+  border: none;
+  background-color: transparent;
 }
 
-.klrn_youtube_video .video-component .video-container {display: block;}
+.klrn_youtube_playlist .video-component .video-container,
+.klrn_youtube_video .video-component .video-container {
+  display: block;
+}
 
 .embed_wrapper:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.embed_wrapper:hover>button>svg path:first-child {
-    fill: red;    
+.embed_wrapper:hover > button > svg path:first-child {
+  fill: red;
 }
 
 /* handling ellipsis */
 .ellipsis {
-    line-height: 1.625; /* match or reset global line-height */
-    height: 8rem; /* custom height for 3 lines */   
-    overflow: hidden;
+  line-height: 1.625; /* match or reset global line-height */
+  height: 8rem; /* custom height for 3 lines */
+  overflow: hidden;
 }
 
 .ellipsis:before {
-    height: 8rem; /* custom height for 3 lines */ 
-    content:"";
-    float: left;
-    width: 5px;   
+  height: 8rem; /* custom height for 3 lines */
+  content: '';
+  float: left;
+  width: 5px;
 }
 
 .ellipsis > *:first-child {
-    float: right;
-    width: 100%;
-    margin: 0 0 0 -5px !important;
+  float: right;
+  width: 100%;
+  margin: 0 0 0 -5px !important;
 }
 
-.ellipsis:after {   
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #f4f4f4 50%, #f4f4f4); /* custom color */    
-    font-size: 2rem; /* custom size for larger ellipsis */    
-    top: -3.24rem; /* custom alignment for 3 lines */ 
-    left: 100%;
-    width: 3em;
-    margin-left: -3em;
-    padding-right: 5px;
-    content:"... ";
-    box-sizing: content-box;
-    float: right;
-    position: relative;   
-    text-align: right;
+.ellipsis:after {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    #f4f4f4 50%,
+    #f4f4f4
+  ); /* custom color */
+  font-size: 2rem; /* custom size for larger ellipsis */
+  top: -3.24rem; /* custom alignment for 3 lines */
+  left: 100%;
+  width: 3em;
+  margin-left: -3em;
+  padding-right: 5px;
+  content: '... ';
+  box-sizing: content-box;
+  float: right;
+  position: relative;
+  text-align: right;
 }
 
 .ellipsis.klrn_show_lines_2:before {
-    height: 5.34rem; /* custom height for 3 lines */ 
-} 
-        
+  height: 5.34rem; /* custom height for 3 lines */
+}
+
 .ellipsis.klrn_show_lines_2 {
-    height: 5.34rem; /* custom height for 3 lines */   
-}   
-      
-.ellipsis.klrn_show_lines_2:after {   
-    top: -3.14rem; /* custom alignment for larger ellipsis */ 
+  height: 5.34rem; /* custom height for 3 lines */
+}
+
+.ellipsis.klrn_show_lines_2:after {
+  top: -3.14rem; /* custom alignment for larger ellipsis */
 }
 
 .ellipsis.klrn_show_lines_1:before {
-    height: 2.67rem; /* custom height for 3 lines */ 
-}  
-       
+  height: 2.67rem; /* custom height for 3 lines */
+}
+
 .ellipsis.klrn_show_lines_1 {
-    height: 2.67rem; /* custom height for 3 lines */   
-}     
-    
-.ellipsis.klrn_show_lines_1:after {   
-    top: -3.14rem; /* custom alignment for larger ellipsis */ 
+  height: 2.67rem; /* custom height for 3 lines */
+}
+
+.ellipsis.klrn_show_lines_1:after {
+  top: -3.14rem; /* custom alignment for larger ellipsis */
 }
 
 .klrn_youtube_playlist .load_more_videos_div {
-    margin-top: 1.8vw; margin-bottom: 1vw; text-align: center;
-    margin-top: 2.6rem; margin-bottom: 0;    
+  margin-top: 1.8vw;
+  margin-bottom: 1vw;
+  text-align: center;
+  margin-top: 2.6rem;
+  margin-bottom: 0;
 }
 
 @media (max-width: 1279px) {
-    .klrn_youtube_playlist .load_more_videos_div {
-        margin-top: 2.5rem; margin-bottom: 2rem; 
-   }
+  .klrn_youtube_playlist .load_more_videos_div {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
 }

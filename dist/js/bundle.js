@@ -2202,7 +2202,7 @@ if (typeof Object.assign !== 'function') {
           `"${showLines}", ` +
           `"${loadMore}", ` +
           `"${textFilter}", ` +
-          `"${src}"`
+          `"${src}")`
       );
 
       //create elements
