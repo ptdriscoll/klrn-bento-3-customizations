@@ -55,12 +55,16 @@
       showLines = elems[i].getAttribute('data-klrn-show-lines') || '';
       loadMore = elems[i].getAttribute('data-klrn-load-more') || '';
       textFilter = elems[i].getAttribute('data-klrn-text-filter') || '';
+
+      showLines = showLines.trim();
+      textToUse = showLines === '0' ? '' : textToUse.trim();
+
       playlist = [
         playlistID.trim(),
         showVideos.trim(),
         numberCols.trim(),
-        textToUse.trim(),
-        showLines.trim(),
+        textToUse,
+        showLines,
         loadMore.trim(),
         textFilter,
       ]; //no trim on textFilter
@@ -164,7 +168,8 @@
       cols,
       colSpan,
       i,
-      elems = -1;
+      elems = -1,
+      lines;
     var div0, div1, div2, div2, div3, div4, div5, div6, div7, h3Tag, buttonTag;
     var playListId = domSel.slice(1),
       tokenParam,
@@ -192,21 +197,25 @@
       videoID = data.items[i].snippet.resourceId.videoId;
       textToUse = textToUse.toLowerCase();
 
-      if ((textToUse === 'descriptions') | (textToUse === 'description')) {
-        videoDesc = data.items[i].snippet.description;
-        videoDescClass = ' klrn_show_lines_3';
-      } else {
-        videoDesc = data.items[i].snippet.title;
-        videoDescClass = ' klrn_show_lines_2';
-      }
+      //handle title/description
+      if (textToUse) {
+        //defaults to 'titles'
+        if (textToUse === 'descriptions' || textToUse === 'description') {
+          videoDesc = data.items[i].snippet.description;
+          lines = showLines ? showLines : '3';
+          videoDescClass = ` klrn_show_lines_${lines}`;
+        } else {
+          videoDesc = data.items[i].snippet.title;
+          lines = showLines ? showLines : '2';
+          videoDescClass = ` klrn_show_lines_${lines}`;
+        }
 
-      //apply filters to titles, if there are any filters
-      if (textFilter) videoDesc = videoDesc.replace(textFilter, '');
-      else if (typeof exports.youtubePlaylistFilters === 'function') {
-        videoDesc = exports.youtubePlaylistFilters(videoDesc, playListId);
+        //apply filters to titles, if there are any filters
+        if (textFilter) videoDesc = videoDesc.replace(textFilter, '');
+        else if (typeof exports.youtubePlaylistFilters === 'function') {
+          videoDesc = exports.youtubePlaylistFilters(videoDesc, playListId);
+        }
       }
-
-      if (showLines) videoDescClass = ' klrn_show_lines_' + showLines;
 
       //add div for grouping videos into rows
       if (elems % cols === 0) {
@@ -239,16 +248,18 @@
       div5.style.backgroundImage = 'url(' + imgUrl + ')';
       div5.addEventListener('click', exports.loadVideo(videoID));
 
-      div6 = document.createElement('div');
-      div6.className = 'video-info';
+      if (textToUse) {
+        div6 = document.createElement('div');
+        div6.className = 'video-info';
 
-      div7 = document.createElement('div');
-      div7.className = 'ellipsis' + videoDescClass;
+        div7 = document.createElement('div');
+        div7.className = 'ellipsis' + videoDescClass;
 
-      //title
-      h3Tag = document.createElement('h3');
-      h3Tag.appendChild(document.createTextNode(videoDesc));
-      h3Tag.className = 'title';
+        //title
+        h3Tag = document.createElement('h3');
+        h3Tag.appendChild(document.createTextNode(videoDesc));
+        h3Tag.className = 'title';
+      }
 
       //YouTube play button
       buttonTag = document.createElement('button');
@@ -257,11 +268,15 @@
       buttonTag.innerHTML = playButton;
 
       //put it all together
-      div7.appendChild(h3Tag);
-      div6.appendChild(div7);
+      if (textToUse) {
+        div7.appendChild(h3Tag);
+        div6.appendChild(div7);
+      }
       div5.appendChild(buttonTag);
       div4.appendChild(div5);
-      div4.appendChild(div6);
+      if (textToUse) {
+        div4.appendChild(div6);
+      }
       div3.appendChild(div4);
       div2.appendChild(div3);
       div1.appendChild(div2);
@@ -286,21 +301,14 @@
         'klrn_youtube_playlist_module_' + playListId + '_' + data.nextPageToken;
       window[callbackFunc] = new Function(
         'data',
-        'return klrn.parseYoutubePlaylist(data, "' +
-          domSel +
-          '", "' +
-          numCols +
-          '", "' +
-          textToUse +
-          '", "' +
-          showLines +
-          '", "' +
-          loadMore +
-          '", "' +
-          textFilter +
-          '", "' +
-          src +
-          '")'
+        `return klrn.parseYoutubePlaylist(data, ` +
+          `"${domSel}", ` +
+          `"${numCols}", ` +
+          `"${textToUse}", ` +
+          `"${showLines}", ` +
+          `"${loadMore}", ` +
+          `"${textFilter}", ` +
+          `"${src}"`
       );
 
       //create elements
