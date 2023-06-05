@@ -7,12 +7,13 @@ klrn.env = {};
 klrn.env.in = 'live';   
 
 //add any other conditions for development or production environment, such as a page or host address
-klrn.env.inDev = path.indexOf('/events/cityshowdown/') > - 1 ||
-                 path.indexOf('/test/') > -1;
+klrn.env.inDev = path.includes('/test/') || 
+                 path.includes('/') ||
+                 path.includes('/events/city-showdown-draft/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
-klrn.env.liveCSS = '/ce8b2aba59_styles.css';
-klrn.env.liveJS = '/7b74a4c073_scripts.js';  
+klrn.env.liveCSS = '/3c49802261_styles.css';
+klrn.env.liveJS = '/01c9e937d9_scripts.js';  
 
 (function() {   
     //load css and js for dev testing
@@ -49,18 +50,18 @@ klrn.env.liveJS = '/7b74a4c073_scripts.js';
     tweaks
     ==================================================*/
     
-    /* first promo spot on home page, top-left */
-    #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 img[src*=National-Parks-2022-05] {
-        opacity: .9;
+    /* first promo spot (Donate Now) on home page, top-left */
+    #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-link img {
+        opacity: .96;
     }
     
     /* home page sponsor */
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=Magik-Theatre-2022-11] {
-        opacity: .92;
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=DoSeum-2023-05] {
+        opacity: .99;
     }
     
     /* schedule page sponsor */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=University-Health-Change-2022-02-08] {
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=University-Health-Change-2023-06] {
         opacity: .98;
     }        
     
@@ -70,29 +71,24 @@ klrn.env.liveJS = '/7b74a4c073_scripts.js';
     }
     
     /* schedule page sponsor */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Opera-San-Antonio-2022-10] {
-        opacity: .94;
-    }   
-    
-    /* schedule page sponsor */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Big-Bib-2022-12] {
-        opacity: .98;
-    }  
-    
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Vogt-2023-03] {
+        opacity: .96;
+    }    
+   
     /* sidebar sponsor */
-    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=majestic-theatre-2022-11] {
-        opacity: .9;
-    }   
-    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=Texas-Mutual-2022-08] {
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=SA-Climate-Ready-2023-05] {
         opacity: .97;
-    }        
+    }
     
     /*================================================== 
     START TEMP FIXES
     ==================================================*/
     
-    .submenu { padding: 0; }
-    
+    /* fix path to Font Awesome  */
+        .blogRiver__2-Wjj .load-more-wrapper .load-more:after, .klrn_button.read-more__link:after, .simple-button-component .simple-button-value .text-input:after {
+        font-family: "Font Awesome 5 Free";
+    }
+
     /*================================================== 
     END TEMP FIXES
     ==================================================*/
