@@ -2509,7 +2509,7 @@ if (typeof Object.assign !== 'function') {
 (function () {
   const splitter = /\?_gl=|&_gl=|\?_ga=|&_ga=/;
   const href = location.href.split(splitter)[0];
-  history.replaceState({}, location.href, href);
+  if (location.href !== href) history.replaceState({}, location.href, href);
 })();
 
 //add page path as classes to body element
