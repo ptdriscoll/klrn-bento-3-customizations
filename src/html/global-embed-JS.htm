@@ -44,7 +44,22 @@
 }());    
     
 function klrnTempFixes() {   
-    //currently no temp fixes
+    //fixes gift app's hash from being stripped from url by GA4 domain tracking
+    //may later opt to use full rest url for app, or redirect in pbs.klrn.org's .htaccess
+    function redirectProgramPages() {
+      let links = Array.from(document.links);
+      links = links.filter((link) => {
+        return link.href.startsWith('https://pbs.klrn.org/support/gifts/#');
+      });
+      links.forEach((link) => {
+        let href = link.href;
+        link.removeAttribute('href');
+        link.addEventListener('click', (e) => {
+          document.location = href;
+        });
+      });
+    }
+    redirectProgramPages();
     return;
 }    
 </script>
