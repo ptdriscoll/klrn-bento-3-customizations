@@ -8,7 +8,9 @@ blogs
 .blog-entry-container {
   padding: 16px;
 }
-.blog-entry-container.bento-component article.blog-entry.span12 {
+.blog-entry-container.bento-component article.blog-entry.span12,
+.blogs .section-header-component,
+.blogs .logos {
   max-width: 800px;
   float: none;
   margin: 0 auto;

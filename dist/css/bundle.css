@@ -696,7 +696,9 @@ blogs
 .blog-entry-container {
   padding: 16px;
 }
-.blog-entry-container.bento-component article.blog-entry.span12 {
+.blog-entry-container.bento-component article.blog-entry.span12,
+.blogs .section-header-component,
+.blogs .logos {
   max-width: 800px;
   float: none;
   margin: 0 auto;
@@ -1328,7 +1330,7 @@ a#klrn_mobile_donate_button div:after {
   top: 3px;
   right: -0.5rem;
   content: '\F105';
-  font-family: Font Awesome\5 Free;
+  font-family: 'Font Awesome 5 Free';
   font-weight: 600;
   font-style: normal;
   text-decoration: inherit;
@@ -1420,11 +1422,11 @@ p:not(:first-child)
   }
 }
 
+.blogRiver__2-Wjj .load-more-wrapper .load-more:after,
 .klrn_button.read-more__link:after,
-.simple-button-component .simple-button-value .text-input:after,
-.blogRiver__2-Wjj .load-more-wrapper .load-more:after {
+.simple-button-component .simple-button-value .text-input:after {
   content: '\F105';
-  font-family: Font Awesome\5 Free;
+  font-family: 'Font Awesome 5 Free';
   font-weight: 600;
   font-style: normal;
   text-decoration: inherit;

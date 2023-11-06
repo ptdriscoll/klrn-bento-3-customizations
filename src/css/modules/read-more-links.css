@@ -63,11 +63,11 @@ p:not(:first-child)
   }
 }
 
+.blogRiver__2-Wjj .load-more-wrapper .load-more:after,
 .klrn_button.read-more__link:after,
-.simple-button-component .simple-button-value .text-input:after,
-.blogRiver__2-Wjj .load-more-wrapper .load-more:after {
+.simple-button-component .simple-button-value .text-input:after {
   content: '\F105';
-  font-family: Font Awesome\5 Free;
+  font-family: 'Font Awesome 5 Free';
   font-weight: 600;
   font-style: normal;
   text-decoration: inherit;
