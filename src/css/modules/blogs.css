@@ -1,0 +1,210 @@
+/*========================================================
+blogs
+==========================================================*/
+
+/*.blogs main .row-fluid {padding: 0 16px;}*/
+
+/* blog page */
+.blog-entry-container {
+  padding: 16px;
+}
+.blog-entry-container.bento-component article.blog-entry.span12 {
+  max-width: 800px;
+  float: none;
+  margin: 0 auto;
+}
+.blog-entry-container .blog-entry-title {
+  font-size: 2.5rem;
+}
+.blog-entry-container .blog-entry-social.klrn_blog_post_social_icons {
+  float: none;
+  margin-bottom: 2.5em;
+}
+.blog-entry-container .blog-entry-category-wrapper {
+  text-align: left;
+}
+.blog-entry-container .blog-entry-image-wrapper img {
+  height: auto;
+  max-height: none;
+  width: 100%;
+}
+.blog-entry-container .img-details {
+  padding: 10px 18px 10px 18px;
+}
+.blog-entry-container .blog-entry-next-prev.row-fluid {
+  display: none;
+}
+.blog-entry-container
+  .blog-entry-content.text-container
+  p
+  img[src='/s/cms/images/plugins/link.png'],
+.blog-entry-container
+  .blog-entry-content.text-container
+  p
+  img[src='/s/images/snippet.png'] {
+  display: none;
+}
+
+/* blog river */
+.blogRiver__2-Wjj h1.river-title,
+.blogRiver__2-Wjj .river-title .ck-content .river-title,
+.blogRiver__2-Wjj .river-title .ck-content * {
+  text-transform: none !important;
+  color: #014452 !important;
+  font-weight: 300 !important;
+  padding: 4px 0;
+  border-bottom: 2px solid #014452;
+  margin-bottom: 2.6rem;
+}
+
+.blogRiver__2-Wjj .entry-image-wrapper {
+  margin-bottom: 24px;
+  line-height: 0;
+  padding-top: calc(9 / 16 * 100%);
+}
+.blogRiver__2-Wjj .category-wrapper,
+.blogRiver__2-Wjj .social-container,
+.blogRiver__2-Wjj .blogEntry__24_Rs ul.tags,
+.news .blogRiver__2-Wjj .entry-image-wrapper {
+  display: none;
+}
+.blogRiver__2-Wjj .blogEntry__24_Rs footer {
+  text-align: left;
+}
+.blogEntry__24_Rs .cta {
+  margin-bottom: 10px;
+}
+/* .blogRiver__2-Wjj .blogEntry__24_Rs footer .fa-angle-right:before {position: relative; top: 0.09em;} */
+
+/* remove border around main image and caption */
+.blog-entry-container .blog-entry-image-wrapper,
+.blog-entry-container .blog-entry-image-wrapper-default {
+  border: none;
+}
+
+/* adjust blog main image caption */
+.blog-entry-container .blog-entry-image-wrapper .img-details,
+.blog-entry-container .blog-entry-image-wrapper-default .img-details {
+  background: rgba(0, 0, 0, 0.75);
+  background: transparent;
+  border-top: none;
+  padding: 10px 18px 11px 18px;
+  padding: 10px 0 11px;
+}
+
+.blog-entry-container .blog-entry-image-wrapper figure,
+.blog-entry-container .blog-entry-image-wrapper-default figure {
+  width: 100%;
+  text-align: right;
+}
+
+.blog-entry-container .blog-entry-image-wrapper .img-details .img-caption,
+.blog-entry-container
+  .blog-entry-image-wrapper-default
+  .img-details
+  .img-caption,
+.blog-entry-container .blog-entry-image-wrapper .img-details .img-credit,
+.blog-entry-container
+  .blog-entry-image-wrapper-default
+  .img-details
+  .img-credit {
+  color: #555;
+}
+
+.blog-entry-container .blog-entry-image-wrapper .img-details .img-credit,
+.blog-entry-container
+  .blog-entry-image-wrapper-default
+  .img-details
+  .img-credit {
+  padding: 0;
+}
+
+/* adjust blog images */
+.blog-entry-content.text-container .image figcaption {
+  color: #555 !important;
+  background: rgba(0, 0, 0, 0);
+  border-top: none;
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: right;
+  padding: 4px 0 0 0;
+}
+
+.blog-entry-content.text-container .image figcaption span {
+  display: block;
+  /* margin-top: 0.5em; */
+  font-size: 1.6rem;
+  font-style: normal;
+  text-align: left;
+  padding: 10px 18px 11px 18px;
+  padding: 10px 0 0;
+}
+
+.blog-entry-content.text-container .image.image-style-align-center {
+  max-width: 100%;
+}
+
+.text-container
+  .image:not(.image-style-full-size):not(.image-style-align-right):not(
+    .image-style-align-center
+  ):not(.image-style-align-left) {
+  margin-top: 0.5em;
+}
+
+/* adjustments within content */
+.blog-entry-content.text-container h1,
+.blog-entry-content.text-container h2,
+.blog-entry-content.text-container h3 {
+  margin-top: 0;
+  padding-top: 0.18em;
+  padding-top: 0.1em;
+}
+
+.blog-entry-content.text-container .image {
+  margin-top: 1em;
+}
+
+/* Adjust blog embedded videos */
+/* https://www.klrn.org/blogs/station-news/fall-into-health-with-klrn/ */
+.blogs .media,
+.media .media {
+  margin: 0.5em 0 1em;
+}
+
+/* blog river page feeds */
+.pressroom .blogRiver__2-Wjj .pager__2roil,
+.scitechnow .blogRiver__2-Wjj .pager__2roil,
+.ontherecord .blogRiver__2-Wjj .pager__2roil,
+.thestorygoes .blogRiver__2-Wjj .pager__2roil {
+  padding: 0;
+  display: none;
+}
+.news .blogRiver__2-Wjj .pager__2roil {
+  padding: 0;
+}
+
+/* buttons underneath blog river page feeds */
+.pressroom #component-ffefb660-33f7-11ea-b938-cbf9beb8b45b,
+.scitechnow #component-9d608020-33f6-11ea-b938-cbf9beb8b45b,
+.ontherecord #component-8559a430-33f5-11ea-b938-cbf9beb8b45b,
+.thestorygoes #component-39023dd0-3306-11ea-8d11-25c28a3024ca {
+  margin-top: 0;
+}
+
+/* adjust It Just Makes Sense page */
+.itjustmakescents
+  .blogRiver__2-Wjj
+  .row:nth-of-type(4)
+  .col-md-4:nth-of-type(1) {
+  margin-bottom: 0;
+}
+.itjustmakescents
+  .blogRiver__2-Wjj
+  .row:nth-of-type(4)
+  .col-md-4:nth-of-type(2),
+.itjustmakescents
+  .blogRiver__2-Wjj
+  .row:nth-of-type(4)
+  .col-md-4:nth-of-type(3) {
+  display: none;
+}

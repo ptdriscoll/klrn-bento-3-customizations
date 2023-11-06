@@ -1,0 +1,65 @@
+/*========================================================
+mobile donate button 
+==========================================================*/
+
+a#klrn_mobile_donate_button {
+  display: none;
+}
+#component-c33ef9a0-d91e-11e7-8b84-67caa8590abc
+  #c33ef9a0-d91e-11e7-8b84-67caa8590abc.menu--navbar-nav {
+  border-bottom: 4px solid #247182 !important;
+}
+
+a#klrn_mobile_donate_button:hover,
+a#klrn_mobile_donate_button:focus {
+  text-decoration: none;
+}
+
+a#klrn_mobile_donate_button div {
+  text-align: center;
+  border-bottom: 4px #f0f0f0 solid;
+  border-bottom: 4px #e8e8e8 solid;
+  border-bottom: 4px #f2f2f2 solid;
+  margin-top: -4px;
+  margin-top: -6px;
+  padding: 3px 0 4px;
+  color: #fff;
+  font-size: 1.7rem;
+  font-wight: bold;
+  font-weight: bold;
+  background-color: #247182;
+  background-color: #d7594a;
+}
+
+a#klrn_mobile_donate_button div:after {
+  position: relative;
+  top: 3px;
+  right: -0.5rem;
+  content: '\F105';
+  font-family: Font Awesome\5 Free;
+  font-weight: 600;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-size: 22px;
+}
+
+@media (max-width: 1024px) {
+  div#component-f400eb40-c8ef-11e8-9eca-19d38845041f {
+    transition: all 0.3s ease-in;
+  }
+
+  .nav-is-open div#component-f400eb40-c8ef-11e8-9eca-19d38845041f {
+    transform: translateX(80%);
+  }
+
+  a#klrn_mobile_donate_button {
+    display: block;
+  }
+}
+
+@media (min-width: 550px) {
+  .nav-is-open div#component-f400eb40-c8ef-11e8-9eca-19d38845041f {
+    transform: translateX(440px);
+  }
+}

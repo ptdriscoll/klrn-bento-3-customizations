@@ -1,4 +1,11 @@
 @import url("custom.css");
-@import url("./modules/whats-on.css");
 @import url("./modules/sidebar.css");
+@import url("./modules/footer.css");
+@import url("./modules/mobile-donate-button.css");
+@import url("./modules/read-more-links.css");
+@import url("./modules/home-page.css");
+@import url("./modules/specific-pages.css");
+@import url("./modules/blogs.css");
+@import url("./modules/whats-on.css");
+@import url("./modules/sponsor-tiles.css");
 @import url("./modules/youtube-videos.css");

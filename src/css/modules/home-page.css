@@ -1,0 +1,197 @@
+/*========================================================
+for home page - also see whats-on.css, sponsor-tiles.css 
+==========================================================*/
+
+/*========================================================
+home page - slider
+==========================================================*/
+
+ul.slides-wrapper {
+  margin-bottom: 0;
+}
+
+.full-size-carousel ul.slides-wrapper {
+  margin-bottom: 8px;
+}
+
+main.content .page-header-component,
+main.content .circle-crop-carousel,
+main.content .full-size-carousel {
+  margin-top: -2.6rem;
+}
+
+.carousel.full-size-carousel .details-container .title {
+  padding-top: 0.75em;
+}
+
+.carousel.circle-crop-carousel .details-container .description,
+.carousel.full-size-carousel .details-container .description {
+  line-height: 1.625;
+}
+
+.carousel.circle-crop-carousel .details-container .cta,
+.carousel.full-size-carousel .details-container .cta {
+  margin-top: 0;
+}
+
+.carousel .carousel-indicators {
+  display: none;
+}
+
+.carousel .arrows .arrow-background.arrow-left {
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .carousel.circle-crop-carousel .details-container .description,
+  .carousel.full-size-carousel .details-container .description {
+    padding: 0 16px;
+  }
+
+  .carousel.circle-crop-carousel .details-container .cta,
+  .carousel.full-size-carousel .details-container .cta {
+    padding: 0 16px 18px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .carousel.full-size-carousel .full-size-slide {
+    height: 498px;
+  }
+
+  .carousel.full-size-carousel .full-size-slide .details-container {
+    max-width: 427px;
+    padding-left: 40px;
+  }
+
+  .carousel.full-size-carousel .details-container .title {
+    padding-top: 5.4em;
+    padding-top: 5.8em;
+    font-size: 3.4rem;
+  }
+
+  .carousel.full-size-carousel
+    .full-size-slide
+    .details-container.full-width-image
+    .title,
+  .carousel.full-size-carousel
+    .full-size-slide
+    .details-container.full-width-image
+    .cta,
+  .carousel.full-size-carousel
+    .full-size-slide
+    .details-container.full-width-image
+    .description {
+    color: #ffffff !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .carousel.full-size-carousel .full-size-slide .details-container {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1050px) {
+  .carousel.full-size-carousel .full-size-slide .details-container {
+    padding-left: 0;
+  }
+}
+
+/*========================================================
+home page - initial promos (left column)
+==========================================================*/
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 16px;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-link {
+  width: 100px;
+  min-width: 100px;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-link img {
+  width: 100px;
+  height: 100px;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-text {
+  padding: 0 16px;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-text p {
+  margin-top: -4px;
+  line-height: 1.5;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-text .read-more a {
+  line-height: 1;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-text .read-more a {
+  border: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4
+  .promo
+  .promo-text
+  .read-more
+  a:after {
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  right: -3px;
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4
+  img[src*='dont-miss-list-sign-up'] {
+  opacity: 0.85;
+}
+
+@media (min-width: 768px) and (max-width: 920px) {
+  #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo {
+    display: block;
+  }
+  #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-text {
+    padding-left: 0;
+  }
+  #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-text p {
+    margin-top: 16px;
+  }
+}
+
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:hover,
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:focus,
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:active,
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:hover *,
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:focus *,
+#layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:active * {
+  color: #014452 !important;
+  background-color: transparent !important;
+}
+
+/*========================================================
+home page poster grid 
+==========================================================*/
+
+#posters-e5f26120-ce51-11e8-af5d-dd107cfb66dc > li.poster.poster-5 img {
+  opacity: 0.95;
+}
+#posters-e5f26120-ce51-11e8-af5d-dd107cfb66dc > li.poster.poster-5 img:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #posters-e5f26120-ce51-11e8-af5d-dd107cfb66dc > li.poster.poster-3,
+  #posters-e5f26120-ce51-11e8-af5d-dd107cfb66dc > li.poster.poster-4 {
+    display: none;
+  }
+}

@@ -1,0 +1,105 @@
+/*================================================== 
+livestream page 
+==================================================*/
+
+body.live #component-9e9f48f0-e7b4-11ea-b15f-7d6c9dcac937 {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-bottom: 56.25%;
+}
+
+body.live #livestream-module {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/*========================================================
+pbs kids page
+==========================================================*/
+
+body.kids #component-dc363660-e2f7-11e8-b27f-639fd6f81566 {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-bottom: 74%;
+}
+
+body.kids #station-module {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 425px) {
+  body.kids #component-dc363660-e2f7-11e8-b27f-639fd6f81566 {
+    padding-bottom: 100%;
+  }
+}
+
+/*========================================================
+News Updates page
+==========================================================*/
+
+#layout-dd5b92ef-9cab-48cc-b99f-e53ff7e3b9be {
+  text-align: center;
+}
+#layout-dd5b92ef-9cab-48cc-b99f-e53ff7e3b9be p:first-child,
+#layout-dd5b92ef-9cab-48cc-b99f-e53ff7e3b9be p:empty {
+  display: none;
+}
+#layout-dd5b92ef-9cab-48cc-b99f-e53ff7e3b9be img {
+  margin: 0em 2em;
+}
+
+/*========================================================
+On The Record page
+==========================================================*/
+
+.ontherecord #rich-text-1941c170-fe62-11e8-8412-9bd181d23a7f > figure img {
+  width: 200px;
+  margin-top: 4px;
+}
+
+/*========================================================
+KLRN Passport page
+==========================================================*/
+
+.passport #rich-text-87e13070-e3c7-11e9-8111-597ffb3687b0 > figure {
+  margin-bottom: 0;
+}
+
+/*========================================================
+SciTech Now page
+==========================================================*/
+
+.scitechnow #rich-text-7e54ba30-e3d2-11e9-8111-597ffb3687b0 > figure img {
+  width: 130px;
+  margin-top: 6px;
+}
+
+/*========================================================
+Census page
+==========================================================*/
+
+.census2020 #component-d45b6da0-80e1-11ea-b9bd-4b78f9612393 {
+  margin-top: 1.5em;
+}
+
+/*================================================== 
+hankemmafaye page  
+==================================================*/
+
+#rich-text-449905b0-3be9-11eb-bcb3-c7232c214b70 > figure {
+  margin-top: -1px;
+  max-width: 50%;
+}

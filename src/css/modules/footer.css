@@ -1,0 +1,197 @@
+/*========================================================
+footer adjustments
+==========================================================*/
+
+footer {
+  margin-top: 2.5rem;
+}
+
+.station-footer .footer-logo-container .station-footer-logo,
+.station-footer .footer-logo-container-default .station-footer-logo {
+  max-width: 188px;
+}
+
+#component-f27744f0-da24-11e7-b2b6-2bb1819ca5c1 {
+  margin: 0;
+}
+
+#component-514266b0-d3ce-11e8-a887-8758c547e40f {
+  margin: 0;
+}
+#component-514266b0-d3ce-11e8-a887-8758c547e40f
+  .social-component.bento-component {
+  background-color: #f4f4f4;
+}
+
+#component-514266b0-d3ce-11e8-a887-8758c547e40f
+  .social-component.bento-component
+  article {
+  position: relative;
+  top: -20px;
+}
+
+body.schedule,
+body.events footer {
+  height: 100%;
+}
+body.schedule #layout-13f8bdb5-76bd-431a-b240-627aaa2439ed,
+body.schedule > footer,
+body.events > footer,
+body.blogs > footer {
+  visibility: hidden;
+}
+
+@media (max-width: 1279px) {
+  #component-514266b0-d3ce-11e8-a887-8758c547e40f
+    .social-component.bento-component
+    article {
+    position: relative;
+    top: -35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .station-footer .footer-address {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .station-footer .footer-address {
+    margin-bottom: 0;
+  }
+  .station-footer .links-section > div {
+    margin: 0 10%;
+  }
+  .station-footer .links-section .links-column {
+    position: relative;
+    width: 50%;
+  }
+  .station-footer .links-section .links-column:nth-child(1),
+  .station-footer .links-section .links-column:nth-child(3) {
+    left: 12%;
+  }
+}
+
+@media (max-width: 460px) {
+  .station-footer .links-section .links-column:nth-child(1),
+  .station-footer .links-section .links-column:nth-child(3) {
+    left: 10%;
+  }
+}
+
+@media (max-width: 410px) {
+  .station-footer .links-section .links-column:nth-child(1),
+  .station-footer .links-section .links-column:nth-child(3) {
+    left: 5%;
+  }
+}
+
+@media (max-width: 360px) {
+  .station-footer .contact-section .footer-contact-container {
+    float: none;
+    display: block;
+  }
+  .station-footer .contact-section .footer-contact-container .footer-phone {
+    margin-bottom: 1rem;
+  }
+  .station-footer .links-section .links-column:nth-child(1),
+  .station-footer .links-section .links-column:nth-child(3) {
+    left: 0;
+  }
+}
+
+/* override PBS footer styles */
+
+.expanded-footer {
+  padding: 48px 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.expanded-footer .footer-logo-container,
+.expanded-footer .footer-logo-container-default {
+  margin-bottom: 2em;
+  height: auto;
+}
+
+.expanded-footer .footer-logo-container .flexible-footer-logo,
+.expanded-footer .footer-logo-container-default .flexible-footer-logo {
+  width: 195px;
+  margin-top: 4px;
+}
+
+.expanded-footer .footer-details p:empty,
+.expanded-footer .links-column li.link-element {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1311px) {
+  .expanded-footer,
+  div.expanded-footer row-fluid {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .expanded-footer .links-section {
+    margin-bottom: 0;
+    padding-left: 10%;
+  }
+
+  .expanded-footer .links-column,
+  .expanded-footer .flexible-footer-social {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .expanded-footer .footer-logo-container .flexible-footer-logo,
+  .expanded-footer .footer-logo-container-default .flexible-footer-logo {
+    margin-left: 16px;
+  }
+
+  .expanded-footer .links-section {
+    padding-left: 25%;
+    margin-top: 4.5em;
+  }
+
+  .expanded-footer .contact-section {
+    display: block;
+    text-align: center;
+  }
+
+  .expanded-footer .contact-section .footer-logo-container,
+  .expanded-footer .contact-section .footer-logo-container-default,
+  .expanded-footer .contact-section .footer-details,
+  .expanded-footer .contact-section .footer-details p {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .expanded-footer .links-section {
+    padding-left: 20%;
+  }
+}
+
+@media (max-width: 425px) {
+  .expanded-footer .links-section {
+    padding-left: 15%;
+  }
+}
+
+@media (max-width: 375px) {
+  .expanded-footer .links-section {
+    padding-left: 12%;
+  }
+}
+
+@media (max-width: 350px) {
+  .expanded-footer .links-section {
+    padding-left: 9%;
+  }
+}
