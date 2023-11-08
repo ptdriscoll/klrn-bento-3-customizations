@@ -518,454 +518,6 @@ GTM variables = eventCategory, eventAction, eventLabel, linkUrl.
 })(klrn); //end namespace to add modules to klrn object
 
 },{}],4:[function(require,module,exports){
-//event tracking module for specific pages, using gtm-event-tracking module and Google Tag Manager
-//GTM variables = eventCategory, eventAction, eventLabel, eventValue, eventNonInteraction
-
-(function (exports) {
-  exports.trackSchedulePageSponsors = function () {
-    //return if not TV schedule page
-    if (location.pathname.indexOf('/schedule') === -1) return;
-
-    var query =
-      '#layout-4936e49d-c107-4949-bca0-f3d50f08c84f a, #layout-13f8bdb5-76bd-431a-b240-627aaa2439ed a';
-    var sponsors = document.querySelectorAll(query);
-    if (!sponsors) return;
-
-    var i,
-      img,
-      isOutboundLink,
-      eventInfo,
-      isDisplayed,
-      viewsNotTracked = [];
-
-    for (i = 0; i < sponsors.length; i++) {
-      img = sponsors[i].querySelector('img');
-      if (!img) break;
-      isOutboundLink = exports.checkOutboundLink(sponsors[i].href);
-
-      eventInfo = {
-        eventCategory: isOutboundLink ? 'Outbound Links' : 'Internal Links',
-        eventAction: 'Views',
-        eventLabel: img.alt,
-        target: sponsors[i],
-        outboundLink: isOutboundLink,
-        eventNonInteraction: true, //a view is not a page interaction
-      };
-
-      //track views if ad is displayed at top, else when it enters into view
-      isDisplayed =
-        getComputedStyle(sponsors[i].parentNode.parentNode.parentNode.parentNode)
-          .display !== 'none';
-      if (i < 4 && isDisplayed) exports.trackEvent(eventInfo);
-      else viewsNotTracked.push(Object.assign({}, eventInfo));
-
-      //now set up as click tracking event
-      eventInfo['eventAction'] = 'Clicks';
-      eventInfo['eventNonInteraction'] = false; //make sure click is a page interaction
-      exports.trackEvent(eventInfo); //track clicks of sponsor ad
-    }
-
-    //if page opened in mobile, then two ads or their duplicates have not been in view yet
-    if (viewsNotTracked.length === 4)
-      exports.trackWhenInView(viewsNotTracked, 'schedulePage');
-  };
-
-  exports.trackSidebar = function () {
-    //return if home page
-    if (location.pathname === '/') return;
-
-    //return if there is no sidebar on page
-    var sidebar = document.querySelector('.rail-wrapper');
-    if (!sidebar) return;
-
-    var sponsor_selectors =
-      '#component-487eb930-f29a-11e8-ac11-cf036755f6fe a,' +
-      '#component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 a';
-
-    var sponsors = sidebar.querySelectorAll(sponsor_selectors);
-    var buttons = sidebar.querySelectorAll(
-      '#component-18114b10-e795-11e8-bc4d-edfdc25f8ca9 a'
-    );
-
-    var eventInfo = {
-      eventCategory: 'Sidebar',
-      eventAction: 'Clicks',
-      eventLabel: undefined,
-      target: undefined,
-      outboundLink: undefined,
-      eventNonInteraction: false,
-    };
-
-    var i, imgAlt, isOutboundLink;
-
-    //Sidebar Buttons
-    eventInfo['eventAction'] = 'Clicks - Sidebar Buttons';
-
-    for (i = 0; i < buttons.length; i++) {
-      eventInfo['eventLabel'] = buttons[i].textContent.trim();
-      eventInfo['target'] = buttons[i];
-      eventInfo['outboundLink'] = exports.checkOutboundLink(buttons[i].href);
-      exports.trackEvent(eventInfo);
-    }
-
-    //Sidebar Sponsors
-    for (i = 0; i < sponsors.length; i++) {
-      //don't track ad if display = none
-      if (
-        window.getComputedStyle(sponsors[i].parentNode.parentNode).display ===
-        'none'
-      )
-        continue;
-
-      if (sponsors[i].querySelector('img'))
-        imgAlt = sponsors[i].querySelector('img').alt.trim();
-      eventInfo['eventLabel'] = imgAlt ? imgAlt : 'image alt tag not set';
-      eventInfo['target'] = sponsors[i];
-      isOutboundLink = exports.checkOutboundLink(sponsors[i].href);
-      eventInfo['outboundLink'] = isOutboundLink;
-
-      //track views as a sponsor ad
-      eventInfo['eventCategory'] = isOutboundLink
-        ? 'Outbound Links'
-        : 'Internal Links';
-      eventInfo['eventAction'] = 'Views';
-      eventInfo['eventNonInteraction'] = true; //make sure view is not a page interaction
-      if (klrn.inView(eventInfo.target.firstElementChild, 0.5))
-        exports.trackEvent(eventInfo);
-      else exports.trackWhenInView(Object.assign({}, eventInfo), 'singleAd');
-
-      //track clicks as a sponsor ad
-      eventInfo['eventAction'] = 'Clicks';
-      eventInfo['eventNonInteraction'] = false; //make sure click is a page interaction
-      exports.trackEvent(eventInfo);
-
-      //now track clicks as a Sidebar Sponsor - don't need views
-      eventInfo['eventCategory'] = 'Sidebar';
-      eventInfo['eventAction'] = 'Clicks - Sidebar Sponsors';
-      exports.trackEvent(eventInfo);
-    }
-  };
-
-  exports.trackHomePageSlider = function () {
-    //return if not home page
-    if (location.pathname !== '/') return;
-
-    var slides = document.querySelectorAll(
-      '#component-1a1b52f0-d9f6-11e7-a670-7f78010a7152 a'
-    );
-    if (!slides) return;
-
-    var i,
-      len = slides.length,
-      eventInfo,
-      eventLabel;
-
-    for (i = 0; i < len; i += 1) {
-      if (i % 3 === 0) eventLabel = slides[i].textContent;
-      eventInfo = {
-        eventCategory: 'Home Page Slider',
-        eventAction: 'Clicks',
-        eventLabel: eventLabel,
-        target: slides[i],
-        eventNonInteraction: false,
-      };
-      exports.trackEvent(eventInfo);
-    }
-  };
-
-  exports.trackHomePagePromos = function () {
-    //return if not home page
-    if (location.pathname !== '/') return;
-
-    var topPromos = document.querySelectorAll(
-      '#column-224b9950-b60d-11e8-8b93-9145e1056ee0 .promo'
-    );
-    var whatsOnNow = document.querySelectorAll(
-      '#column-0fa9631a-e8ba-4117-adae-751046aae720 a'
-    );
-    var sponsorTiles = document.querySelectorAll(
-      '#column-cef6f81b-94e3-4973-8b54-64598726ce08 a'
-    );
-    var showTiles = document.querySelectorAll(
-      '#layout-d44bc274-ff76-4587-a53a-844ddf1c15db a'
-    );
-    var bottomPromos = document.querySelectorAll(
-      '#layout-733a72c0-588a-4c4c-8056-3368cc38f06e .promo'
-    );
-
-    var eventInfo = {
-      eventCategory: 'Home Page Promos',
-      eventAction: 'Clicks',
-      eventLabel: undefined,
-      target: undefined,
-      outboundLink: undefined,
-      eventNonInteraction: false,
-    };
-
-    var i, j, links, eventLabel, imgAlt, isOutboundLink, readMoreLink;
-
-    //Top Promos
-    eventInfo['eventAction'] = 'Clicks - Home Page Top Promos';
-
-    for (i = 0; i < topPromos.length; i++) {
-      links = topPromos[i].querySelectorAll('a');
-      if (!links) break;
-
-      if (topPromos[i].querySelector('img'))
-        eventLabel = topPromos[i].querySelector('img').alt.trim();
-      if (!eventLabel) {
-        eventLabel = topPromos[i].querySelector('.read-more__link');
-        eventLabel = eventLabel
-          ? eventLabel.textContent.trim()
-          : 'image or link text not set';
-      }
-
-      eventInfo['eventLabel'] = eventLabel;
-      eventInfo['outboundLink'] = exports.checkOutboundLink(links[0].href);
-
-      //set click tracking for each link in promo
-      for (j = 0; j < links.length; j++) {
-        eventInfo['target'] = links[j];
-        exports.trackEvent(eventInfo);
-      }
-    }
-
-    //What's On Now
-    eventInfo['eventAction'] = "Clicks - Home Page What's On Now";
-    eventInfo['outboundLink'] = undefined;
-
-    for (i = 0; i < whatsOnNow.length; i++) {
-      eventInfo['eventLabel'] =
-        i === 0 ? 'On Primetime | On Now' : whatsOnNow[i].textContent;
-      eventInfo['target'] = whatsOnNow[i];
-      exports.trackEvent(eventInfo);
-    }
-
-    //Sponsor Tiles
-    eventInfo['eventAction'] = 'Clicks - Home Page Sponsors';
-
-    for (i = 0; i < sponsorTiles.length; i++) {
-      if (sponsorTiles[i].querySelector('img'))
-        imgAlt = sponsorTiles[i].querySelector('img').alt.trim();
-      eventInfo['eventLabel'] = imgAlt ? imgAlt : 'image alt tag not set';
-      eventInfo['target'] = sponsorTiles[i];
-      isOutboundLink = exports.checkOutboundLink(sponsorTiles[i].href);
-      eventInfo['outboundLink'] = isOutboundLink;
-
-      //track views as a sponsor ad
-      eventInfo['eventCategory'] = isOutboundLink
-        ? 'Outbound Links'
-        : 'Internal Links';
-      eventInfo['eventAction'] = 'Views';
-      eventInfo['eventNonInteraction'] = true; //make sure view is not a page interaction
-      if (klrn.inView(eventInfo.target.firstElementChild, 0.5))
-        exports.trackEvent(eventInfo);
-      else exports.trackWhenInView(Object.assign({}, eventInfo), 'singleAd');
-
-      //track clicks as a sponsor ad
-      eventInfo['eventAction'] = 'Clicks';
-      eventInfo['eventNonInteraction'] = false; //make sure click is a page interaction
-      exports.trackEvent(eventInfo);
-
-      //now track clicks as a Home Page Sponsor Tile - don't need views
-      eventInfo['eventCategory'] = 'Home Page Promos';
-      eventInfo['eventAction'] = 'Clicks - Home Page Sponsors';
-      exports.trackEvent(eventInfo);
-    }
-
-    //Show Tiles
-    eventInfo['eventAction'] = 'Clicks - Home Page Show Tiles';
-
-    for (i = 0; i < showTiles.length; i++) {
-      if (showTiles[i].querySelector('img'))
-        imgAlt = showTiles[i].querySelector('img').alt.trim();
-      eventInfo['eventLabel'] = imgAlt ? imgAlt : 'image alt tag not set';
-      eventInfo['target'] = showTiles[i];
-      eventInfo['outboundLink'] = exports.checkOutboundLink(showTiles[i].href);
-      exports.trackEvent(eventInfo);
-    }
-
-    //Bottom Promos
-    eventInfo['eventAction'] = 'Clicks - Home Page Bottom Promos';
-
-    for (i = 0; i < bottomPromos.length; i++) {
-      links = bottomPromos[i].querySelectorAll('a');
-      if (!links) break;
-
-      if (bottomPromos[i].querySelector('h3'))
-        eventLabel = bottomPromos[i].querySelector('h3').textContent.trim();
-      if (!eventLabel) {
-        eventLabel = bottomPromos[i].querySelector('img');
-        eventLabel = eventLabel
-          ? eventLabel.alt.trim()
-          : 'headline or image text not set';
-      }
-
-      eventInfo['eventLabel'] = eventLabel;
-      eventInfo['outboundLink'] = exports.checkOutboundLink(links[0].href);
-
-      //set click tracking for each link in promo
-      for (j = 0; j < links.length; j++) {
-        eventInfo['target'] = links[j];
-        exports.trackEvent(eventInfo);
-      }
-    }
-  }; //end trackHomePagePromos
-
-  //run tracking modules
-  exports.trackSchedulePageSponsors();
-  exports.trackSidebar();
-  exports.trackHomePagePromos();
-  exports.trackHomePageSlider();
-})(klrn); //end namespace to add modules to klrn object
-
-},{}],5:[function(require,module,exports){
-//event tracking module, using Google Tag Manager dataLayer variables and a generic trigger and tag
-//GTM variables = eventCategory, eventAction, eventLabel, eventValue, eventNonInteraction
-//GTM custom event trigger = gaEvent, and GTM tag's track type = event
-
-(function (exports) {
-  //accepts dictionary of event tracking info, handling these fields as strings:
-  //eventCategory, eventAction, eventLabel, eventValue, eventNonInteraction and outboundLink
-  //an additional field, called target, is a dom element
-  //any fields not set are handled as undefined - target is required for click events
-  exports.trackEvent = function (info) {
-    //for testing, toggle whether clicks should go through or not
-    var test = false;
-    var logs = false;
-
-    var outboundLink = 'outboundLink' in info ? info.outboundLink : undefined;
-    var options = {
-      event: 'gaEvent',
-      eventCategory: 'eventCategory' in info ? info.eventCategory : undefined,
-      eventAction: 'eventAction' in info ? info.eventAction : undefined,
-      eventLabel: 'eventLabel' in info ? info.eventLabel : undefined,
-      eventValue: 'eventValue' in info ? info.eventValue : undefined,
-      eventNonInteraction:
-        'eventNonInteraction' in info ? info.eventNonInteraction : undefined,
-    };
-
-    //if this is a view event, push to dataLayer and return
-    if (info.eventAction === 'Views') {
-      if (test) {
-        if (logs) console.log('\nSETTING VIEW EVENT');
-        if (logs) console.log(options);
-      }
-      return dataLayer.push(options);
-    }
-
-    //if this is a click event, and it goes to a new page, set click handler
-    if (
-      info.eventAction.indexOf('Clicks') !== -1 &&
-      info.target &&
-      info.target.href.indexOf(location.hostname + '/#') === -1
-    ) {
-      info.target.addEventListener('click', function (event) {
-        if (test) {
-          event.preventDefault();
-          if (logs) console.log('\nSETTING CLICK EVENT');
-          if (logs) console.log(options);
-        }
-
-        if (outboundLink) {
-          event.preventDefault(); //prevent navigation to outboundLink, so GTM can record event
-          if (!test)
-            options['eventCallback'] = function () {
-              window.open(outboundLink);
-            }; //when done, redirect
-          if (!test) options['eventTimeout'] = 100;
-          dataLayer.push(options);
-          if (!test)
-            setTimeout(function () {
-              window.open(outboundLink);
-            }, 150); //if GTM fails, redirect anyway
-        } else dataLayer.push(options); //just push to dataLayer if this is an internal link
-      });
-    }
-  };
-
-  //for group of ad tiles not displayed on load when trackSchedulePageSponsors runs
-  //adds event listeners to check when they're in view, tracks relevant views, and removes event listeners
-  exports.trackWhenInView = function (info, func) {
-    var callbacks = {};
-    var ticking = false;
-    var scrollHandler, resizeHandler, orientationchangeHandler;
-
-    callbacks.singleAd = function () {
-      if (klrn.inView(info.target.firstElementChild, 0.5)) {
-        //track view
-        exports.trackEvent(info);
-
-        //remove event listeners so view will only be tracked once
-        window.removeEventListener('scroll', scrollHandler);
-        window.removeEventListener('resize', resizeHandler);
-        window.removeEventListener(
-          'orientationchange',
-          orientationchangeHandler
-        );
-      }
-    };
-
-    //handles pair of ads on schedule page, and their duplicates
-    callbacks.schedulePage = function () {
-      //if ad 0 or its duplicate ad 2 is in view,
-      //then respectively ad 1 or its duplicate ad 3 will also be in view
-      //so just check if ad 0 or ad 2 is in view
-      var AdInView = klrn.inView(info[0].target.firstElementChild, 0.5);
-      var AdDupInView = klrn.inView(info[2].target.firstElementChild, 0.5);
-
-      //if a target ad is in view, track both ad 0 and ad 1, but not their duplicates ad 2 and ad 3
-      if (AdInView || AdDupInView) {
-        //track views
-        exports.trackEvent(info[0]);
-        exports.trackEvent(info[1]);
-
-        //remove event listeners so views will only be tracked once
-        window.removeEventListener('scroll', scrollHandler);
-        window.removeEventListener('resize', resizeHandler);
-        window.removeEventListener(
-          'orientationchange',
-          orientationchangeHandler
-        );
-      }
-    };
-
-    window.addEventListener(
-      'scroll',
-      (scrollHandler = function () {
-        klrn.throttleAnimation(ticking, callbacks[func]);
-      })
-    );
-    window.addEventListener(
-      'resize',
-      (resizeHandler = function () {
-        klrn.throttleAnimation(ticking, callbacks[func]);
-      })
-    );
-    window.addEventListener(
-      'orientationchange',
-      (orientationchangeHandler = function () {
-        klrn.throttleAnimation(ticking, callbacks[func]);
-      })
-    );
-  };
-
-  //helper function to check outbound links - returns string link or bool false
-  //added to ga4-event-tracking module instead
-  /*
-  exports.checkOutboundLink = function (href) {
-    if (
-      href.indexOf('klrn.bento-live.pbs.org') === -1 &&
-      href.indexOf('klrn.org') === -1
-    ) {
-      return href;
-    }
-    return false;
-  };
-  */
-})(klrn); //end namespace to add modules to klrn object
-
-},{}],6:[function(require,module,exports){
 //klrn modules
 (function(exports) { 
 
@@ -1145,7 +697,7 @@ GTM variables = eventCategory, eventAction, eventLabel, linkUrl.
 		return json ? JSON.stringify(result) : result;
 	}  
 }(klrn)); //end klrn modules
-},{}],7:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 //requestAnimationFrame fallback
 //reference: http://www.javascriptkit.com/javatutors/requestanimationframe.shtml
 
@@ -1192,7 +744,7 @@ if (typeof Object.assign !== 'function') {
     configurable: true
   });
 }    
-},{}],8:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //copy last two sponsor ad tiles to mobile display area, below schedule on schedule page
 (function() {
   //return if not schedule page     
@@ -1474,7 +1026,7 @@ if (typeof Object.assign !== 'function') {
     if (badImg || badTxt) p.parentNode.removeChild(p);    
   }  
 }());
-},{}],9:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 (function () {
   // return if not sponsor page
   if (location.pathname.indexOf('/support/sponsor') === -1) return;
@@ -1674,7 +1226,7 @@ if (typeof Object.assign !== 'function') {
     .then((text) => parse(text));
 })();
 
-},{}],10:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 //load data for what's on now module 
 //for required html, see bento/src/html/whats-on.htm
 //for required css, see bento/src/css/modules/whats-on.css 
@@ -1839,7 +1391,7 @@ if (typeof Object.assign !== 'function') {
   fetchWithTimeout(timeAPI, getTimeAndDay);
   primetimeLink.addEventListener('click', (e) => e.preventDefault()); //stop empty href from reloading page  
 }());
-},{}],11:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function(exports) {
 
   //applies filters to YouTube videos being loaded, based on playlist ID
@@ -1891,7 +1443,7 @@ if (typeof Object.assign !== 'function') {
     return textString;    
   }
 }(klrn));
-},{}],12:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE PLAYLIST PLUGIN:
 //    -getYoutubePlaylists() - gathers any youtube playlists listed in html data attributes
@@ -2240,7 +1792,6 @@ if (typeof Object.assign !== 'function') {
     // if added from load more button, fade in new elements
     if (fadeIn) {
       loadedMore = target.querySelectorAll('.fade-in');
-      console.log(loadedMore);
       for (i = 0; i < loadedMore.length; i++) {
         klrn.fadeIn(loadedMore[i], 1);
         loadedMore[i].classList.remove('fade-in');
@@ -2249,7 +1800,7 @@ if (typeof Object.assign !== 'function') {
   };
 })(klrn);
 
-},{}],13:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE VIDEO LOADER:
 //    -youtubeVideos() - manages api for playing, pausing and analytics tracking
@@ -2274,13 +1825,13 @@ if (typeof Object.assign !== 'function') {
     },
     'onPlayerReady': function(e) { 
       //e.target.playVideo();
-      dataLayer.push({ 
-          'event': 'gaEvent',
-          'eventCategory': 'YouTube Videos on KLRN.org',
-          'eventAction': 'Plays',
-          'eventLabel': e.target.getVideoData()['title'],
-          'eventNonInteraction': false
-      });
+      //dataLayer.push({ 
+      //    'event': 'gaEvent',
+      //    'eventCategory': 'YouTube Videos on KLRN.org',
+      //    'eventAction': 'Plays',
+      //    'eventLabel': e.target.getVideoData()['title'],
+      //    'eventNonInteraction': false
+      //});
     },
     'onPlayerStateChange': function(e) {
       //when a video plays, make sure any others pause
@@ -2359,7 +1910,7 @@ if (typeof Object.assign !== 'function') {
     }
   }  
 }(klrn));
-},{}],14:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE VIDEO PLUGIN:
 //    -loadYoutubeVideos() - gathers any youtube videos listed in html data attributes,
@@ -2504,7 +2055,7 @@ if (typeof Object.assign !== 'function') {
   };
 })(klrn);
 
-},{}],15:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 //remove Google Analytics cross-domain tracking in url, if it exists
 (function () {
   const splitter = /\?_gl=|&_gl=|\?_ga=|&_ga=/;
@@ -2748,7 +2299,7 @@ $('body').fadeTo(500, 1, function () {
   }
 })();
 
-},{}],16:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 window.klrn = window.klrn || {};
 require('./modules/polyfills');
 require('./modules/klrn-helpers');
@@ -2763,6 +2314,4 @@ require('./modules/specific-pages');
 require('./modules/sponsors-parse');
 require('./modules/ga4-event-tracking');
 require('./modules/ga4-event-tracking-pages');
-require('./modules/gtm-event-tracking');
-require('./modules/gtm-event-tracking-pages');
-},{"./modules/bootstrap-tab-replacement":1,"./modules/ga4-event-tracking":3,"./modules/ga4-event-tracking-pages":2,"./modules/gtm-event-tracking":5,"./modules/gtm-event-tracking-pages":4,"./modules/klrn-helpers":6,"./modules/polyfills":7,"./modules/specific-pages":8,"./modules/sponsors-parse":9,"./modules/whats-on":10,"./modules/youtube-playlist":12,"./modules/youtube-playlist-filters":11,"./modules/youtube-video":14,"./modules/youtube-video-loader":13,"./ready":15}]},{},[16]);
+},{"./modules/bootstrap-tab-replacement":1,"./modules/ga4-event-tracking":3,"./modules/ga4-event-tracking-pages":2,"./modules/klrn-helpers":4,"./modules/polyfills":5,"./modules/specific-pages":6,"./modules/sponsors-parse":7,"./modules/whats-on":8,"./modules/youtube-playlist":10,"./modules/youtube-playlist-filters":9,"./modules/youtube-video":12,"./modules/youtube-video-loader":11,"./ready":13}]},{},[14]);

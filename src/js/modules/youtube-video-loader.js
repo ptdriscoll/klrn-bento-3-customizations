@@ -22,13 +22,13 @@
     },
     'onPlayerReady': function(e) { 
       //e.target.playVideo();
-      dataLayer.push({ 
-          'event': 'gaEvent',
-          'eventCategory': 'YouTube Videos on KLRN.org',
-          'eventAction': 'Plays',
-          'eventLabel': e.target.getVideoData()['title'],
-          'eventNonInteraction': false
-      });
+      //dataLayer.push({ 
+      //    'event': 'gaEvent',
+      //    'eventCategory': 'YouTube Videos on KLRN.org',
+      //    'eventAction': 'Plays',
+      //    'eventLabel': e.target.getVideoData()['title'],
+      //    'eventNonInteraction': false
+      //});
     },
     'onPlayerStateChange': function(e) {
       //when a video plays, make sure any others pause

@@ -346,7 +346,6 @@
     // if added from load more button, fade in new elements
     if (fadeIn) {
       loadedMore = target.querySelectorAll('.fade-in');
-      console.log(loadedMore);
       for (i = 0; i < loadedMore.length; i++) {
         klrn.fadeIn(loadedMore[i], 1);
         loadedMore[i].classList.remove('fade-in');

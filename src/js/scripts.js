@@ -12,5 +12,3 @@ require('./modules/specific-pages');
 require('./modules/sponsors-parse');
 require('./modules/ga4-event-tracking');
 require('./modules/ga4-event-tracking-pages');
-require('./modules/gtm-event-tracking');
-require('./modules/gtm-event-tracking-pages');

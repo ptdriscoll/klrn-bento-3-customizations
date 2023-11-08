@@ -9,6 +9,7 @@
     "prod:setup": "mkdirp dist/css dist/js",
     "============COPY TO DIST": "============",
     "prod:copy-css": "type src\\css\\custom.css src\\css\\modules\\blogs.css src\\css\\modules\\footer.css src\\css\\modules\\home-page.css src\\css\\modules\\mobile-donate-button.css src\\css\\modules\\read-more-links.css src\\css\\modules\\sidebar.css src\\css\\modules\\specific-pages.css src\\css\\modules\\sponsor-tiles.css src\\css\\modules\\whats-on.css src\\css\\modules\\youtube-videos.css > dist\\css\\bundle.css",
+    "prod:concat-js": "browserify src/js/scripts.js > dist/js/bundle.js",
     "============PROCESS CSS": "============",
     "prod:css-prefix": "postcss dist\\css\\bundle.css -u autoprefixer -b \">1% in US, ie>=10\" -o dist\\css\\styles.css",
     "prod:css-clean": "cleancss -o dist\\css\\styles.css dist\\css\\styles.css",
@@ -23,11 +24,13 @@
     "autoprefixer": "^9.8.8",
     "browserify": "^16.5.2",
     "clean-css-cli": "^4.3.0",
-    "jshint": "^2.13.4",
-    "mkdirp": "^0.5.5",
+    "jshint": "^2.13.6",
+    "mkdirp": "^0.5.6",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^6.1.3",
-    "uglify-js": "^3.15.0"
+    "uglify-js": "^3.17.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001561"
+  }
 }
