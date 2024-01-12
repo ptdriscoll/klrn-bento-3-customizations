@@ -70,15 +70,15 @@ manage what sidebar promos show
     display: none; 
 }
 
-/* Passport page: do not show Passport promo */
+/* Passport page: do not show Passport promo 
 .passport #component-487eb930-f29a-11e8-ac11-cf036755f6fe {
     display: none; 
-}
+} */
 
-/* Passport page: show Protect My Public Media */
+/* Passport page: show Protect My Public Media 
 .passport #component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 {
     display: block; 
-}
+} */
 
 /* All pages: Add any new promo container ids to 4 styles below */
 #component-487eb930-f29a-11e8-ac11-cf036755f6fe.component .filer-image-container,
