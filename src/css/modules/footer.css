@@ -20,7 +20,7 @@ footer {
 }
 #component-514266b0-d3ce-11e8-a887-8758c547e40f
   .social-component.bento-component {
-  background-color: #f4f4f4;
+  background-color: var(--klrn-primary-lightest);
 }
 
 #component-514266b0-d3ce-11e8-a887-8758c547e40f

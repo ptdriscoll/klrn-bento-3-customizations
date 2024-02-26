@@ -174,7 +174,7 @@ home page - initial promos (left column)
 #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:hover *,
 #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:focus *,
 #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:active * {
-  color: #014452 !important;
+  color: var(--klrn-primary-dark) !important;
   background-color: transparent !important;
 }
 

@@ -52,10 +52,10 @@ blogs
 .blogRiver__2-Wjj .river-title .ck-content .river-title,
 .blogRiver__2-Wjj .river-title .ck-content * {
   text-transform: none !important;
-  color: #014452 !important;
+  color: var(--klrn-primary-dark) !important;
   font-weight: 300 !important;
   padding: 4px 0;
-  border-bottom: 2px solid #014452;
+  border-bottom: 2px solid var(--klrn-primary-dark);
   margin-bottom: 2.6rem;
 }
 

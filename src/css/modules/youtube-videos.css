@@ -3,7 +3,7 @@ youtube videos module
 ==========================================================*/
 
 .video-info {
-  background-color: #f4f4f4;
+  background-color: var(--klrn-primary-lightest);
 }
 .video-info .ellipsis h3.title {
   font-weight: 400;
@@ -76,8 +76,8 @@ youtube videos module
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0),
-    #f4f4f4 50%,
-    #f4f4f4
+    var(--klrn-primary-lightest) 50%,
+    var(--klrn-primary-lightest)
   ); /* custom color */
   font-size: 2rem; /* custom size for larger ellipsis */
   top: -3.24rem; /* custom alignment for 3 lines */

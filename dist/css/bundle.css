@@ -1,6 +1,13 @@
 /*========================================================
 global adjustments 
 ==========================================================*/
+:root {
+  --klrn-primary-dark: #014452;
+  --klrn-primary: #247182;
+  --klrn-primary-lightest: #F4F4F4;
+  --klrn-donate: #d7594a;
+  --klrn-donate-text: #ac031f;
+}
 
 html {
   height: 100%;
@@ -102,9 +109,6 @@ cite {
 .section-header-component .section-header-value .text-input {
   font-weight: 300 !important;
 }
-.promo-container .promo .read-more__link:after {
-  top: 1px;
-}
 
 @media (max-width: 375px) {
   main .component,
@@ -118,7 +122,7 @@ cite {
   z-index: 2;
 }
 .station-header .menu__ul.navbar-nav .menu__li.highlight {
-  background-color: #d7594a;
+  background-color: var(--klrn-donate);
 }
 .station-header .menu__ul.navbar-nav .menu__li.highlight .menu-item {
   color: #fff;
@@ -127,11 +131,11 @@ cite {
 
 .station-header .menu__ul.navbar-nav .menu__li.highlight:hover,
 .station-header .menu__ul.navbar-nav .menu__li.highlight:focus {
-  background-color: #d7594a;
+  background-color: var(--klrn-primary-lightest);
 }
 .station-header .menu__ul.navbar-nav .menu__li.highlight .menu-item:hover,
 .station-header .menu__ul.navbar-nav .menu__li.highlight .menu-item:focus {
-  color: #ac031f;
+  color: var(--klrn-donate-text);
 }
 
 .section-header-component .section-header-value.h1_tag .text-input,
@@ -308,7 +312,7 @@ fix text and some other items bumping viewport edge in mobile
 
   .video-container__wrapper {
     padding: 16px 16px 0;
-    background-color: #f4f4f4;
+    background-color: var(--klrn-primary-lightest);
   }
   .video-component .video-container {
     min-height: auto;
@@ -409,7 +413,6 @@ hr {
   clear: both;
   margin: 12px 0 12px;
   border-top: 2px solid #eee;
-  clear: both;
   display: inline-block;
   width: 100%;
 }
@@ -445,7 +448,7 @@ nav tabs
 }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-  background-color: #247182;
+  background-color: var(--klrn-primary);
   color: #fff;
 }
 .nav-tabs > .active > a:focus {
@@ -740,10 +743,10 @@ blogs
 .blogRiver__2-Wjj .river-title .ck-content .river-title,
 .blogRiver__2-Wjj .river-title .ck-content * {
   text-transform: none !important;
-  color: #014452 !important;
+  color: var(--klrn-primary-dark) !important;
   font-weight: 300 !important;
   padding: 4px 0;
-  border-bottom: 2px solid #014452;
+  border-bottom: 2px solid var(--klrn-primary-dark);
   margin-bottom: 2.6rem;
 }
 
@@ -920,7 +923,7 @@ footer {
 }
 #component-514266b0-d3ce-11e8-a887-8758c547e40f
   .social-component.bento-component {
-  background-color: #f4f4f4;
+  background-color: var(--klrn-primary-lightest);
 }
 
 #component-514266b0-d3ce-11e8-a887-8758c547e40f
@@ -1271,7 +1274,7 @@ home page - initial promos (left column)
 #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:hover *,
 #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:focus *,
 #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 article .read-more a:active * {
-  color: #014452 !important;
+  color: var(--klrn-primary-dark) !important;
   background-color: transparent !important;
 }
 
@@ -1301,7 +1304,7 @@ a#klrn_mobile_donate_button {
 }
 #component-c33ef9a0-d91e-11e7-8b84-67caa8590abc
   #c33ef9a0-d91e-11e7-8b84-67caa8590abc.menu--navbar-nav {
-  border-bottom: 4px solid #247182 !important;
+  border-bottom: 4px solid var(--klrn-primary) !important;
 }
 
 a#klrn_mobile_donate_button:hover,
@@ -1311,18 +1314,14 @@ a#klrn_mobile_donate_button:focus {
 
 a#klrn_mobile_donate_button div {
   text-align: center;
-  border-bottom: 4px #f0f0f0 solid;
-  border-bottom: 4px #e8e8e8 solid;
   border-bottom: 4px #f2f2f2 solid;
-  margin-top: -4px;
   margin-top: -6px;
   padding: 3px 0 4px;
   color: #fff;
   font-size: 1.7rem;
   font-wight: bold;
   font-weight: bold;
-  background-color: #247182;
-  background-color: #d7594a;
+  background-color: var(--klrn-donate);
 }
 
 a#klrn_mobile_donate_button div:after {
@@ -1365,7 +1364,6 @@ and style bento buttons and blog load more buttons for consistency
 .klrn_button.read-more__link,
 .simple-button-component .simple-button-value .text-input,
 .blogRiver__2-Wjj .load-more-wrapper .load-more {
-  margin-top: 4px;
   margin-top: 2px;
   margin-bottom: 6px;
   font-size: 1.6rem;
@@ -1373,7 +1371,7 @@ and style bento buttons and blog load more buttons for consistency
   font-style: italic;
   line-height: 1.4;
   padding: 16px;
-  background-color: #f4f4f4 !important;
+  background-color: var(--klrn-primary-lightest) !important;
   border: 2px solid currentColor;
   display: inline-block;
   position: relative;
@@ -1383,6 +1381,12 @@ and style bento buttons and blog load more buttons for consistency
   padding-right: 35px;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s !important;
   cursor: pointer;
+  left: auto !important;
+  top: auto !important; 
+}
+
+.simple-button-component {
+    margin: 2px 0 6px;
 }
 
 .simple-button-component.ghost
@@ -1392,16 +1396,12 @@ and style bento buttons and blog load more buttons for consistency
   background-color: transparent !important;
 }
 
-.simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input {
-  color: #014452 !important;
-}
-
 .blogRiver__2-Wjj .load-more-wrapper .load-more {
   text-transform: capitalize;
 }
 
 .simple-button-component.filled .simple-button-value .text-input {
-  background-color: #247182 !important;
+  background-color: var(--klrn-primary) !important;
   opacity: 0.92;
 }
 
@@ -1430,15 +1430,18 @@ p:not(:first-child)
   font-weight: 600;
   font-style: normal;
   text-decoration: inherit;
+  display: flex;
+  align-items: center;
   position: absolute;
+  height: 100%;
   right: 15px;
+  top: 0px;
   font-size: 22px;
-  top: 13px;
 }
 
 .klrn_button.read-more__link,
 .klrn_button.read-more__link * {
-  color: #247182;
+  color: var(--klrn-primary);
 }
 
 a.klrn_button.read-more__link:hover,
@@ -1473,11 +1476,32 @@ a.klrn_button.read-more__link:active *,
 .blogRiver__2-Wjj .load-more-wrapper .load-more:active,
 .blogRiver__2-Wjj .load-more-wrapper .load-more:hover *,
 .blogRiver__2-Wjj .load-more-wrapper .load-more:focus *,
-.blogRiver__2-Wjj .load-more-wrapper .load-more:active * {
-  background-color: #014452 !important;
-  border-color: #014452 !important;
+.blogRiver__2-Wjj .load-more-wrapper .load-more:active *,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:hover,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:focus,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:active,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:hover
+  *,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:focus
+  *,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:active
+  * {
+  background-color: var(--klrn-primary-dark) !important;
+  border-color: var(--klrn-primary-dark) !important;
   border-width: 2px !important;
-  color: #f4f4f4 !important;
+  color: var(--klrn-primary-lightest) !important;
   max-width: 100% !important;
   text-decoration: none;
 }
@@ -1488,8 +1512,8 @@ a.klrn_button.read-more__link:active *,
 .simple-button-component.filled .simple-button-value .text-input:hover *,
 .simple-button-component.filled .simple-button-value .text-input:focus *,
 .simple-button-component.filled .simple-button-value .text-input:active * {
-  background-color: #014452 !important;
-  border-color: #014452 !important;
+  background-color: var(--klrn-primary-dark) !important;
+  border-color: var(--klrn-primary-dark) !important;
   opacity: 1;
 }
 /*========================================================
@@ -1503,7 +1527,7 @@ global sidebar adjustments
     margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
-    background-color: #247182;
+    background-color: var(--klrn-primary);
     opacity: 0.92;
     color: #fff;
 }
@@ -1525,7 +1549,7 @@ global sidebar adjustments
   text-decoration: none; 
   opacity: 1; 
   color: #fff; 
-  background-color: #045263; background-color: #014452;
+  background-color: var(--klrn-primary-dark);
 } 
 .rail-wrapper a.klrn_button:active,
 .rail-wrapper a.klrn_button:visited {
@@ -1733,6 +1757,16 @@ hankemmafaye page
   margin-top: -1px;
   max-width: 50%;
 }
+
+/*================================================== 
+videoapp page  
+==================================================*/
+
+/* add padding back to text blocks for this page */
+.videoapp .text-container {
+  padding-bottom: 16px !important;
+} 
+
 /*========================================================
 home page klrn sponsor module
 ==========================================================*/
@@ -2007,7 +2041,7 @@ youtube videos module
 ==========================================================*/
 
 .video-info {
-  background-color: #f4f4f4;
+  background-color: var(--klrn-primary-lightest);
 }
 .video-info .ellipsis h3.title {
   font-weight: 400;
@@ -2080,8 +2114,8 @@ youtube videos module
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0),
-    #f4f4f4 50%,
-    #f4f4f4
+    var(--klrn-primary-lightest) 50%,
+    var(--klrn-primary-lightest)
   ); /* custom color */
   font-size: 2rem; /* custom size for larger ellipsis */
   top: -3.24rem; /* custom alignment for 3 lines */

@@ -1,6 +1,13 @@
 /*========================================================
 global adjustments 
 ==========================================================*/
+:root {
+  --klrn-primary-dark: #014452;
+  --klrn-primary: #247182;
+  --klrn-primary-lightest: #F4F4F4;
+  --klrn-donate: #d7594a;
+  --klrn-donate-text: #ac031f;
+}
 
 html {
   height: 100%;
@@ -102,9 +109,6 @@ cite {
 .section-header-component .section-header-value .text-input {
   font-weight: 300 !important;
 }
-.promo-container .promo .read-more__link:after {
-  top: 1px;
-}
 
 @media (max-width: 375px) {
   main .component,
@@ -118,7 +122,7 @@ cite {
   z-index: 2;
 }
 .station-header .menu__ul.navbar-nav .menu__li.highlight {
-  background-color: #d7594a;
+  background-color: var(--klrn-donate);
 }
 .station-header .menu__ul.navbar-nav .menu__li.highlight .menu-item {
   color: #fff;
@@ -127,11 +131,11 @@ cite {
 
 .station-header .menu__ul.navbar-nav .menu__li.highlight:hover,
 .station-header .menu__ul.navbar-nav .menu__li.highlight:focus {
-  background-color: #d7594a;
+  background-color: var(--klrn-primary-lightest);
 }
 .station-header .menu__ul.navbar-nav .menu__li.highlight .menu-item:hover,
 .station-header .menu__ul.navbar-nav .menu__li.highlight .menu-item:focus {
-  color: #ac031f;
+  color: var(--klrn-donate-text);
 }
 
 .section-header-component .section-header-value.h1_tag .text-input,
@@ -308,7 +312,7 @@ fix text and some other items bumping viewport edge in mobile
 
   .video-container__wrapper {
     padding: 16px 16px 0;
-    background-color: #f4f4f4;
+    background-color: var(--klrn-primary-lightest);
   }
   .video-component .video-container {
     min-height: auto;
@@ -409,7 +413,6 @@ hr {
   clear: both;
   margin: 12px 0 12px;
   border-top: 2px solid #eee;
-  clear: both;
   display: inline-block;
   width: 100%;
 }
@@ -445,7 +448,7 @@ nav tabs
 }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-  background-color: #247182;
+  background-color: var(--klrn-primary);
   color: #fff;
 }
 .nav-tabs > .active > a:focus {

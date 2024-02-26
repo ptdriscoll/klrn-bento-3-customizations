@@ -9,7 +9,7 @@ global sidebar adjustments
     margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
-    background-color: #247182;
+    background-color: var(--klrn-primary);
     opacity: 0.92;
     color: #fff;
 }
@@ -31,7 +31,7 @@ global sidebar adjustments
   text-decoration: none; 
   opacity: 1; 
   color: #fff; 
-  background-color: #045263; background-color: #014452;
+  background-color: var(--klrn-primary-dark);
 } 
 .rail-wrapper a.klrn_button:active,
 .rail-wrapper a.klrn_button:visited {

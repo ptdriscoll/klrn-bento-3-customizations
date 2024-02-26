@@ -103,3 +103,13 @@ hankemmafaye page
   margin-top: -1px;
   max-width: 50%;
 }
+
+/*================================================== 
+videoapp page  
+==================================================*/
+
+/* add padding back to text blocks for this page */
+.videoapp .text-container {
+  padding-bottom: 16px !important;
+} 
+

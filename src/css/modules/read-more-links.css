@@ -6,7 +6,6 @@ and style bento buttons and blog load more buttons for consistency
 .klrn_button.read-more__link,
 .simple-button-component .simple-button-value .text-input,
 .blogRiver__2-Wjj .load-more-wrapper .load-more {
-  margin-top: 4px;
   margin-top: 2px;
   margin-bottom: 6px;
   font-size: 1.6rem;
@@ -14,7 +13,7 @@ and style bento buttons and blog load more buttons for consistency
   font-style: italic;
   line-height: 1.4;
   padding: 16px;
-  background-color: #f4f4f4 !important;
+  background-color: var(--klrn-primary-lightest) !important;
   border: 2px solid currentColor;
   display: inline-block;
   position: relative;
@@ -24,6 +23,12 @@ and style bento buttons and blog load more buttons for consistency
   padding-right: 35px;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s !important;
   cursor: pointer;
+  left: auto !important;
+  top: auto !important; 
+}
+
+.simple-button-component {
+    margin: 2px 0 6px;
 }
 
 .simple-button-component.ghost
@@ -33,16 +38,12 @@ and style bento buttons and blog load more buttons for consistency
   background-color: transparent !important;
 }
 
-.simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input {
-  color: #014452 !important;
-}
-
 .blogRiver__2-Wjj .load-more-wrapper .load-more {
   text-transform: capitalize;
 }
 
 .simple-button-component.filled .simple-button-value .text-input {
-  background-color: #247182 !important;
+  background-color: var(--klrn-primary) !important;
   opacity: 0.92;
 }
 
@@ -71,15 +72,18 @@ p:not(:first-child)
   font-weight: 600;
   font-style: normal;
   text-decoration: inherit;
+  display: flex;
+  align-items: center;
   position: absolute;
+  height: 100%;
   right: 15px;
+  top: 0px;
   font-size: 22px;
-  top: 13px;
 }
 
 .klrn_button.read-more__link,
 .klrn_button.read-more__link * {
-  color: #247182;
+  color: var(--klrn-primary);
 }
 
 a.klrn_button.read-more__link:hover,
@@ -114,11 +118,32 @@ a.klrn_button.read-more__link:active *,
 .blogRiver__2-Wjj .load-more-wrapper .load-more:active,
 .blogRiver__2-Wjj .load-more-wrapper .load-more:hover *,
 .blogRiver__2-Wjj .load-more-wrapper .load-more:focus *,
-.blogRiver__2-Wjj .load-more-wrapper .load-more:active * {
-  background-color: #014452 !important;
-  border-color: #014452 !important;
+.blogRiver__2-Wjj .load-more-wrapper .load-more:active *,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:hover,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:focus,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:active,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:hover
+  *,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:focus
+  *,
+.simple-button-component.filled.hasHoverEffect
+  .simple-button-value
+  .text-input:active
+  * {
+  background-color: var(--klrn-primary-dark) !important;
+  border-color: var(--klrn-primary-dark) !important;
   border-width: 2px !important;
-  color: #f4f4f4 !important;
+  color: var(--klrn-primary-lightest) !important;
   max-width: 100% !important;
   text-decoration: none;
 }
@@ -129,7 +154,7 @@ a.klrn_button.read-more__link:active *,
 .simple-button-component.filled .simple-button-value .text-input:hover *,
 .simple-button-component.filled .simple-button-value .text-input:focus *,
 .simple-button-component.filled .simple-button-value .text-input:active * {
-  background-color: #014452 !important;
-  border-color: #014452 !important;
+  background-color: var(--klrn-primary-dark) !important;
+  border-color: var(--klrn-primary-dark) !important;
   opacity: 1;
 }
