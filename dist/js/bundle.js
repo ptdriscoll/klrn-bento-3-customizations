@@ -1564,7 +1564,7 @@ if (typeof Object.assign !== 'function') {
       textToUse = lists[i][3];
       showLines = lists[i][4];
       loadMore = lists[i][5];
-      textFilter = lists[i][6];
+      textFilter = lists[i][6];      
 
       //build url with parameters for call to YouTube
       src =
@@ -1741,8 +1741,9 @@ if (typeof Object.assign !== 'function') {
           src.slice(0, src.indexOf(tokenParam)) +
           tokenParam +
           data.nextPageToken;
-
+      
       //set up next callback for youtube api call
+      textFilter = textFilter.toString().replace(/\\/g, '\\\\'); //add escaped backslashes back in
       callbackFunc =
         'klrn_youtube_playlist_module_' + playListId + '_' + data.nextPageToken;
       window[callbackFunc] = new Function(
@@ -1799,7 +1800,6 @@ if (typeof Object.assign !== 'function') {
     }
   };
 })(klrn);
-
 },{}],11:[function(require,module,exports){
 ///////////////////////////////////////////////////////////////////////////////////////////
 //  YOUTUBE VIDEO LOADER:
