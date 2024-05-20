@@ -111,7 +111,7 @@
   };
 })(klrn);
 
-//remove pbs favicons. and add klrn favicon
+//remove pbs favicons and add klrn favicon
 (function (exports) {
   //remove pbs favicon links
   var favLinks = document.querySelectorAll('head link[href*="favicon"]');
@@ -123,7 +123,7 @@
   //create klrn favicon
   var favIcon = document.createElement('link');
   favIcon.href =
-    'https://d1qbemlbhjecig.cloudfront.net/prod/filer_public/klrn-bento-live-pbs/global/65c49cf27f_klrn_favicon.png';
+    'https://bento.pbs.org/prod/filer_public/klrn-bento-live-pbs/global/65c49cf27f_klrn_favicon.png';
   favIcon.type = 'image/png';
   favIcon.rel = 'icon';
 

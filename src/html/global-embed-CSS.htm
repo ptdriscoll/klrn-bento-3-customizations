@@ -8,12 +8,11 @@ klrn.env.in = 'live';
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
-                 path.includes('/passport/') ||
-                 path.includes('/events/city-showdown-draft/');  
+                 path.includes('/programming/women-who-shaped-san-antonio/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
-klrn.env.liveCSS = '/096b3fd96e_styles.css';
-klrn.env.liveJS = '/ef15064aef_scripts.js';  
+klrn.env.liveCSS = '/d525b59d79_styles.css';
+klrn.env.liveJS = '/a1470b1ac7_scripts.js';  
 
 (function() {   
     //load css and js for dev testing
@@ -29,7 +28,8 @@ klrn.env.liveJS = '/ef15064aef_scripts.js';
     } 
     //live code
     else {
-        klrn.env.live = 'https://d1qbemlbhjecig.cloudfront.net/prod/filer_public/klrn-bento-live-pbs/global/';
+        //klrn.env.live = 'https://dc79r36mj3c9w.cloudfront.net/prod/filer_public/klrn-bento-live-pbs/global/';
+        klrn.env.live = 'https://bento.pbs.org/prod/filer_public/klrn-bento-live-pbs/global/';
         klrn.env.cssPath = klrn.env.live + 'css' + klrn.env.liveCSS;
         klrn.env.jsPath =  klrn.env.live + 'js' + klrn.env.liveJS;
     }
@@ -56,18 +56,18 @@ klrn.env.liveJS = '/ef15064aef_scripts.js';
     }
     
     /* home page sponsor */
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=City-of-San-Antonio-Sustainability-2023-12] {
-        opacity: .97;
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=San-Antonio-Zoo-2024-03] {
+        opacity: .95;
     }
     
     /* schedule page sponsor 1 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Texas-Mutual-2023-12] {
-        opacity: .96;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=CPS-2024-05-v2] {
+        opacity: .98;
     }    
     
     /* schedule page sponsor 2 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=San-Antonio-Philharmonic-2024-01] {
-        opacity: .97;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=VOGT-2024-05] {
+        opacity: .96;
     }        
     
     /* schedule page sponsor 3 */
@@ -76,18 +76,28 @@ klrn.env.liveJS = '/ef15064aef_scripts.js';
     }    
     
     /* schedule page sponsor 4 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Vogt-2023-12] {
-        opacity: .95;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Tobin-Center-2024-02] {
+        opacity: .98;
     } 
    
     /* sidebar sponsor */
-    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=World-Childrens-Day-2023-11] {
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=Autism-2024-04] {
         opacity: .95;
     }
     
     /*================================================== 
     START TEMP FIXES
     ==================================================*/
+    
+    /* remove postion relative from PBS simple button */
+    .videoapp .simple-button-component .simple-button-value .text-input {
+        position: static;
+    }
+    
+    /* add padding back to text blocks on video app page */
+    .videoapp .text-container {
+        padding-bottom: 16px !important;
+    } 
     
     /*================================================== 
     END TEMP FIXES
