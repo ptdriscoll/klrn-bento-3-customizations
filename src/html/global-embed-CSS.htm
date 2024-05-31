@@ -4,11 +4,11 @@ var klrn = klrn || {}, path = location.pathname;
 klrn.env = {};
     
 //set development environment to either 'dev' or 'prod' for testing (see server paths below), or 'live' 
-klrn.env.in = 'live';   
+klrn.env.in = 'prod';   
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
-                 path.includes('/programming/women-who-shaped-san-antonio/');  
+                 path.includes('/nan/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
 klrn.env.liveCSS = '/d525b59d79_styles.css';
@@ -98,6 +98,29 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     .videoapp .text-container {
         padding-bottom: 16px !important;
     } 
+    
+    /* fix another unexplainable PBS change */
+    .video-component .video-info .title {
+        line-height: 1.625;
+    }
+    
+    /* PBS button should match padding on text boxes */
+    @media (max-width: 1311px) {
+        .simple-button-component {
+            padding-left: 16px;
+            padding-left: 16px;
+        }
+    }
+ 
+    /* section header should have left and right margins smaller than 1312 */
+    .section-header-component.underline .section-header-value {
+        margin: 0 16px;
+    }
+    
+    @media (min-width: 1312px) {
+        .section-header-component.underline .section-header-value {
+            margin: 0;
+    }
     
     /*================================================== 
     END TEMP FIXES
