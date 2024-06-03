@@ -73,6 +73,9 @@ footer .component {
 .content .component .filer-image-container .filer-image {
   width: 100%;
 }
+.section-header-component.underline .section-header-value {
+  margin: 0 16px;
+}
 .section-header-component.underline .section-header-value .text-input {
   margin-top: -0.9vw;
   margin-top: 3rem;
@@ -212,13 +215,6 @@ article > div.promo-text.span6 > p.channel {
   }
   .promo-container.horizontal .promo .promo-text {
     width: 60%;
-  }
-}
-
-@media (min-width: 1024px) {
-  /*.content .component, footer .component {margin-top: 1.8vw;}*/
-  .section-header-component.underline .section-header-value {
-    margin: 0 16px;
   }
 }
 
