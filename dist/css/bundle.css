@@ -1762,11 +1762,15 @@ hankemmafaye page
 videoapp page  
 ==================================================*/
 
+/* remove postion relative from PBS simple button */
+.videoapp .simple-button-component .simple-button-value .text-input {
+  position: static;
+}
+
 /* add padding back to text blocks for this page */
 .videoapp .text-container {
   padding-bottom: 16px !important;
 } 
-
 /*========================================================
 home page klrn sponsor module
 ==========================================================*/

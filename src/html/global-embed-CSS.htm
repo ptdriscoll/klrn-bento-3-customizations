@@ -8,7 +8,7 @@ klrn.env.in = 'prod';
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
-                 path.includes('/nan/');  
+                 path.includes('/videoapp/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
 klrn.env.liveCSS = '/d525b59d79_styles.css';
@@ -87,18 +87,8 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     
     /*================================================== 
     START TEMP FIXES
-    ==================================================*/
-    
-    /* remove postion relative from PBS simple button */
-    .videoapp .simple-button-component .simple-button-value .text-input {
-        position: static;
-    }
-    
-    /* add padding back to text blocks on video app page */
-    .videoapp .text-container {
-        padding-bottom: 16px !important;
-    } 
-    
+    ==================================================*/    
+   
     /* fix another unexplainable PBS change */
     .video-component .video-info .title {
         line-height: 1.625;
