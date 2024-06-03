@@ -598,11 +598,11 @@ video player embed
 ==========================================================*/
 
 .video-component .video-info .title {
+  margin: 0;
+  line-height: 1.625;
   font-weight: 400;
 }
-.video-component .video-info .title {
-  margin: 0;
-}
+
 .video-component .video-info .channel,
 .video-component .video-info .description {
   display: none;

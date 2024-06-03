@@ -64,6 +64,14 @@ p:not(:first-child)
   }
 }
 
+/* PBS button should match padding on text boxes */
+@media (max-width: 1311px) {
+    .simple-button-component {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
 .blogRiver__2-Wjj .load-more-wrapper .load-more:after,
 .klrn_button.read-more__link:after,
 .simple-button-component .simple-button-value .text-input:after {

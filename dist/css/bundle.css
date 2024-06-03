@@ -598,11 +598,11 @@ video player embed
 ==========================================================*/
 
 .video-component .video-info .title {
+  margin: 0;
+  line-height: 1.625;
   font-weight: 400;
 }
-.video-component .video-info .title {
-  margin: 0;
-}
+
 .video-component .video-info .channel,
 .video-component .video-info .description {
   display: none;
@@ -1420,6 +1420,14 @@ p:not(:first-child)
   .text-container .read-more__link.klrn_button_display_block {
     width: 100%;
   }
+}
+
+/* PBS button should match padding on text boxes */
+@media (max-width: 1311px) {
+    .simple-button-component {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
 
 .blogRiver__2-Wjj .load-more-wrapper .load-more:after,
