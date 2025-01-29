@@ -8,7 +8,7 @@ klrn.env.in = 'live';
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
-                 path.includes('/nan/');  
+                 path.includes('/klrn-endowment/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
 klrn.env.liveCSS = '/c1840eea70_styles.css';
@@ -56,38 +56,62 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     }
     
     /* home page sponsor */
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=San-Antonio-Zoo-2024-03] {
-        opacity: .95;
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=City-Showdown-2024-11] {
+        opacity: .96;
     }
     
     /* schedule page sponsor 1 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=CPS-2024-05-v2] {
-        opacity: .98;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Corporate-Support-2025-01] {
+        opacity: .95;
     }    
     
     /* schedule page sponsor 2 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=VOGT-2024-05] {
-        opacity: .96;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Vogt-2024-10] {
+        opacity: .94;
     }        
     
     /* schedule page sponsor 3 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Tobin-Center-Il-Divo-2023-12] {
-        opacity: .99;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Zoo-Boo-2024-10] {
+        opacity: .95;
     }    
     
     /* schedule page sponsor 4 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Tobin-Center-2024-02] {
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=SA-Youth-2024-09] {
         opacity: .98;
     } 
    
     /* sidebar sponsor */
-    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=Autism-2024-04] {
-        opacity: .95;
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=PBS-App-2025-01] {
+        opacity: .93;
     }
     
     /*================================================== 
     START TEMP FIXES
-    ==================================================*/       
+    ==================================================*/   
+    
+    /* adjust donate button shifting for 90% zoom */
+    @media (min-width: 1025px) {
+        .station-header .menu__ul.navbar-nav .menu__li.highlight {
+            border-width: calc(2px * (1 / 0.9)); /* adjust for 90% zoom */
+        }
+    }
+    
+    #klrn_sponsors .text-container div {
+        display: flex; 
+        justify-content: center;
+    }
+    
+    /* remove right padding to fit Other Side of the Mirror on mobile carousel */
+    .carousel.circle-crop-carousel .details-container .title, .carousel.full-size-carousel .details-container .title {
+        padding-right: 0;
+    }
+    
+    /* adjust mobile carousel title width for Rodgers and Hammersetien */
+    @media (min-width: 1025px) {
+        .carousel.full-size-carousel .details-container .title[aria-label="Rodgers & Hammerstein link"] {
+            width: 430px;
+        }
+    }
   
     /*================================================== 
     END TEMP FIXES
