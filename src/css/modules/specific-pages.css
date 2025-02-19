@@ -117,3 +117,13 @@ videoapp page
 .videoapp .text-container {
   padding-bottom: 16px !important;
 } 
+
+/*================================================== 
+sponsor page  
+==================================================*/
+
+/* center text-only acknowledgements on sponsors page */
+#klrn_sponsors .text-container div {
+  display: flex; 
+  justify-content: center;
+}

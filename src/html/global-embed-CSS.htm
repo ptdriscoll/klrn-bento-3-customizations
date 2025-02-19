@@ -8,10 +8,10 @@ klrn.env.in = 'live';
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
-                 path.includes('/klrn-endowment/');  
+                 path.includes('/test/test/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
-klrn.env.liveCSS = '/c1840eea70_styles.css';
+klrn.env.liveCSS = '/3ccfb3125d_styles.css';
 klrn.env.liveJS = '/a1470b1ac7_scripts.js';  
 
 (function() {   
@@ -61,7 +61,7 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     }
     
     /* schedule page sponsor 1 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Corporate-Support-2025-01] {
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Corporate-Support-2025-02] {
         opacity: .95;
     }    
     
@@ -87,31 +87,7 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     
     /*================================================== 
     START TEMP FIXES
-    ==================================================*/   
-    
-    /* adjust donate button shifting for 90% zoom */
-    @media (min-width: 1025px) {
-        .station-header .menu__ul.navbar-nav .menu__li.highlight {
-            border-width: calc(2px * (1 / 0.9)); /* adjust for 90% zoom */
-        }
-    }
-    
-    #klrn_sponsors .text-container div {
-        display: flex; 
-        justify-content: center;
-    }
-    
-    /* remove right padding to fit Other Side of the Mirror on mobile carousel */
-    .carousel.circle-crop-carousel .details-container .title, .carousel.full-size-carousel .details-container .title {
-        padding-right: 0;
-    }
-    
-    /* adjust mobile carousel title width for Rodgers and Hammersetien */
-    @media (min-width: 1025px) {
-        .carousel.full-size-carousel .details-container .title[aria-label="Rodgers & Hammerstein link"] {
-            width: 430px;
-        }
-    }
+    ==================================================*/
   
     /*================================================== 
     END TEMP FIXES

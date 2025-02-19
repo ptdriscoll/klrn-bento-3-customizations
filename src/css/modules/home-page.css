@@ -24,6 +24,11 @@ main.content .full-size-carousel {
   padding-top: 0.75em;
 }
 
+.carousel.circle-crop-carousel .details-container .title, 
+.carousel.full-size-carousel .details-container .title {
+  padding-right: 0;
+}
+
 .carousel.circle-crop-carousel .details-container .description,
 .carousel.full-size-carousel .details-container .description {
   line-height: 1.625;

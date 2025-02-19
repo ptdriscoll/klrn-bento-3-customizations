@@ -225,7 +225,8 @@ article > div.promo-text.span6 > p.channel {
   .station-header .menu__ul.navbar-nav .menu__li.highlight {
     border: 2px solid #fff;
     margin-right: 2px;
-  }
+    border-width: calc(2px * (1 / 0.9)); /* adjust for 90% zoom */
+  }  
   .station-header .menu__ul.navbar-nav .menu__li.highlight:hover,
   .station-header .menu__ul.navbar-nav .menu__li.highlight:focus {
     border-left: 1px solid #e0e0e0;
@@ -1120,6 +1121,11 @@ main.content .full-size-carousel {
   padding-top: 0.75em;
 }
 
+.carousel.circle-crop-carousel .details-container .title, 
+.carousel.full-size-carousel .details-container .title {
+  padding-right: 0;
+}
+
 .carousel.circle-crop-carousel .details-container .description,
 .carousel.full-size-carousel .details-container .description {
   line-height: 1.625;
@@ -1775,6 +1781,16 @@ videoapp page
 .videoapp .text-container {
   padding-bottom: 16px !important;
 } 
+
+/*================================================== 
+sponsor page  
+==================================================*/
+
+/* center text-only acknowledgements on sponsors page */
+#klrn_sponsors .text-container div {
+  display: flex; 
+  justify-content: center;
+}
 /*========================================================
 home page klrn sponsor module
 ==========================================================*/
