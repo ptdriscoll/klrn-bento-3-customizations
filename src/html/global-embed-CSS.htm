@@ -4,7 +4,7 @@ var klrn = klrn || {}, path = location.pathname;
 klrn.env = {};
     
 //set development environment to either 'dev' or 'prod' for testing (see server paths below), or 'live' 
-klrn.env.in = 'live';   
+klrn.env.in = 'dev';   
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
@@ -56,12 +56,15 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     }
     
     /* home page sponsor */
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=City-Showdown-2024-11] {
-        opacity: .96;
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=KLRN-News-Updates-2025-02] {
+        opacity: .86;
     }
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=Keeping-It-Wild-2025-04] {
+        opacity: .93;
+    }    
     
     /* schedule page sponsor 1 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Corporate-Support-2025-02] {
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Majestic-Theatre-Hauser-2025-04] {
         opacity: .95;
     }    
     
@@ -81,14 +84,61 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     } 
    
     /* sidebar sponsor */
-    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=PBS-App-2025-01] {
-        opacity: .93;
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=Save-Public-Media-2025] {
+        opacity: .85;
+    }
+    
+    /* posters */
+    .poster-grid .posters>.poster .grid-item .grid-image-container .grid-image[src*=San-Antonio-Files] {
+        opacity: .9;
     }
     
     /*================================================== 
     START TEMP FIXES
     ==================================================*/
-  
+    
+    /* temp adjustment */
+    nav#c33ef9a0-d91e-11e7-8b84-67caa8590abc {
+    	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.16);
+    }
+    
+    /* override PBS padding */
+    .video-component .video-info .title {
+        padding: 0;
+    }
+    
+    /* for Save Public Media banner headline */
+    #save-public-media h1 {
+      font-size: 3.8rem;
+    }    
+    
+    /* for Save Public Media banner button */
+    #save-public-media div.simple-button-value div.text-input  {
+        background-color: transparent !important;
+        border-width: 4px;   
+        font-weight: 800;
+    } 
+    
+    /* for Save Public Media banner button states */
+    #save-public-media div.simple-button-value div.text-input:focus
+    #save-public-media div.simple-button-value div.text-input:active
+    #save-public-media div.simple-button-value div.text-input:hover,
+    #save-public-media .simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input:focus,
+    #save-public-media .simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input:active,
+    #save-public-media .simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input:hover {
+        color: #fff !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border-color: #fff !important;
+        border-width: 4px !important;   
+        font-weight: 800;
+        
+    }    
+    
+    /* for Save Public Media banner button margins */
+    #save-public-media .component:last-child {
+          margin: 1.4rem 0 3.4rem;  
+    }  
+
     /*================================================== 
     END TEMP FIXES
     ==================================================*/
