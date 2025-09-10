@@ -1,0 +1,188 @@
+<style type="text/css">  
+    /* Banner includes headline, paragraph and button  */
+    
+    #save-public-media {
+      display: none;
+      max-height: 500px;
+      overflow: hidden;
+      border-bottom: 3px #f2f2f2 solid;
+      transition: 
+        max-height 0.5s ease, 
+        opacity 0.2s ease 0.3s,
+        border-bottom-width 0.2s ease 0.3s;
+    }
+    
+    #save-public-media.closing {
+      max-height: 0;
+      opacity: 0;
+      padding: 0 !important;
+      border-width: 0 !important;
+    }   
+    
+    /* for Save Public Media banner headline */
+    #save-public-media h1 {
+      font-size: 3.8rem;
+    }    
+    
+    /* for Save Public Media banner button */
+    #save-public-media div.simple-button-value div.text-input  {
+        background-color: transparent !important;
+        border-width: 4px;   
+        font-weight: 800;
+    } 
+    
+    /* for Save Public Media banner button states */
+    #save-public-media div.simple-button-value div.text-input:focus
+    #save-public-media div.simple-button-value div.text-input:active
+    #save-public-media div.simple-button-value div.text-input:hover,
+    #save-public-media .simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input:focus,
+    #save-public-media .simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input:active,
+    #save-public-media .simple-button-component.ghost.hasHoverEffect .simple-button-value .text-input:hover {
+        color: #fff !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border-color: #fff !important;
+        border-width: 4px !important;   
+        font-weight: 800;        
+    }    
+    
+    /* for Save Public Media banner button margins - TARGET PARENT OF SIMPLE BUTTON INSTEAD */
+    #save-public-media .component:last-child {
+        margin: 1.4rem 0 3.4rem;  
+    }    
+    
+    #save-public-media .close_button_wrapper {
+        position: relative;
+    }
+    
+    #save-public-media .close_button {
+      all: unset;
+      width: 20px;  
+      position: absolute;
+      right: 2.6rem;
+      cursor: pointer;
+      transition: transform 0.1s ease;  
+    }
+
+    #save-public-media  .close_button svg {
+      fill: #fff;
+      stroke: #fff;      
+      stroke-width: 3px; 
+      stroke-linecap: round;        
+    } 
+    
+    #save-public-media .close_button:active {
+      transform: translateY(1px) scale(0.95);
+    }    
+    
+@media (max-width: 1311px) {
+    #save-public-media .close_button {
+        top: -1.5rem;
+        right: 16px;
+    }
+}    
+
+</style>
+
+<div class=close_button_wrapper>
+  <button class="close_button"aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 35" data-sentry-element="CloseIcon" data-sentry-source-file="UrgentMessageBadge.tsx">
+          <path d="M19.358 17.782 33.24 3.9a1.846 1.846 0 0 0 0-2.588 1.846 1.846 0 0 0-2.588 0L16.77 15.429 3.123 1.547a1.846 1.846 0 0 0-2.589 0 1.846 1.846 0 0 0 0 2.588l13.883 13.883L.534 31.664a1.846 1.846 0 0 0 0 2.588 1.846 1.846 0 0 0 2.589 0L17.005 20.37l13.882 13.883a1.846 1.846 0 0 0 2.588 0 1.846 1.846 0 0 0 0-2.588z"></path>
+      </svg>
+  </button>
+</div>    
+
+<script>
+    (function () {
+      // ==============================
+      // SETTINGS
+      // ==============================
+      const SHOW_BANNER = true; //toggle whether to show banner at all
+      const BANNER_COOKIE_HOURS = 24; //hours to hide after closing banner
+      const VIEWS_COOKIE_LIMIT = 2; //max views of banner to allow for specified hours
+      const VIEWS_COOKIE_HOURS = 24; //specified hours to count views, 0 sets it to session only
+
+      // ==============================
+      // COOKIE HELPERS
+      // ==============================
+      const BANNER_COOKIE_NAME = 'klrn_banner_closed'; //hide for specified hours
+      const VIEWS_COOKIE_NAME = 'klrn_banner_views'; //pageviews counter
+
+      function setStringTime(hours) {
+        const date = new Date();
+        date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+        return date.toUTCString();
+      }
+
+      function setCookie(name, value, hours) {
+        let expires = '';
+
+        //make sure value will be a string
+        const stringValue =
+          typeof value === 'string'
+            ? value
+            : encodeURIComponent(JSON.stringify(value));
+
+        //if value is an object with an expires key, use value.expires to set expires, else use hours
+        if (typeof value === 'object' && value.expires) {
+          expires = '; expires=' + value.expires;
+        } else if (hours) {
+          expires = '; expires=' + setStringTime(hours);
+        }
+
+        //if no hours and no expires in value, set as session cookie
+        document.cookie = `${name}=${stringValue}${expires}; path=/`;
+      }
+
+      function getCookie(name) {
+        const nameEQ = name + '=';
+        const cookiesArray = document.cookie.split(';');
+
+        for (let cookie of cookiesArray) {
+          cookie = cookie.trim();
+          if (cookie.indexOf(nameEQ) === 0) {
+            const rawValue = cookie.substring(nameEQ.length);
+
+            try {
+              //try to decode and parse rawValue as JSON
+              return JSON.parse(decodeURIComponent(rawValue));
+            } catch (e) {
+              //if rawValue is not JSON, return as a plain string
+              return rawValue;
+            }
+          }
+        }
+        return null;
+      }
+
+      // ==============================
+      // MAIN LOGIC
+      // ==============================
+      const banner = document.querySelector('#save-public-media');
+      const hideBanner = getCookie(BANNER_COOKIE_NAME);
+      let viewsObj = getCookie(VIEWS_COOKIE_NAME) || { count: 0 };
+
+      if (
+        !SHOW_BANNER ||
+        !banner ||
+        hideBanner ||
+        viewsObj.count >= VIEWS_COOKIE_LIMIT
+      ) {
+        return;
+      } else {
+        banner.style.display = 'block';
+        viewsObj.count += 1;
+        setCookie(VIEWS_COOKIE_NAME, viewsObj, VIEWS_COOKIE_HOURS);
+      }
+
+      //attach close button event
+      const closeBtn = banner.querySelector('.close_button');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+          banner.classList.add('closing');
+          //setTimeout(() => (banner.style.display = 'none'), 600);
+          setCookie(BANNER_COOKIE_NAME, '1', BANNER_COOKIE_HOURS); // hide for 24h
+        });
+      }
+    })();
+  </script>
+  
