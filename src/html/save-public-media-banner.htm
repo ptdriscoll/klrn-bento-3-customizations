@@ -48,8 +48,8 @@
     /* for Save Public Media banner button margins - alt 2022 pseudo is :has(.simple-button-component) */
     #save-public-media .component:last-child {
         margin: 1.4rem 0 3.4rem;  
-    }    
-    
+    }        
+  
     #save-public-media .close_button_wrapper {
         position: relative;
     }
@@ -97,9 +97,14 @@
       // SETTINGS
       // ==============================
       const SHOW_BANNER = true; //toggle whether to show banner at all
+
       const BANNER_COOKIE_HOURS = 24; //hours to hide after closing banner
       const VIEWS_COOKIE_LIMIT = 2; //max views of banner to allow for specified hours
       const VIEWS_COOKIE_HOURS = 24; //specified hours to count views, 0 sets it to session only
+
+      const TRACKING_COOKIE_NAME = '__KLRN_BANNER_TEST'; //for tracking conversions, null or '' ignores tracking
+      const TRACKING_COOKIE_CAMPAIGN = 'home_page,website,Save_Public_TV'; //campaign label/s for tracking
+      const TRACKING_COOKIE_HOURS = 0; //specified hours to track, 0 sets it to session only
 
       // ==============================
       // COOKIE HELPERS
@@ -130,7 +135,7 @@
         }
 
         //if no hours and no expires in value, set as session cookie
-        document.cookie = `${name}=${stringValue}${expires}; path=/`;
+        document.cookie = `${name}=${stringValue}${expires}; path=/; domain=.klrn.org`;
       }
 
       function getCookie(name) {
@@ -175,14 +180,30 @@
       }
 
       //attach close button event
-      const closeBtn = banner.querySelector('.close_button');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', function () {
+      const closeButton = banner.querySelector('.close_button');
+      if (closeButton) {
+        closeButton.addEventListener('click', function () {
           banner.classList.add('closing');
           //setTimeout(() => (banner.style.display = 'none'), 600);
           setCookie(BANNER_COOKIE_NAME, '1', BANNER_COOKIE_HOURS); // hide for 24h
         });
       }
+      
+      //attach conversion tracking if called for
+      document.addEventListener('DOMContentLoaded', () => {
+        if (TRACKING_COOKIE_NAME) {
+          const convertButton = banner.querySelector('.simple-button-link');
+          if (convertButton) {
+            convertButton.addEventListener('click', function () {
+              setCookie(
+                TRACKING_COOKIE_NAME,
+                TRACKING_COOKIE_CAMPAIGN,
+                TRACKING_COOKIE_HOURS
+              );
+            });
+          }
+        }
+      });        
     })();
   </script>
-  
+
