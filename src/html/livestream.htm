@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KLRN Livestream</title>
+    <style>
+      /* 
+      BOOTSTRAP 2 BREAKPOINTS
+      Small: @media (min-width: 480px)
+      Medium: @media (min-width: 768px)
+      Large: @media (min-width: 992px)
+      Extra large: @media (min-width: 1200px)
+
+      BOOTSTRAP 5 BREAKPOINTS
+      Small: @media (min-width: 576px)
+      Medium: @media (min-width: 768px)
+      Large: @media (min-width: 992px)
+      Extra large: @media (min-width: 1200px)
+      Extra extra large: @media (min-width: 1400px)       
+      */
+
+      .livestream-iframe {
+        --schedule-offset: 660px;
+
+        margin: 0 auto;
+        margin-top: -2.6rem; /* OPTIONAL STYLE FOR EMBEDDING ON KLRN BENTO PAG */
+        display: block;
+        border: 0;
+        height: calc(56.25vw + var(--schedule-offset));
+        width: 100%;
+        max-width: 1720px;
+      }
+
+      @media (min-width: 784px) {
+        .livestream-iframe {
+          --schedule-offset: 900px;
+        }
+      }
+
+      @media (min-width: 1040px) {
+        .livestream-iframe {
+          --schedule-offset: 1030px;
+        }
+      }
+
+      @media (min-width: 1300px) {
+        .livestream-iframe {
+          height: 1700px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    DARK:  https://video.klrn.org/livestream/iframe/"
+    LIGHT: https://video.klrn.org/livestream/iframe/?theme=light"
+    -->
+    <iframe
+      allow="geolocation; encrypted-media"
+      allowfullscreen=""
+      class="livestream-iframe"
+      src="https://video.klrn.org/livestream/iframe/?theme=light"
+    >
+    </iframe>
+  </body>
+</html>
