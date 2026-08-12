@@ -1630,39 +1630,7 @@ manage what sidebar promos show
 #component-19fb5ee0-f369-11e8-90bb-7b9969ce1070 .filer-image {
     border: 1px solid #ddd; width: 100%; 
 }
-
-/*========================================================
-manage KLRN Endowmwnt page sidebar elements
-==========================================================*/
-
-/* All other pages: Memorials box not shown by default */
-#component-91b6cdf0-a982-11e9-b5e3-a77ff72a2441,
-#component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 {display: none;}
-
-/* Endowment page: Memorials box is shown */
-.support.klrn-endowment #component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 {
-    display: block; 
-}
-
-/* Endowment page: Memorials box h2 headline moved up slightly when on desktop */
-@media (min-width: 1024px) {
-    .support.klrn-endowment #component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 h2 {
-        margin-top: -7px;      
-   }
-}
-
-/* Endowment page: do not show buttons or default Passport promo */
-.support.klrn-endowment .rail-wrapper a.klrn_button,
-.support.klrn-endowment #component-487eb930-f29a-11e8-ac11-cf036755f6fe {
-    display: none; 
-}
-
-/* Endowment page: add style for h2.subhead */
-.support.klrn-endowment #component-e68b6b10-a982-11e9-b5e3-a77ff72a2441 h2.subhead {
-    margin-top: -4px;
-    font-size: 2.1rem; 
-    font-style: italic; 
-}/*================================================== 
+/*================================================== 
 livestream page 
 ==================================================*/
 

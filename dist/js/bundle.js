@@ -890,114 +890,6 @@ if (typeof Object.assign !== 'function') {
   //console.log('CHECK URL STRING: settings.getFile + '?update=' + settings.version);      
 }());  
 
-//for support/klrn-endowment page 
-(function() {      
-  // return if not klrn-endowment page
-  if (location.pathname.indexOf('/support/klrn-endowment') === -1) return;
-
-  // see if #klrn_memorials div exists, and if not then exit
-  var memorialsElem = document.querySelector('#rich-text-e68b6b10-a982-11e9-b5e3-a77ff72a2441');
-
-  if (!memorialsElem) return;  
-
-  //add all created elements to this, and then make only one dom insertion
-  var divElem = document.createElement('div');  
-
-  //set variables for CSV file URL parameters        
-  var settings = {
-    // only reset this to override browser caches if reloading CSV data in same week
-    version: '2019-10-03-0',
-    getFile: 'https://pbs.klrn.org/bento/data/get-data.php?file=memorials&type=csv',
-    date: this.date || new Date(),
-    // this gets tuesday of current week, so it can be added to CSV link to override browser caches 
-    update: function() {
-      var tuesday, curr = this.date;
-      tuesday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 2));
-      tuesday = tuesday.toDateString().split(' ');
-      return tuesday[1] + '_' + tuesday[2] + '_' + tuesday[3];
-    }
-  };
-
-  // helper function
-  var filterName = function(str) {  
-        if (str.indexOf(' Jr') !== -1) {
-            return str.replace(/\s+Jr/, '&nbsp;Jr');
-        }
-        if (str.indexOf(' (') !== -1) {
-            return str.replace(/\s+\(/, '&nbsp;(');
-          }
-          else return str; 
-  };
-  
-  // another helper function  
-  var filterFrom = function(str) {
-      return str.replace('KLRN Staff', 'KLRN&nbsp;Staff');
-  };   
-
-  // parse memorials data to set page content   
-  var setMemorials = function(data) { 
-    var memorialsText = '',
-      honorsText = '',
-      currentDate = Date.parse(settings.date),
-      expiresArray = [],
-      expiredDate = '',
-      memorialsArray = [],
-      honorsArray = [];                   
-
-    data = klrn.parseCSV(data); 
-    //console.log(data);    
-            
-    if (data.length < 1) return;
-    divElem.innerHTML = '';
-    
-    for (var i = 0, length = data.length; i < length; i++) {
-      expiresArray = data[i].EXPIRES.split('-');
-      expiredDate = Date.parse(expiresArray[1] + ' ' + expiresArray[0] + ', ' + expiresArray[2]);
-      if (currentDate > expiredDate) continue;
-      if (data[i].TYPE.match(/memorial/i)) {
-        memorialsArray.push(data[i]);
-      }
-      if (data[i].TYPE.match(/honor/i)) {
-        honorsArray.push(data[i]);
-      }
-    }	
-    if (memorialsArray.length > 0) {            
-      memorialsText = '<h2 class="subhead">In Memory Of</h2>';
-      for (var i = 0, length = memorialsArray.length; i < length; i++) {
-        memorialsText += '<p><strong>'
-                + filterName(memorialsArray[i].NAME)
-                + '</strong><br>'
-                + filterFrom(memorialsArray[i].FROM)	
-                          + '</p>';
-      }
-      divElem.innerHTML += memorialsText;
-    }			
-        
-    if (honorsArray.length > 0) {
-      honorsText = '<h2 class="subhead">In Honor Of</h2>';
-      for (var i = 0, length = honorsArray.length; i < length; i++) {
-        honorsText += '<p><strong>'
-                 + filterName(honorsArray[i].NAME)
-               + '</strong><br>'
-                         + filterFrom(honorsArray[i].FROM)
-                         + '</p>';
-      }
-      divElem.innerHTML += honorsText;      
-    }
-    
-    divElem.innerHTML += '<hr style="margin: 12px 0 16px;">';
-    
-    if (memorialsArray.length > 0 || honorsArray.length > 0) {     
-      if (memorialsElem.firstElementChild && memorialsElem.firstElementChild.nextElementSibling)
-        memorialsElem.insertBefore(divElem, memorialsElem.firstElementChild.nextElementSibling); 
-    }     
-  }
-
-  // load CSV file 
-  var file = settings.getFile + '&update=' + settings.update() + '&version=' + settings.version;
-  klrn.ajaxLoad(file, setMemorials);    
-}());
-
 //clean up blog posts
 (function() {
   //return if not a blog post page
@@ -1026,6 +918,98 @@ if (typeof Object.assign !== 'function') {
     if (badImg || badTxt) p.parentNode.removeChild(p);    
   }  
 }());
+
+// For support/memorials-and-tributes
+(async () => {
+  // Return if not memorials-tributes page
+  if (!location.pathname.includes('/support/memorials-tributes')) return;
+
+  // See if memorials div exists, and if not then exit
+  const memorialsElem = document.querySelector('#rich-text-d3aac930-8acd-11f1-981c-4d10fce00281');
+  if (!memorialsElem) return;
+
+  // Set variables for CSV file URL parameters
+  const settings = {    
+    version: '2026-08', // Reset to override browser caches if reloading CSV data in same week
+    getFile: 'https://pbs.klrn.org/bento/data/get-data.php?file=memorials&type=csv',
+    date: new Date(),    
+    get update() { // Gets tuesday of current week to override browser caches
+      const curr = new Date(this.date);
+      const tuesday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 2));
+      const [, month, day, year] = tuesday.toDateString().split(' ');
+      return `${month}_${day}_${year}`;
+    }
+  };
+
+  // Helper function
+  const filterName = (str) => {
+    if (str.includes(' Jr')) return str.replace(/\s+Jr/, '&nbsp;Jr');
+    if (str.includes(' (')) return str.replace(/\s+\(/, '&nbsp;(');
+    return str;
+  };
+
+  // Another helper function
+  const filterFrom = (str) => str.replace('KLRN Staff', 'KLRN&nbsp;Staff');
+
+  // Helper to build list items 
+  const buildListHtml = (title, items) => {
+    if (items.length === 0) return '';    
+    const listContent = items
+      .map(item => `<p><strong>${filterName(item.NAME)}</strong><br>${filterFrom(item.FROM)}</p>`)
+      .join('');      
+    return `<h2 class="subhead">${title}</h2>${listContent}`;
+  };
+  
+  // Fetch data
+  let rawData;
+  try {
+    const fileUrl = `${settings.getFile}&update=${settings.update}&version=${settings.version}`;
+    const response = await fetch(fileUrl);    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Error: ${response.status} ${response.statusText}`, errorText);
+      return;    }    
+    rawData = await response.text();
+  } catch (error) {
+    console.error("Network or fetch failed:", error.message);
+    return;
+  }  
+
+  // Parse memorials from CSV data
+  while (!window.klrn?.parseCSV) await new Promise(r => setTimeout(r, 50));
+  const data = klrn.parseCSV(rawData);
+  if (!data || data.length < 1) return;  
+  
+  // Filter out expired rows 
+  const currentDate = Date.parse(settings.date);
+  const validEntries = data.filter(row => {
+    expiresArray = row.EXPIRES.split('-');
+    expiredDateTest = Date.parse(expiresArray[1] + ' ' + expiresArray[0] + ', ' + expiresArray[2]);
+    const [day, month, year] = row.EXPIRES.split('-');
+    const expiredDate = Date.parse(`${month} ${day}, ${year}`);
+    return currentDate <= expiredDate;
+  });
+
+  // Group data by memorials and honors
+  const memorialsArray = validEntries.filter(row => /memorial/i.test(row.TYPE));
+  const honorsArray = validEntries.filter(row => /honor/i.test(row.TYPE));  
+  if (memorialsArray.length === 0 && honorsArray.length === 0) return;
+
+  // Generate HTML to insert
+  const divElem = document.createElement('div');
+  divElem.innerHTML = `
+    ${buildListHtml('In Memory Of', memorialsArray)}
+    ${buildListHtml('In Honor Of', honorsArray)}
+    <hr style="margin: 12px 0 16px;">
+  `.trim();
+
+  // DOM Insertion
+  const targetChild = memorialsElem.firstElementChild?.nextElementSibling;
+  if (targetChild) {
+    memorialsElem.insertBefore(divElem, targetChild);
+  }
+})();
+
 },{}],7:[function(require,module,exports){
 (function () {
   // return if not sponsor page
