@@ -4,15 +4,17 @@ var klrn = klrn || {}, path = location.pathname;
 klrn.env = {};
     
 //set development environment to either 'dev' or 'prod' for testing (see server paths below), or 'live' 
-klrn.env.in = 'dev';   
+klrn.env.in = 'live';   
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
+                 path.includes('/support/memorials-tributes/') || 
+    			 path.includes('/support/klrn-endowment/') || 
                  path.includes('/test/test/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
-klrn.env.liveCSS = '/3ccfb3125d_styles.css';
-klrn.env.liveJS = '/a1470b1ac7_scripts.js';  
+klrn.env.liveCSS = '/f051636a6e_styles.css';
+klrn.env.liveJS = '/57bfe3db0c_scripts.js';  
 
 (function() {   
     //load css and js for dev testing
@@ -50,22 +52,19 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     tweaks
     ==================================================*/
     
-    /* first promo spot (Donate Now) on home page, top-left */
+    /* first KLRN promo spot (Donate Now) on home page, top-left */
     #layout-ba6653c8-7257-4172-ad4f-5cbb0383f9f4 .promo .promo-link img {
         opacity: .96;
     }
     
     /* home page sponsor */
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=Texas-Tribune-Festival] {
-        opacity: .91;
+    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=KLRN-Community-Survey-300x250] {
+        opacity: .95;
     }
-    #component-226c0e70-c025-11e8-a510-ab9feec55ef7 img[src*=Keeping-It-Wild-2025-04] {
-        opacity: .93;
-    }    
     
     /* schedule page sponsor 1 */
-    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Vogt-2025-09] {
-        opacity: .93;
+    #layout-4936e49d-c107-4949-bca0-f3d50f08c84f img[src*=Texas-Tribune-Festival-2026] {
+        opacity: .9;
     }    
     
     /* schedule page sponsor 2 */
@@ -89,14 +88,18 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
     }
     
     #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=KLRN-Corporate-Support-2025-03] {
-        opacity: .98;
+        opacity: .93;
     }
+    
+    #component-487eb930-f29a-11e8-ac11-cf036755f6fe img[src*=KLRN-Community-Survey-300x250] {
+        opacity: .96;
+    }    
     
     /* posters */
     .poster-grid .posters>.poster .grid-item .grid-image-container .grid-image[src*=San-Antonio-Files] {
         opacity: .9;
-    }
-    
+    }    
+
     /*================================================== 
     START TEMP FIXES
     ==================================================*/
@@ -111,15 +114,36 @@ klrn.env.liveJS = '/a1470b1ac7_scripts.js';
         padding: 0;
     }
     
-    /* temp tweak for Salud main image */
-    #component-55bb6610-ce12-11eb-a033-550134c135f0 {
-        border: 2px solid #dedede; 
-    }
-    
     /* fix PBS bogus menu padding */
     .station-header .menu__ul.navbar-nav .submenu .submenu__li>.menu-item {
         padding: 12px 17px 12px 22px;
     }  
+    
+    /* Remove blog tags from Blog Rivers */
+    .blog-entry__blogEntry--24_Rs ul.tags {
+        display: none;
+    }
+
+    /* Remove category tags from Blog Rivers */
+    .blog-entry__blogEntry--24_Rs.with-image .category-wrapper {
+        display: none;
+    }
+
+    /* add top margin to titles on Blog Rivers */
+    .blog-entry__blogEntry--24_Rs .title {
+        margin-top: 32px;
+    }
+
+    /* resize padding to 16:9 ratio for images on Blog Rivers */
+    .blog-entry__blogEntry--24_Rs .entry-image-wrapper {
+        padding-top: 56%;
+    }
+    
+    /* strip outlines and shadows only for mouse clicks, leaving keyboard focus alone */
+    *:focus:not(:focus-visible) {
+      outline: none !important;
+      box-shadow: none !important;
+    }
 
     /*================================================== 
     END TEMP FIXES
