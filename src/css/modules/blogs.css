@@ -48,9 +48,9 @@ blogs
 }
 
 /* blog river */
-.blogRiver__2-Wjj h1.river-title,
-.blogRiver__2-Wjj .river-title .ck-content .river-title,
-.blogRiver__2-Wjj .river-title .ck-content * {
+.blog-river__blogRiver--2-Wjj h1.river-title,
+.blog-river__blogRiver--2-Wjj .river-title .ck-content .river-title,
+.blog-river__blogRiver--2-Wjj .river-title .ck-content * {
   text-transform: none !important;
   color: var(--klrn-primary-dark) !important;
   font-weight: 300 !important;
@@ -59,24 +59,24 @@ blogs
   margin-bottom: 2.6rem;
 }
 
-.blogRiver__2-Wjj .entry-image-wrapper {
+.blog-river__blogRiver--2-Wjj .entry-image-wrapper {
   margin-bottom: 24px;
   line-height: 0;
   padding-top: calc(9 / 16 * 100%);
 }
-.blogRiver__2-Wjj .category-wrapper,
-.blogRiver__2-Wjj .social-container,
-.blogRiver__2-Wjj .blogEntry__24_Rs ul.tags,
-.news .blogRiver__2-Wjj .entry-image-wrapper {
+.blog-river__blogRiver--2-Wjj .categories-wrapper,
+.blog-river__blogRiver--2-Wjj .social-container,
+.blog-river__blogRiver--2-Wjj .blog-entry__blogEntry--24_Rs ul.tags,
+.news .blog-river__blogRiver--2-Wjj .entry-image-wrapper {
   display: none;
 }
-.blogRiver__2-Wjj .blogEntry__24_Rs footer {
+.blog-river__blogRiver--2-Wjj .blog-entry__blogEntry--24_Rs footer {
   text-align: left;
 }
-.blogEntry__24_Rs .cta {
+.blog-entry__blogEntry--24_Rs .cta {
   margin-bottom: 10px;
 }
-/* .blogRiver__2-Wjj .blogEntry__24_Rs footer .fa-angle-right:before {position: relative; top: 0.09em;} */
+/* .blog-river__blogRiver--2-Wjj .blog-entry__blogEntry--24_Rs footer .fa-angle-right:before {position: relative; top: 0.09em;} */
 
 /* remove border around main image and caption */
 .blog-entry-container .blog-entry-image-wrapper,
@@ -174,14 +174,14 @@ blogs
 }
 
 /* blog river page feeds */
-.pressroom .blogRiver__2-Wjj .pager__2roil,
-.scitechnow .blogRiver__2-Wjj .pager__2roil,
-.ontherecord .blogRiver__2-Wjj .pager__2roil,
-.thestorygoes .blogRiver__2-Wjj .pager__2roil {
+.pressroom .blog-river__blogRiver--2-Wjj .pager__2roil,
+.scitechnow .blog-river__blogRiver--2-Wjj .pager__2roil,
+.ontherecord .blog-river__blogRiver--2-Wjj .pager__2roil,
+.thestorygoes .blog-river__blogRiver--2-Wjj .pager__2roil {
   padding: 0;
   display: none;
 }
-.news .blogRiver__2-Wjj .pager__2roil {
+.news .blog-river__blogRiver--2-Wjj .pager__2roil {
   padding: 0;
 }
 
@@ -195,17 +195,17 @@ blogs
 
 /* adjust It Just Makes Sense page */
 .itjustmakescents
-  .blogRiver__2-Wjj
+  .blog-river__blogRiver--2-Wjj
   .row:nth-of-type(4)
   .col-md-4:nth-of-type(1) {
   margin-bottom: 0;
 }
 .itjustmakescents
-  .blogRiver__2-Wjj
+  .blog-river__blogRiver--2-Wjj
   .row:nth-of-type(4)
   .col-md-4:nth-of-type(2),
 .itjustmakescents
-  .blogRiver__2-Wjj
+  .blog-river__blogRiver--2-Wjj
   .row:nth-of-type(4)
   .col-md-4:nth-of-type(3) {
   display: none;

@@ -141,6 +141,11 @@ cite {
   color: var(--klrn-donate-text);
 }
 
+/* fix PBS bogus menu padding */
+.station-header .menu__ul.navbar-nav .submenu .submenu__li>.menu-item {
+    padding: 12px 17px 12px 22px;
+} 
+
 .section-header-component .section-header-value.h1_tag .text-input,
 h1,
 .section-header-component .section-header-value.h2_tag .text-input,
@@ -263,6 +268,14 @@ article > div.promo-text.span6 > p.channel {
   .section-header-component.underline .section-header-value {
     margin: 0;
   }
+}
+    
+/*================================================== 
+strip outlines and shadows only for mouse clicks, leaving keyboard focus alone
+==================================================*/    
+*:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /*================================================== 

@@ -8,12 +8,11 @@ klrn.env.in = 'live';
 
 //add any other conditions for development or production environment, such as a page or host address
 klrn.env.inDev = path.includes('/test/') || 
-                 path.includes('/support/memorials-tributes/') || 
-    			 path.includes('/support/klrn-endowment/') || 
+    			 path.includes('/blogs/station-news/') || 
                  path.includes('/test/test/');  
    
 //add css and js file names for live environment, which include hashes that change on each update
-klrn.env.liveCSS = '/f051636a6e_styles.css';
+klrn.env.liveCSS = '/53f2b73ac6_styles.css';
 klrn.env.liveJS = '/57bfe3db0c_scripts.js';  
 
 (function() {   
@@ -99,52 +98,18 @@ klrn.env.liveJS = '/57bfe3db0c_scripts.js';
     .poster-grid .posters>.poster .grid-item .grid-image-container .grid-image[src*=San-Antonio-Files] {
         opacity: .9;
     }    
+    
+    /* nav shadow */
+    nav#c33ef9a0-d91e-11e7-8b84-67caa8590abc {
+    	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.16);
+    }    
 
     /*================================================== 
     START TEMP FIXES
     ==================================================*/
     
-    /* temp adjustment */
-    nav#c33ef9a0-d91e-11e7-8b84-67caa8590abc {
-    	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.16);
-    }
+    /* no fixes */
     
-    /* override PBS padding */
-    .video-component .video-info .title {
-        padding: 0;
-    }
-    
-    /* fix PBS bogus menu padding */
-    .station-header .menu__ul.navbar-nav .submenu .submenu__li>.menu-item {
-        padding: 12px 17px 12px 22px;
-    }  
-    
-    /* Remove blog tags from Blog Rivers */
-    .blog-entry__blogEntry--24_Rs ul.tags {
-        display: none;
-    }
-
-    /* Remove category tags from Blog Rivers */
-    .blog-entry__blogEntry--24_Rs.with-image .category-wrapper {
-        display: none;
-    }
-
-    /* add top margin to titles on Blog Rivers */
-    .blog-entry__blogEntry--24_Rs .title {
-        margin-top: 32px;
-    }
-
-    /* resize padding to 16:9 ratio for images on Blog Rivers */
-    .blog-entry__blogEntry--24_Rs .entry-image-wrapper {
-        padding-top: 56%;
-    }
-    
-    /* strip outlines and shadows only for mouse clicks, leaving keyboard focus alone */
-    *:focus:not(:focus-visible) {
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
     /*================================================== 
     END TEMP FIXES
     ==================================================*/

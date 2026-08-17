@@ -7,6 +7,7 @@ youtube videos module
 }
 .video-info .ellipsis h3.title {
   font-weight: 400;
+  padding: 0; /* override PBS padding */
 }
 
 .embed_wrapper.ratio_16-9 {
