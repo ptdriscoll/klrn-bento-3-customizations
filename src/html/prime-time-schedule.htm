@@ -1,0 +1,153 @@
+<div id="prime-time-schedule"></div>
+<script>
+const API_URL = 'https://pbs.klrn.org/api/get-data.php?file=prime-time-schedule&type=json';
+const container = document.getElementById('prime-time-schedule');
+
+// Define reusable style fragments
+const FONT_MAIN = 'font-family: Franklin Gothic Medium, Arial, Helvetica, sans-serif;';
+const P_BASE = 'text-align: left; margin: 0;';   
+
+// Preserve paragraph HTML and styles when copying selected schedule content
+container.addEventListener('copy', event => {
+  const selection = window.getSelection();
+
+  if (!selection || selection.isCollapsed) return;
+
+  const range = selection.getRangeAt(0);
+
+  // Only intercept selections within the schedule
+  if (!container.contains(range.commonAncestorContainer)) return;
+
+  let html;
+
+  // Find the paragraph containing the selection
+  const startNode = range.startContainer.nodeType === Node.TEXT_NODE
+    ? range.startContainer.parentElement
+    : range.startContainer;
+
+  const endNode = range.endContainer.nodeType === Node.TEXT_NODE
+    ? range.endContainer.parentElement
+    : range.endContainer;
+
+  const startParagraph = startNode.closest('p');
+  const endParagraph = endNode.closest('p');
+
+  // If selection is within a single paragraph, copy the whole paragraph
+  if (startParagraph && startParagraph === endParagraph) {
+    html = startParagraph.outerHTML;
+  } else {
+    // Otherwise preserve the selected HTML
+    const fragment = range.cloneContents();
+    const wrapper = document.createElement('div');
+    wrapper.appendChild(fragment);
+    html = wrapper.innerHTML;
+  }
+
+  event.clipboardData.setData('text/html', html);
+  event.clipboardData.setData('text/plain', selection.toString());
+  event.preventDefault();
+});    
+
+async function loadSchedule() {
+  try {
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    let html = '';
+
+    // Loop through each day
+    data.days.forEach(day => {
+
+      // Format the date without UTC timezone conversion
+      const [year, month, date] = day.date.split('-').map(Number);
+      const formattedDate = new Date(year, month - 1, date)
+        .toLocaleDateString('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric'
+        })
+        .toUpperCase();
+
+      // Find the correct feed
+      const feed = day.schedule.feeds.find(
+        feed => feed.cid === data.feed_cid
+      );
+
+      if (!feed) return;
+
+      // Only include listings starting at or after 7PM
+      const listings = feed.listings.filter(
+        listing => Number(listing.start_time) >= 1900
+      );
+
+      if (!listings.length) return;    
+
+      // DAY HEADER
+      html += `
+        <p style="${P_BASE}" align="left">
+          <span style="font-size: 22px; color: rgb(54, 97, 189); ${FONT_MAIN}">${formattedDate}</span>
+        </p>
+      `;    
+
+      // Loop through the day's listings
+      listings.forEach(listing => {
+      
+        const time = formatTime(listing.start_time);
+        const title = listing.title || '';
+        const episode = listing.episode_title || '';
+        const fullTitle = episode
+          ? `${title}: ${episode}`
+          : title;
+
+        // TIME
+        html += `
+          <p style="${P_BASE}" align="left">
+            <span style="font-size: 14px; color: rgb(41, 75, 147); font-weight: normal; ${FONT_MAIN}">${time}</span>
+          </p>
+        `;
+
+        // TITLE
+        html += `
+          <p style="${P_BASE}" align="left">
+            <span style="font-size: 14px; color: rgb(0, 0, 0); ${FONT_MAIN}">${escapeHTML(fullTitle)}</span>
+          </p>
+        `;
+
+      });
+    });
+
+    container.innerHTML = html;
+
+  } catch (error) {
+    console.error('Unable to load schedule:', error);
+    container.textContent = `Schedule error: ${error.message}`;
+  }
+}
+
+// Convert HHMM to 12-hour time
+function formatTime(startTime) {
+  const time = String(startTime).padStart(4, '0');
+  const hour = Number(time.slice(0, 2));
+  const minute = time.slice(2);
+  const formattedHour = hour % 12 || 12;
+  return `${formattedHour}${minute === '00' ? '' : ':' + minute}${hour >= 12 ? 'PM' : 'AM'}`;
+}
+
+// Escape program titles before inserting them into HTML
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+}
+
+// Initialize
+loadSchedule();
+</script>
